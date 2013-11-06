@@ -7,7 +7,9 @@ standard-app-packages
 preserve-inputs
 accounts-password
 accounts-ui
-
 collection2
 simple-schema
 autoform
+autopublish
+insecure
+bootstrap
