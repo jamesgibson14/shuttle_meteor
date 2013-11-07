@@ -3,7 +3,6 @@
   "dependencies": {
     "basePackages": {
       "moment": {},
-      "simple-schema": {},
       "autoform": {}
     },
     "packages": {
@@ -12,15 +11,15 @@
         "tag": "v2.2.1",
         "commit": "9ee12e714afe56b189f53076447b7b54f3012065"
       },
-      "simple-schema": {
-        "git": "https://github.com/aldeed/meteor-simple-schema.git",
-        "tag": "v0.2.15",
-        "commit": "ac0f904de1b8161c17ae9e2eef1fbb4d2a74c4a9"
-      },
       "autoform": {
         "git": "https://github.com/aldeed/meteor-autoform.git",
         "tag": "v0.4.1",
         "commit": "5f07277746fb8cf9c938ed5c1382348fba8218d7"
+      },
+      "simple-schema": {
+        "git": "https://github.com/aldeed/meteor-simple-schema.git",
+        "tag": "v0.2.15",
+        "commit": "ac0f904de1b8161c17ae9e2eef1fbb4d2a74c4a9"
       }
     }
   }

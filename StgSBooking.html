@@ -5,14 +5,22 @@
 <body>
 	<div class="text-center">
 		<h1>Schedule Your Trip</h1>
+
   	{{> route_form}}
 	</div>
 </body>
 <template name="manage_routes">
 </template>
+
 <template name="route_form">
+  {{autoform schema=bookingCollection doc=this}}
+  
   <form>
       <fieldset>
+        <label>Select Your Departure and Return Dates</label>
+          <select id="dates">
+            <option>TODO</option>
+          </select>
         <label>Select Your Route</label>
           <select id="routes">
             {{#each currentroutes}}
