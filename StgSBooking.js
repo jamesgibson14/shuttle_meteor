@@ -1,35 +1,39 @@
 Routes = new Meteor.Collection('Routes');
-Booking = new Meteor.Collection2('booking', {
+Bookings = new Meteor.Collection2("bookings", {
   schema: {
-    departureDate: {
+    booked_date: {
       type: Date,
-      label: "Departure Date"
+      label: "Booked Date"
     },
-
-    route: {
+    travel_date: {
+      type: Date,
+      label: "Travel Date"
+    },
+    pickup: {
       type: String,
-      label: "Departure Route"
+      label: "Pickup"
     },
-
-    departureTime: {
+    dropoff: {
       type: String,
-      label: "Departure Time"
+      label: "Drop Off"
     },
-
-    price: {
-      type: Number,
-      label: "Total Price"
+    summary: {
+      type: String,
+      label: "Brief summary",
+      optional: true,
+      max: 1000
     }
-
   }
 });
 
 if (Meteor.isClient) {
+  /*
   Template.route_form.insert_route = function () {
     return "Welcome to StgSBooking.";
   };
+  */
 
-  Template.route_form.currentroutes = function () {
+  Template.booking_form.currentroutes = function () {
      return Routes.find({}, { fields: { 'name': 1, _id: 0 }});
   }
 }

@@ -6,18 +6,20 @@
 	<div class="text-center">
 		<h1>Schedule Your Trip</h1>
 
-  	{{> route_form}}
+  	{{> booking_form}}
 	</div>
 </body>
 <template name="manage_routes">
 </template>
 
-<template name="route_form">
-  {{autoform schema=bookingCollection doc=this}}
+<template name="booking_form">
+  {{autoform schema=bookingsCollection doc=this}}
+  
+
   
   <form>
       <fieldset>
-        <label>Select Your Departure and Return Dates</label>
+        <label>Select Your Travel Date</label>
           <select id="dates">
             <option>TODO</option>
           </select>
