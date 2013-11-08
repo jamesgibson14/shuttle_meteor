@@ -1,6 +1,7 @@
 {
   "packages": {
     "moment": {},
-    "autoform": {}
+    "autoform": {},
+    "bootstrap-datepicker2": {}
   }
 }

@@ -2,6 +2,7 @@
   "packages": {
     "moment": {},
     "simple-schema": {},
-    "autoform": {}
+    "autoform": {},
+    "bootstrap-datepicker2": {}
   }
 }
