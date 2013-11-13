@@ -16,17 +16,53 @@
 
   <form>
       <fieldset>
-        <label>Select Your Travel Date</label>
+        <input type="radio" name="round-trip" value="round-trip"> Round-Trip &nbsp;
+        <input type="radio" name="round-trip" value="one-way"> One-Way
+        <p>&nbsp;</p>
+
+        <label>Leave Date:</label>
           <div class="input-append date">
             <input type="text" class="span2"><span class="add-on"><i class="icon-th"></i></span>
           </div>
-        <label>Select Your Route</label>
-          <select id="routes">
-            {{#each currentroutes}}s
+
+        <label>Return Date:</label>
+          <div class="input-append date">
+            <input type="text" class="span2"><span class="add-on"><i class="icon-th"></i></span>
+          </div>
+        
+        <label>Pick Up Location:</label>
+          <select id="pick_up">
+            {{#each pick-up}}
               <option>{{name}}</option>
             {{/each}}
           </select>
         </label>
+        
+        <label>Departure Time</label>
+          <select id="departure_time"></select>
+        
+        <label>Seat Options:</label>
+          <select id="departure_seat"></select>
+        
+        <label>Passengers</label>
+          <select id="departure_passengers"></select>
+        
+        <label>Drop Off Location:</label>
+          <select id="drop_off">
+            {{#each drop-off}}
+              <option>{{name}}</option>
+            {{/each}}
+          </select>
+        </label>
+        
+        <label>Return Time</label>
+          <select id="return_time"></select>
+        
+        <label>Seat Options:</label>
+          <select id="return_seat"></select>
+        
+        <label>Passengers</label>
+          <select id="return_passengers"></select>
       </fieldset>
     </form>
 </template>

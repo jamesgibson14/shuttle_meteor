@@ -1,31 +1,3 @@
-Routes = new Meteor.Collection('routes');
-Bookings = new Meteor.Collection2("bookings", {
-  schema: {
-    booked_date: {
-      type: Date,
-      label: "Booked Date"
-    },
-    travel_date: {
-      type: Date,
-      label: "Travel Date"
-    },
-    pickup: {
-      type: String,
-      label: "Pickup"
-    },
-    dropoff: {
-      type: String,
-      label: "Drop Off"
-    },
-    summary: {
-      type: String,
-      label: "Brief summary",
-      optional: true,
-      max: 1000
-    }
-  }
-});
-
 if (Meteor.isClient) {
 
   Template.booking_form.rendered = function() {
@@ -34,8 +6,17 @@ if (Meteor.isClient) {
 
 
   Template.booking_form.currentroutes = function () {
-     return Routes.find({}, { fields: { 'name': 1, _id: 0 }});
+    return Routes.find({}, { fields: { 'name': 1, _id: 0 }});
    };
+
+  Template.booking_form.pick_up = function () {
+    return Locations.find();
+  }
+
+  Template.booking_form.drop_off = function () {
+    var pickUpSelection = $("#pick_up option:selected").text();
+    return Locations.find();
+  }
 }
 
 if (Meteor.isServer) {
