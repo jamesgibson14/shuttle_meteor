@@ -12,8 +12,9 @@ simple-schema
 autoform
 autopublish
 insecure
-bootstrap
 simple-schema
 collection2
 autoform
 bootstrap-datepicker2
+iron-router
+bootstrap-3
