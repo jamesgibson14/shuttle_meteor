@@ -15,22 +15,22 @@
         <input type="radio" class="selectReturn" name="round-trip" value="one-way"> One-Way
         <p>&nbsp;</p>
         <div class="form-group">
-          <label class="col-sm-3 control-label">Leave Date:</label>
+          <label class="col-sm-3 col-md-5 control-label">Leave Date:</label>
           <div class="input-append date col-sm-7">
-            <input type="text" class="form-control"><span class="add-on"><i class="icon-th"></i></span>
+            <input type="text" class="form-control" id="departDate"><span class="add-on"><i class="icon-th"></i></span>
           </div>
         </div>
         {{#if isReturnTrip}}
         <div class="form-group">
           <label class="col-sm-3 control-label">Return Date:</label>
           <div class="input-append date col-sm-7">
-            <input type="text" class="form-control"><span class="add-on"><i class="icon-th"></i></span>
+            <input type="text" class="form-control" id="returnDate"><span class="add-on"><i class="icon-th"></i></span>
           </div>
         </div>
         {{/if}}
         <div class="form-group">
         <label class="col-sm-3 control-label">Pick Up Location:</label>
-          <select id="pick_up" class="col-sm-6 form-control">
+          <select id="pickUp" class="col-sm-6 form-control">
             <option value="">Select a location</option>
             <option>Las Vegas</option>
             <option>St. George</option>
@@ -43,7 +43,7 @@
           
         <div class="form-group">
         <label class="col-sm-3 control-label">Drop Off Location:</label>
-          <select id="drop_off" class="col-sm-6 form-control">
+          <select id="dropOff" class="col-sm-6 form-control">
             <option value="">Select a location</option>
             <option>Las Vegas</option>
             <option>St. George</option>
@@ -56,7 +56,7 @@
           
         <div class="form-group">
         <label class="col-sm-3 control-label">Departure Time</label>
-          <select id="departure_time" class="col-sm-7 form-control">
+          <select id="departureTime" class="col-sm-7 form-control">
             <option value="">Select a travel time</option>
             <option>4:00 am</option>
             <option>6:00 am</option>
@@ -73,13 +73,13 @@
           
         <div class="form-group">
           <label class="col-sm-3 control-label">Passengers</label>
-          <input type="number" class="col-sm-2 form-control" id="departure_passengers" value="1" />
+          <input type="number" class="col-sm-2 form-control" id="departurePassengers" value="1" />
         </div>  
         {{#if isReturnTrip}}
           
         <div class="form-group">
           <label class="col-sm-3 control-label">Return Time</label>
-          <select id="return_time" class="form-control">
+          <select id="returnTime" class="form-control">
             <option value="">Select a travel time</option>
             <option>4:00 am</option>
             <option>6:00 am</option>
@@ -106,11 +106,11 @@
         <div class="form-group">
           <label class="col-sm-3 control-label">Return Passengers</label>
           <div class="col-sm-2">
-            <input type="number" class="col-sm-2 form-control" id="return_passengers" value="1" />
+            <input type="number" class="form-control" id="returnPassengers" value="1" />
           </div>
         {{/if}}
         </div>
-        <button type="submit">Submit</button>
+        <button type="button" id="booking-submit">Submit</button>
       </fieldset>
       </form>
 </template>
