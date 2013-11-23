@@ -6,6 +6,6 @@ Router.configure({
 Router.map(function(){
   this.route('booking_form', { path: '/'});
   this.route('reports', {path: '/reports'});
-  
+  this.route('runs', {path: '/runs'});
   this.route('notFound', {path: '*'});
 })
