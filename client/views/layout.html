@@ -1,5 +1,11 @@
 <template name="layout">
   <div class="container well">
+  {{yield "header"}}
+  </div>
+  <div class="container well">
   {{yield}}
+  </div>
+  <div class="container well">
+  {{yield "footer"}}
   </div>
 </template>

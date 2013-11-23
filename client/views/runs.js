@@ -7,6 +7,6 @@ Template.runs.rendered = function() {
   }
 }
 
-Template.runs.helper({
+Template.runs.helpers({
 
 })
