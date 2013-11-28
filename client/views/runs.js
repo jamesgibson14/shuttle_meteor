@@ -7,6 +7,16 @@ Template.runs.rendered = function() {
   }
 }
 
+Template.runs.events({
+  'click #runsButton': function(e, temp) {
+    Session.set('selectedDate', temp.find('#selectedDate').value);
+  }
+})
 Template.runs.helpers({
-
+  matchingRuns: function() {
+    var date = new Date(Session.get('selectedDate'));
+    //console.log(date) //to test
+    return Runs.find();
+  }
+  
 })
