@@ -9,14 +9,20 @@ Template.runs.rendered = function() {
 
 Template.runs.events({
   'click #runsButton': function(e, temp) {
+    alert(temp.find('#selectedDate').value);
     Session.set('selectedDate', temp.find('#selectedDate').value);
   }
 })
 Template.runs.helpers({
   matchingRuns: function() {
-    var date = new Date(Session.get('selectedDate'));
-    //console.log(date) //to test
-    return Runs.find();
+    var val = Session.get('selectedDate')
+    var start = moment(val);
+    var end = moment(start);
+    end.add('days', 1);
+    console.log('val',val) //to test
+    console.log('start',start)
+    console.log('end',end)
+    return Runs.find({date: {$gt: start.toDate(), $lt: end.toDate()}});
   }
   
 })

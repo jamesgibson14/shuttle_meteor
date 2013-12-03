@@ -22,7 +22,7 @@
       {{#each matchingRuns}}
       <tr>
         <td>{{time}}, {{route}}</td>
-        <td>{{date}}</td>
+        <td>{{moment date=date format="MM/DD/YYYY"}}</td>
         <td>{{passengers}}</td>
         <td><div contenteditable>{{maxPassengers}}</div></td>
       </tr>
