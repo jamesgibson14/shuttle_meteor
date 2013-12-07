@@ -13,8 +13,8 @@ Router.configure({
 });
 Router.map(function(){
   this.route('booking_form', { path: '/'});
-  this.route('reports', {path: '/reports'});
-  this.route('runs', {path: '/runs'});
-  this.route('dashboard', {path: '/dashboard'});
+  this.route('reports', {path: '/Reports'});
+  this.route('runHistory', {path: '/RunHistory'});
+  this.route('dashboard', {path: '/Dashboard'});
   this.route('notFound', {path: '*'});
 })

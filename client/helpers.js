@@ -27,7 +27,6 @@ Handlebars.registerHelper('ifState',function(val,options){
   }
 });
 Handlebars.registerHelper('moment',function(obj, options){
-  console.log(obj, options);
   if(obj){
     return moment(obj.hash.date).format(obj.hash.format);
   }else{
