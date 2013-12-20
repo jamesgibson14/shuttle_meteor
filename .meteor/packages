@@ -15,10 +15,10 @@ insecure
 simple-schema
 collection2
 autoform
-bootstrap-datepicker2
 iron-router
 bootstrap-3
 accounts-entry
 font-awesome-4
 profile
 moment
+jqueryui

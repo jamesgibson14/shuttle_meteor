@@ -16,16 +16,17 @@
         <input type="radio" class="selectReturn" name="round-trip" value="one-way"> One-Way
         <p>&nbsp;</p>
         <div class="form-group">
+          
           <label class="col-sm-3 control-label">Leave Date:</label>
           <div class="input-append date col-sm-7">
-            <input type="text" class="form-control" id="departDate"><span class="add-on"><i class="icon-th"></i></span>
+            <input type="text" class="form-control datepicker" id="departDate" value="{{defaultDepartDate}}"><span class="add-on"><i class="icon-th"></i></span>
           </div>
         </div>
         {{#if isReturnTrip}}
         <div class="form-group">
           <label class="col-sm-3 control-label">Return Date:</label>
           <div class="input-append date col-sm-7">
-            <input type="text" class="form-control" id="returnDate"><span class="add-on"><i class="icon-th"></i></span>
+            <input type="text" class="form-control datepicker" id="returnDate" value="{{defaultReturnDate}}"><span class="add-on"><i class="icon-th"></i></span>
           </div>
         </div>
         {{/if}}
@@ -75,8 +76,8 @@
     
   </div>
   <div class="col-sm-6">
-    {{shoppingCart}}
-    {{suggestedRuns}}
+    {{> shoppingCart}}
+    {{> suggestedRuns}}
     <button type="button" id="booking-submit">Submit</button>
   </div>
 </div>
@@ -84,10 +85,33 @@
 </form>
 </template>
 <template name="shoppingCart">
-  
+  <div style="border: 1px solid black;">
+  <h3>Cart</h3>
+  </div>
 </template>
 <template name="suggestedRuns">
-  <tr id='{{_id}}' class="">
-    
+  <div style="border: 1px solid black;">
+  <h3>Choose Your Ride</h3>
+  <table class="table table-condensed bg-white" >
+    <thead>
+      <tr>
+        <th>Time</th>
+        <th>Available Seats</th>
+        <th>Total Passengers</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each availableRuns}}
+        {{> aRun}}
+      {{/each}}
+    </tbody>
+  </table>
+  </div>
+</template>
+<template name="aRun">
+  <tr id='{{_id}}' class="run selected">
+    <td>{{time}} ({{ride}}) ({{route}}), {{moment date=date format="MM/DD/YYYY"}}</td>
+    <td>{{availableSeats}}</td>
+    <td>{{maxPassengers}}</td>
   </tr>
 </template>

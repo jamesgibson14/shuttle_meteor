@@ -5,13 +5,13 @@
       "moment": {},
       "simple-schema": {},
       "autoform": {},
-      "bootstrap-datepicker2": {},
       "collection2": {},
       "iron-router": {},
       "bootstrap-3": {},
       "accounts-entry": {},
       "font-awesome-4": {},
-      "profile": {}
+      "profile": {},
+      "jqueryui": {}
     },
     "packages": {
       "moment": {
@@ -21,23 +21,18 @@
       },
       "simple-schema": {
         "git": "https://github.com/aldeed/meteor-simple-schema.git",
-        "tag": "v0.2.17",
-        "commit": "a9d51089becf1142482519ed7f99ef84772d06a3"
+        "tag": "v0.2.23",
+        "commit": "ccdb1244ae3a38c70f53e04a2d68879ca89a4f9f"
       },
       "autoform": {
         "git": "https://github.com/aldeed/meteor-autoform.git",
-        "tag": "v0.4.1",
-        "commit": "5f07277746fb8cf9c938ed5c1382348fba8218d7"
-      },
-      "bootstrap-datepicker2": {
-        "git": "https://github.com/deepwell/meteor-bootstrap-datepicker.git",
-        "tag": "v1.2.0",
-        "commit": "b7de18a7cc651ea665cda75048663f90d1a11d10"
+        "tag": "v0.4.4",
+        "commit": "ccc1e559b5d81dea7d22f5831bde8db4105ba71c"
       },
       "collection2": {
         "git": "https://github.com/aldeed/meteor-collection2.git",
-        "tag": "v0.2.12",
-        "commit": "103b43bb534cedcb3f9a7283dc91e3c69df16511"
+        "tag": "v0.2.15",
+        "commit": "0fe469aa0c01eda0563c8802e17914307960de79"
       },
       "iron-router": {
         "git": "https://github.com/EventedMind/iron-router.git",
@@ -46,8 +41,8 @@
       },
       "bootstrap-3": {
         "git": "https://github.com/mangasocial/meteor-bootstrap-3.git",
-        "tag": "v0.3.6",
-        "commit": "711dbcabe333c8714298b2fd1de97fdcdae6efa7"
+        "tag": "v0.3.7",
+        "commit": "5dd0d142c870647b910be80bc777b96f0dd45e5e"
       },
       "accounts-entry": {
         "git": "https://github.com/BeDifferential/accounts-entry.git",
@@ -63,6 +58,11 @@
         "git": "https://github.com/BeDifferential/meteor-profile.git",
         "tag": "v0.0.4",
         "commit": "182c13ce5aeb794f91f3ed4ca0394a0b5eb4651c"
+      },
+      "jqueryui": {
+        "git": "https://github.com/mizzao/meteor-jqueryui.git",
+        "tag": "v1.10.3",
+        "commit": "c1c44a17c2e2d92e206dc4ecbaad0b83272de85c"
       }
     }
   }

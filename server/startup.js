@@ -1,12 +1,4 @@
 Meteor.startup(function(){
-  RunHistory.insert({
-    date: new Date(),
-    time: '8:00',
-    route: 'stgToVegas',
-    ride: "Std Van",
-    passengers: 3,
-    maxPassengers: 8
-  });
   var route = {
     origination: 'Las Vegas',
     destination: 'St. George',
@@ -32,9 +24,11 @@ Meteor.startup(function(){
     {pickup: 'Shuttle Terminal', dropoff: "Beaver Dam", fare: 15, time: 30},
     {pickup: 'Shuttle Terminal', dropoff: "Cedar City", fare: 19, time: 45},
     {pickup: 'Shuttle Terminal', dropoff: "Beaver", fare: 35, time: 90},
-    {pickup: 'Shuttle Terminal', dropoff: "Beaver", fare: 35, time: 90},
-    {pickup: 'Shuttle Terminal', dropoff: "Beaver", fare: 35, time: 90},
-    {pickup: 'Shuttle Terminal', dropoff: "Beaver", fare: 35, time: 90}
+    {pickup: 'Shuttle Terminal', dropoff: "Fillmore", fare: 35, time: 90},
+    {pickup: 'Shuttle Terminal', dropoff: "Meadow", fare: 35, time: 90},
+    {pickup: 'Shuttle Terminal', dropoff: "Nephi", fare: 35, time: 90},
+    {pickup: 'Shuttle Terminal', dropoff: "Springville", fare: 35, time: 90},
+    {pickup: 'Shuttle Terminal', dropoff: "Salt Lake City", fare: 35, time: 90}
   ]
   var locations = [
     {name: 'Shuttle Terminal', address: 'Bluff Street', geo_coor: 1033.2314  },
