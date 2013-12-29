@@ -1,14 +1,12 @@
 {
   "packages": {
     "moment": {},
-    "simple-schema": {},
-    "autoform": {},
-    "collection2": {},
     "iron-router": {},
     "bootstrap-3": {},
     "accounts-entry": {},
     "font-awesome-4": {},
     "profile": {},
-    "jqueryui": {}
+    "jqueryui": {},
+    "handlebar-helpers": {}
   }
 }
