@@ -9,7 +9,8 @@
       "font-awesome-4": {},
       "profile": {},
       "jqueryui": {},
-      "handlebar-helpers": {}
+      "handlebar-helpers": {},
+      "blog": {}
     },
     "packages": {
       "moment": {
@@ -52,10 +53,30 @@
         "tag": "v0.0.9",
         "commit": "71e94c99462b8801a34c5363510758b6ff5f5ac7"
       },
+      "blog": {
+        "git": "https://github.com/BeDifferential/meteor-blog.git",
+        "tag": "v0.2.4",
+        "commit": "d718df43c2e380fdb00deb334bbad0b793ceb031"
+      },
       "build-fetcher": {
         "git": "https://github.com/mizzao/meteor-build-fetcher.git",
         "tag": "v0.1.0",
         "commit": "e3813b1fc7f5c576e8e1fa4c51ae6f4687780a35"
+      },
+      "parsleyjs": {
+        "git": "https://github.com/nate-strauser/meteor-parsleyjs.git",
+        "tag": "v1.1.7",
+        "commit": "035a1e56a78e50369686b7e281aa71e3daf3729a"
+      },
+      "minimongoid": {
+        "git": "https://github.com/Exygy/minimongoid.git",
+        "tag": "v0.8.3",
+        "commit": "8a4849426f1775f9886f303067e50877696fae43"
+      },
+      "underscore-string-latest": {
+        "git": "https://github.com/TimHeckel/meteor-underscore-string.git",
+        "tag": "v2.3.3",
+        "commit": "4a5d70eee48fbd90a6e6fc78747250d704a0b3bb"
       }
     }
   }

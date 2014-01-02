@@ -15,5 +15,6 @@ accounts-entry
 font-awesome-4
 profile
 moment
-jqueryui
 handlebar-helpers
+blog
+jqueryui
