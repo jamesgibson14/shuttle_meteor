@@ -85,7 +85,7 @@
         <div class="form-group">
           <label class="col-sm-5 control-label">Destination Address:</label>
           <div class="col-sm-7">
-            <input type="text" class="form-control" id="destinationAddress" value="">
+            <input type="text" class="form-control" id="destinationAddress" value="Wal Mart">
           </div>
         </div>
         <div class="form-group">
@@ -159,7 +159,7 @@
   <div class="col-sm-6">
     {{> taxiCart}}
     {{> drivers}}
-    {{> taxiRuns}}
+    {{> taxiBookings}}
   </div>
 </div>
 </fieldset>
@@ -204,11 +204,5 @@
   <h2>Drivers</h2>
   {{#each drivers}}
   <div class="driver">{{name}}</div>
-  {{/each}}
-</template>
-<template name="taxiRuns">
-  <h2>Taxi Runs</h2>
-  {{#each runs}}
-  <div class="run">{{name}}, {{phone}} {{email}}, {{pickupLocation}}, {{passengerCount}}, {{pickupDate}}, {{pickupTime}}, {{destinationLocation}} {{returnRide}}, {{nextRunId}}, {{pickupAt}}</div>
   {{/each}}
 </template>

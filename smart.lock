@@ -10,7 +10,8 @@
       "profile": {},
       "jqueryui": {},
       "handlebar-helpers": {},
-      "blog": {}
+      "blog": {},
+      "pickadate": {}
     },
     "packages": {
       "moment": {
@@ -57,6 +58,11 @@
         "git": "https://github.com/BeDifferential/meteor-blog.git",
         "tag": "v0.2.4",
         "commit": "d718df43c2e380fdb00deb334bbad0b793ceb031"
+      },
+      "pickadate": {
+        "git": "https://github.com/mervas/meteor-pickadate.git",
+        "tag": "v3.3.1",
+        "commit": "830c2774a1e58af03c143e7f76c9a26b79aa48a3"
       },
       "build-fetcher": {
         "git": "https://github.com/mizzao/meteor-build-fetcher.git",

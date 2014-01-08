@@ -8,6 +8,7 @@
     "profile": {},
     "jqueryui": {},
     "handlebar-helpers": {},
-    "blog": {}
+    "blog": {},
+    "pickadate": {}
   }
 }

@@ -55,6 +55,7 @@ Template.taxiBookingForm.events({
   'click #taxiBooking-submit': function(e, temp){
     var booking = {};
     booking.type = "taxi";
+    booking.dateCreated = new Date();
     booking.name = temp.find('#fullName').value;
     booking.phone = temp.find('#phoneNumber').value;
     booking.email = temp.find('#emailAddress').value;
@@ -131,17 +132,7 @@ Template.taxiBookingForm.helpers({
      return moment().format('MM/DD/YYYY');
   }
 });
-Template.drivers.helpers({
-  drivers: function(){
-    return [{name: "James"},{name: "Shane"},{name: "Doug"},{name: "Alice"},{name: "Bob"}]
-  }
-})
 
-Template.taxiRuns.helpers({
-  runs: function() {
-    return Bookings.find({type: "taxi"}, {sort: {pickupAt: -1}});
-  }
-})
 Template.taxiCart.helpers({
   cartTotal: function(){
     return 13.15;
