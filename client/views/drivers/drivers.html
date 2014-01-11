@@ -20,11 +20,26 @@
 
 <template name="taxiBooking">
   <tr>
-    <td><button id="assignDriver">Assign</button></td>
+    <td>
+      
+      <div class="form-group">
+        <div class="col-sm-12">
+          <select class="form-control choose-driver">
+            <option>Choose driver</option>
+            {{> driverSelect}}
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-12">
+          <button id="{{_id}}" class="assignDriver">Assign</button>
+        </div>
+      </div>
+    </td>
     <td>
       <strong>Name:</strong> {{name}}<br>
       <strong>Phone:</strong> {{phone}}<br>
-      <strong>Email:</strong> {{name}}<br>
+      <strong>Email:</strong> {{email}}<br>
     </td>
     <td>
       <strong>Date &amp; Time:</strong> {{pickupDate}}, {{pickupTime}}<br>
@@ -36,7 +51,14 @@
     </td>
   </tr>
 </template>
+  
+<template name="driverSelect">
+  {{#each driver}}
+  <option>{{name}}</option>
+  {{/each}}
+</template>
 
+<!--
 <template name="taxiBookingTest">
   <div class="panel-group" id="accordion">
   <div class="panel panel-default">
@@ -60,5 +82,5 @@
   </div>
   </div>
 </template>
-
+-->
 

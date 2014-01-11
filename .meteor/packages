@@ -7,7 +7,6 @@ standard-app-packages
 preserve-inputs
 accounts-password
 accounts-ui
-autopublish
 insecure
 iron-router
 bootstrap-3

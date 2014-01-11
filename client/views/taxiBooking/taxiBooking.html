@@ -159,7 +159,7 @@
   <div class="col-sm-6">
     {{> taxiCart}}
     {{> drivers}}
-    {{> taxiBookings}}
+    <!--{{> taxiBookings}}-->
   </div>
 </div>
 </fieldset>
@@ -172,6 +172,14 @@
     <div>Estimated Cost: <span>{{cartTotal}}</span></div>
   </div>
 </template>
+
+<template name="drivers">
+  <h2>Drivers</h2>
+  {{#each drivers}}
+  <div class="driver">{{name}}</div>
+  {{/each}}
+</template>
+
 <!-- Use for reference
 <template name="suggestedRuns">
   <div style="border: 1px solid black;">
@@ -200,9 +208,4 @@
   </tr>
 </template>
 -->
-<template name="drivers">
-  <h2>Drivers</h2>
-  {{#each drivers}}
-  <div class="driver">{{name}}</div>
-  {{/each}}
-</template>
+

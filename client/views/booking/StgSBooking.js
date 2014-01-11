@@ -27,7 +27,7 @@ Template.booking_form.events({
   },
   
   'click #booking-submit': function(e, temp){
-    var booking = {}
+    var booking = {};
     booking.returnTrip = temp.find('.selectReturn:checked').value;
     booking.departDate = temp.find('#departDate').value;
     booking.returnDate = temp.find('#returnDate').value;
