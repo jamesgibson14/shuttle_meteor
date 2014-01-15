@@ -24,7 +24,7 @@
       
       <div class="form-group">
         <div class="col-sm-12">
-          <select class="form-control choose-driver">
+          <select id="{{_id}}" class="form-control chooseDriver">
             <option>Choose driver</option>
             {{> driverSelect}}
           </select>
@@ -54,7 +54,7 @@
   
 <template name="driverSelect">
   {{#each driver}}
-  <option>{{name}}</option>
+  <option class="driverName">{{name}}</option>
   {{/each}}
 </template>
 

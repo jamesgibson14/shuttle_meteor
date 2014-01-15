@@ -24,10 +24,21 @@ Template.taxiBooking.helpers({
 
 Template.taxiBooking.events({
   'click .assignDriver': function(e, temp) {
-    var bookingID = temp.data.id; 
+    var bookingID = temp.data._id; 
     console.log(temp);
+    console.log(bookingID);
     
-    var run = {};
+    var driver = Session.get('selectedDriver'); //temp.find('#' + bookingID).value;
+    console.log(driver);
     
+    Bookings.update({_id: bookingID}, {$set: {driver: driver}});
+    
+    // var run = {};
+    
+  },
+  
+  'mouseup .chooseDriver': function(e, temp) {
+    Session.set('selectedDriver', e.target.value);
+    console.log(Session.get('selectedDriver'));
   }
 })
