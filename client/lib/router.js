@@ -11,12 +11,36 @@ Router.configure({
     }
   }
 });
+
+authController = RouteController.extend({
+  before: function(){
+    var currentUser = Meteor.user();
+    if(!currentUser) {
+      this.render('entrySignIn');
+      this.stop();
+    }
+  }
+})
+
 Router.map(function(){
   this.route('booking_form', { path: '/'});
-  this.route('reports', {path: '/Reports'});
-  this.route('runHistory', {path: '/RunHistory'});
+  this.route('reports', {
+    path: '/Reports',
+    controller: authController
+  });
+  this.route('admin', {
+    path: '/admin',
+    controller: authController
+  });
+  this.route('runHistory', {
+    path: '/RunHistory',
+    controller: authController
+  });
   this.route('taxiBookingForm', {path: '/TaxiBooking'});
-  this.route('driverView', {path: '/DriverView'});
+  this.route('driverView', {
+    path: '/DriverView',
+    controller: authController
+  });
   this.route('dashboard', {path: '/Dashboard'});
   this.route('notFound', {path: '*'});
 })

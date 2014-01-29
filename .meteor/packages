@@ -11,10 +11,11 @@ insecure
 iron-router
 bootstrap-3
 accounts-entry
-font-awesome-4
 profile
 moment
 handlebar-helpers
 blog
 jqueryui
 pickadate
+roles
+font-awesome

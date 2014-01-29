@@ -1,5 +1,9 @@
 Meteor.startup(function(){
   Accounts.ui.config({
-    passwordSignupFields: 'USERNAME_AND_OPTIONAL_EMAIL'
+    passwordSignupFields: 'EMAIL_ONLY'
+  }),
+  
+  AccountsEntry.config({
+    homeRoute: '/TaxiBooking'
   })
 })

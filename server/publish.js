@@ -14,6 +14,10 @@ Meteor.publish('runHistory', function(){
   return RunHistory.find();
 })
 
-Meteor.publish('users', function(){
-  return Users.find();
+Meteor.publish('userData', function(){
+  return Meteor.users.find({});
 })
+Meteor.publish('roles', function(){
+  return Meteor.roles.find({});
+})
+
