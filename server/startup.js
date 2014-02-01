@@ -53,7 +53,7 @@ Meteor.startup(function(){
   /*
   Create Test Users
   */
-  if (Meteor.users.find().fetch().length === 0) {
+  if (Meteor.users.find().count() === 0) {
 
     console.log('Creating users: ');
 
@@ -61,8 +61,12 @@ Meteor.startup(function(){
         {name:"Joe",email:"joe@example.com",roles:['customer']},
         {name:"James",email:"james@example.com",roles:['admin','manage-users']},
         {name:"Doug",email:"doug@example.com",roles:['admin','manage-users']},
-        {name:"Shane",email:"shane@example.com",roles:['manage-users']},
-        {name:"Alice",email:"alice@example.com",roles:['driver']},
+        {name:"Shane",email:"shane@stgeorgetaxi.com",roles:['manage-users','admin','driver']},
+        {name:"Marty",email:"alice@example.com",roles:['manage-users','driver']},
+        {name:"Cheryl",email:"bob@example.com",roles:['driver']},
+        {name:"Dave",email:"bob@example.com",roles:['driver']},
+        {name:"Phil",email:"bob@example.com",roles:['driver']},
+        {name:"Craig",email:"bob@example.com",roles:['driver']},
         {name:"Bob",email:"bob@example.com",roles:['driver']}
       ];
 

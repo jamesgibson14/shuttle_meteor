@@ -4,6 +4,11 @@ Template.drivers.helpers({
   }
 })
 
+Template.driverView.created = function(){
+  Session.setDefault('dateFilter', moment().format('MM/DD/YYYY'));
+  Session.setDefault('driverFilter', Meteor.user().profile.name);
+}
+
 Template.driverView.rendered = function(){
   if(!this.hasRendered){
     this.rendered = true;
@@ -13,14 +18,17 @@ Template.driverView.rendered = function(){
         console.log("Date Filter: " + date);
         Session.set('dateFilter', date);
       },
-      minDate: new Date()
+      // minDate: new Date()
     });
   }
 }
 
 Template.driverView.helpers({
   today: function(){
-     return moment().format('MM/DD/YYYY');
+     return Session.get('dateFilter');
+  },
+  driverFilter: function(){
+    return Session.get('driverFilter');
   }
 })
 
@@ -35,28 +43,18 @@ Template.driverView.events({
     Session.set('driverFilter', e.target.value);
     console.log("Driver Filter: " + Session.get('driverFilter'));
   },
-  'click #clearDriverFilter': function(e, temp) {
-    Session.set('driverFilter', null);
-    console.log("Driver Filter: " + Session.get('driverFilter'));
-  },
   'change #runDateFilter': function(e, temp) {
     Session.set('dateFilter', e.target.value);
     console.log("Date Filter: " + Session.get('dateFilter')); 
-  },
-  'click #clearDateFilter': function(e, temp) {
-    Session.set('dateFilter', null);
-    console.log("Date Filter: " + Session.get('driverFilter'));
-  },
-  
+  }
 })
 
 Template.taxiBookings.helpers({
   taxiBookings: function() {
     var driver = Session.get('driverFilter');
+    console.log("Driver value for function: " + driver);
     var date = Session.get('dateFilter');
-    if(!date){
-      return false;
-    }
+    console.log("Date value for function: " + date);
     var start = moment(date);
     var end = moment(start);
     end.add('days', 1);
@@ -65,16 +63,18 @@ Template.taxiBookings.helpers({
     console.log('Date end',end);
     var range = {$gte: start.toDate(), $lt: end.toDate()};
     console.log(range);
-    if (!Session.get('driverFilter') && !Session.get('dateFilter')) {
-      return Bookings.find({type: "taxi"}, {sort: {pickupAt: 1}});
+    console.log("Test driver logic" + (driver !== null));
+    console.log("Test date logic" + (date !== null));
+    
+    var filter = {
+      type: "taxi",
+      pickupAt: range
     }
-    else /*(Session.get('driverFilter') && !Session.get('dateFilter'))*/ {
-      return Bookings.find({type: "taxi", driver: driver}, {sort: {pickupAt: 1}});
-    }/*
-    else if (!Session.get('driverFilter') && Session.get('dateFilter')) {
-      return Bookings.find({type: "taxi", date: range}, {sort: {pickupAt: 1}});
+    if (driver !== "all") {
+      filter.driver = driver;
     }
-    else return Bookings.find({type: "taxi", driver: driver, date: range}, {sort: {pickupAt: 1}});*/
+    console.log(filter);
+    return Bookings.find(filter, {sort: {pickupAt: 1}});
   }
 })
 
