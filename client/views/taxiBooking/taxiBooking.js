@@ -92,10 +92,18 @@ Template.taxiBookingForm.events({
    
     console.log(booking, returnBooking);
     var departId = "";
+    var reset = function(){
+      alert('Booking Successfull');
+      _.each(temp.findAll('input'),function(el){
+        el.value ='';
+      })
+    }
     var onReturnBookingInsert = function(err, id){
       if(!err){
         Bookings.update({_id: departId},{$set: {nextBookingId: id}})
+        reset();
       }
+      
     }
     Bookings.insert(booking, function(err, id){
       if(!err){
@@ -103,6 +111,7 @@ Template.taxiBookingForm.events({
           departId = id;
           Bookings.insert(returnBooking, onReturnBookingInsert); 
         }
+        reset();
       }
       else
         console.log(err);

@@ -15,19 +15,19 @@
         <div class="form-group">
           <label class="col-sm-5 control-label">Your Name:</label>
           <div class="col-sm-7">
-            <input type="text" class="form-control" id="fullName" value="Tester Smith">
+            <input type="text" class="form-control" id="fullName" value="">
           </div>
         </div>
         <div class="form-group">
            <label class="col-sm-5 control-label">Phone Number:</label>
           <div class="col-sm-7">
-            <input type="text" class="form-control" id="phoneNumber" value="(435)555-5555">
+            <input type="text" class="form-control" id="phoneNumber" value="">
           </div>
         </div>
         <div class="form-group">
           <label class="col-sm-5 control-label">Email Address:</label>
           <div class="col-sm-7">
-            <input type="text" class="form-control" id="emailAddress" value="testSmith@example.com">
+            <input type="text" class="form-control" id="emailAddress" value="">
           </div>
         </div>
         <div class="form-group">
@@ -48,7 +48,7 @@
         <div class="form-group">
           <label class="col-sm-5 control-label">Pickup Address:</label>
           <div class="col-sm-7">
-            <input type="text" class="form-control" id="pickupAddress" value="123 E 200 W">
+            <input type="text" class="form-control" id="pickupAddress" value="">
           </div>
         </div>
         <div class="form-group">
@@ -85,7 +85,7 @@
         <div class="form-group">
           <label class="col-sm-5 control-label">Destination Address:</label>
           <div class="col-sm-7">
-            <input type="text" class="form-control" id="destinationAddress" value="Wal Mart">
+            <input type="text" class="form-control" id="destinationAddress" value="">
           </div>
         </div>
         <div class="form-group">
@@ -139,7 +139,7 @@
         <div class="form-group">
           <label class="col-sm-5 control-label">Pickup Address:</label>
           <div class="col-sm-7">
-            <input type="text" class="form-control" id="returnPickupAddress" value="333 S 1500 W">
+            <input type="text" class="form-control" id="returnPickupAddress" value="">
           </div>
         </div>
         <div class="form-group">
@@ -157,9 +157,12 @@
       <button type="button" id="taxiBooking-submit">Submit</button>
   </div>
   <div class="col-sm-6">
+    {{#if isInRole "developer,beta"}}
     {{> taxiCart}}
     {{> drivers}}
+    
     <!--{{> taxiBookings}}-->
+    {{/if}}
   </div>
 </div>
 </fieldset>

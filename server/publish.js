@@ -17,6 +17,12 @@ Meteor.publish('runHistory', function(){
 Meteor.publish('userData', function(){
   return Meteor.users.find({});
 })
+Meteor.users.allow({
+  update:function(userId, doc, fieldNames, modifier){
+    console.log(userId, doc, fieldNames, modifier);
+    return true;
+  }
+})
 Meteor.publish('roles', function(){
   return Meteor.roles.find({});
 })

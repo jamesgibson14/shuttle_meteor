@@ -58,16 +58,15 @@ Meteor.startup(function(){
     console.log('Creating users: ');
 
     var users = [
-        {name:"Joe",email:"joe@example.com",roles:['customer']},
-        {name:"James",email:"james@example.com",roles:['admin','manage-users']},
-        {name:"Doug",email:"doug@example.com",roles:['admin','manage-users']},
-        {name:"Shane",email:"shane@stgeorgetaxi.com",roles:['manage-users','admin','driver']},
-        {name:"Marty",email:"alice@example.com",roles:['manage-users','driver']},
-        {name:"Cheryl",email:"bob@example.com",roles:['driver']},
-        {name:"Dave",email:"bob@example.com",roles:['driver']},
-        {name:"Phil",email:"bob@example.com",roles:['driver']},
-        {name:"Craig",email:"bob@example.com",roles:['driver']},
-        {name:"Bob",email:"bob@example.com",roles:['driver']}
+        {firstName:"Joe",email:"joe@example.com",roles:['customer']},
+        {firstName:"Doug",email:"doug@example.com",roles:['admin','manage-users']},
+        {firstName:"Shane",email:"shane@stgeorgetaxi.com",roles:['manage-users','admin','driver']},
+        {firstName:"Marty",email:"alice@example.com",roles:['manage-users','driver']},
+        {firstName:"Cheryl",email:"bob@example.com",roles:['driver']},
+        {firstName:"Dave",email:"bob@example.com",roles:['driver']},
+        {firstName:"Phil",email:"bob@example.com",roles:['driver']},
+        {firstName:"Craig",email:"bob@example.com",roles:['driver']},
+        {firstName:"Bob",email:"bob@example.com",roles:['driver']}
       ];
 
     _.each(users, function (userData) {

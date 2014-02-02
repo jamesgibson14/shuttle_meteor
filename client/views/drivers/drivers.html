@@ -18,6 +18,14 @@
     </div>
   </form>
   {{> taxiBookings}}
+  <div class="modal fade bs-modal-sm" id="runInfoModal" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="runInfoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      {{> runInfoModal}}
+      </div>
+    </div>
+  </div>
+  
 </template>
 <template name="taxiBookings">
   <table class="table table-condensed bg-white" >
@@ -35,6 +43,7 @@
       {{/each}}
     </tbody>
   </table>
+  
 </template>
 
 <template name="taxiBooking">
@@ -46,36 +55,20 @@
             <option>Choose driver</option>
             {{> driverSelect}}
           </select>
-          <strong> Current driver: </strong>{{driver}}
+          <strong>Current driver: </strong>{{driver}}
         </div>
       </div>
     </td>
     <td>
-      <form class="form">
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" class="runType" value="deliveryRun">Delivery Run
-        </label>
-      </div>
-      <div class="form-group">
-        <label class="control-label">Mileage:</label>
-        <input type="text" class="form-control runMileage" value"{{mileage}}">
-      </div>
-      <div class="form-group">
-        <label class="control-label">Wait Time (minutes):</label>
-        <input type="text" class="form-control runWaitTime" value"{{waitTime}}">
-      </div>
-      <div class="form-group">
-        <label class="control-label">Price:</label>
-        <input type="text" class="form-control runPrice" value"{{price}}">
-      </div>
-        <form class="form-inline" role="form">
-          <div class="form-group">
-            <input type="radio" class="paymentType" name="paymentType" value="one-way" checked="checked"> Cash
-            <input type="radio" class="paymentType" name="paymentType" value="credit"> Credit
-          </div>
-        </form>
-      </form>
+      <strong>Delivery Run?:</strong> {{#if delivery}}Yes{{else}}No{{/if}}<br>
+      <strong>Mileage:</strong> {{mileage}}<br>
+      <strong>Wait Time:</strong> {{waitTime}} minutes<br>
+      <strong>Price:</strong> ${{price}}<br>
+      <strong>Payment Type:</strong> {{paymentType}}<br><br>
+      <!-- Button for Run Info Modal -->  
+      <button class="btn btn-primary editRunInfo">
+        Edit Run Info
+      </button>
     </td>
     <td>
       <strong>Name:</strong> {{name}}<br>
@@ -97,6 +90,56 @@
   {{#each drivers}}
   <option class="driverName">{{profile.name}}</option>
   {{/each}}
+</template>
+
+<template name="runInfoModal">
+  <!-- Run Info Modal -->
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="runInfoLabel">Run Info</h4>
+  </div>
+  <div class="modal-body">
+    <form class="form">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" class="isDelivery" {{#if delivery}}checked="checked"{{/if}}>Delivery Run
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Mileage:</label>
+        <div class="input-group">
+          <span class="input-group-addon">miles</span>
+          <input type="text" class="form-control runMileage" value="{{mileage}}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Wait Time:</label>
+        <div class="input-group">
+          <span class="input-group-addon">minutes</span>
+          <input type="text" class="form-control runWaitTime" value="{{waitTime}}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Price:</label>
+        <div class="input-group">
+          <span class="input-group-addon">$</span>
+          <input type="text" class="form-control runPrice" value="{{price}}">
+        </div>
+      </div>
+      <form class="form-inline" role="form">
+        <div class="form-group">
+          <label class="control-label">Payment Type:</label>
+          
+          <input type="radio" class="runPaymentType" name="runPaymentType" value="cash"{{isChecked  paymentType "cash"}}> Cash
+          <input type="radio" class="runPaymentType" name="runPaymentType" value="credit" {{isChecked  paymentType "credit"}}> Credit
+        </div>
+      </form>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-primary" id="saveRunInfo">Save</button>
+  </div>
 </template>
 
 <!--

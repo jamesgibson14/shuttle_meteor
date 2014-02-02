@@ -33,8 +33,3 @@ Handlebars.registerHelper('moment',function(obj, options){
     return "Not Defined";
   }
 });
-Handlebars.registerHelper('eq',function(val1, val2,options){
-  if(val1 === val2){
-    return options.fn(this);
-  }
-});

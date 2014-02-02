@@ -9,7 +9,6 @@
       "profile": {},
       "jqueryui": {},
       "handlebar-helpers": {},
-      "blog": {},
       "pickadate": {},
       "roles": {},
       "font-awesome": {}
@@ -32,8 +31,8 @@
       },
       "accounts-entry": {
         "git": "https://github.com/BeDifferential/accounts-entry.git",
-        "tag": "v0.4.4",
-        "commit": "56cee1ff5afe2ce5be7b749cd74fc939fc9ce781"
+        "tag": "v0.5.2",
+        "commit": "9a35285bd9d781349326817be25f1a55f9866baf"
       },
       "profile": {
         "git": "https://github.com/BeDifferential/meteor-profile.git",
@@ -50,11 +49,6 @@
         "tag": "v0.0.9",
         "commit": "71e94c99462b8801a34c5363510758b6ff5f5ac7"
       },
-      "blog": {
-        "git": "https://github.com/BeDifferential/meteor-blog.git",
-        "tag": "v0.2.7",
-        "commit": "0f7961fe93f4eaf86579775dc9aad505312e5d4e"
-      },
       "pickadate": {
         "git": "https://github.com/mervas/meteor-pickadate.git",
         "tag": "v3.3.1",
@@ -70,35 +64,20 @@
         "tag": "v4.0.3",
         "commit": "61e9361384347547ae144f8228faa4deffda23db"
       },
+      "headers": {
+        "git": "https://github.com/gadicohen/meteor-headers.git",
+        "tag": "v0.0.13",
+        "commit": "1b259f3af3df7a297584b1e2e5e89de8ad1a963a"
+      },
+      "just-i18n": {
+        "git": "https://github.com/subhog/meteor-just-i18n.git",
+        "tag": "v0.1.1",
+        "commit": "ce88ac66c0dc107dc2da93ce152616115838101f"
+      },
       "build-fetcher": {
         "git": "https://github.com/mizzao/meteor-build-fetcher.git",
         "tag": "v0.1.0",
         "commit": "e3813b1fc7f5c576e8e1fa4c51ae6f4687780a35"
-      },
-      "parsleyjs": {
-        "git": "https://github.com/nate-strauser/meteor-parsleyjs.git",
-        "tag": "v1.1.7",
-        "commit": "035a1e56a78e50369686b7e281aa71e3daf3729a"
-      },
-      "minimongoid": {
-        "git": "https://github.com/Exygy/minimongoid.git",
-        "tag": "v0.8.3",
-        "commit": "8a4849426f1775f9886f303067e50877696fae43"
-      },
-      "marked": {
-        "git": "https://github.com/chuangbo/meteor-marked.git",
-        "tag": "v0.2.9",
-        "commit": "6485d6f03841501f81176e34ab375840473aa714"
-      },
-      "ace-embed": {
-        "git": "https://github.com/stuartfenton/meteor-ace-embed.git",
-        "tag": "v0.0.4",
-        "commit": "027b0e1b0d06111b51a713f04a8b8750fdcbd289"
-      },
-      "underscore-string-latest": {
-        "git": "https://github.com/TimHeckel/meteor-underscore-string.git",
-        "tag": "v2.3.3",
-        "commit": "4a5d70eee48fbd90a6e6fc78747250d704a0b3bb"
       }
     }
   }

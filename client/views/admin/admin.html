@@ -9,14 +9,14 @@
   {{/each}}
   </ul>
   <ul id="userList">
-     new user (email) <input type="text" id="newRole" class="form-control" placeholder="user's email" />
+     new user (email) <input type="text" id="newUser" class="form-control" placeholder="user's email" />
   {{#each users}}
-    <li data-user_id="{{_id}}" class="{{#if isSelectedUser id=_id}}selected{{/if}}">{{profile.name}}: roles {{roles}}</li>
+    <li data-user_id="{{_id}}" class="{{#if isSelectedUser id=_id}}selected{{/if}}">{{profile.firstName}} {{profile.lastName}}: roles {{roles}}</li>
   {{/each}}
   </ul>
     </div>
     <div class="col-xs-8">
-      {{> user}}
+      {{> user getUser}}
     </div>
   </div>
 </template>
@@ -31,34 +31,19 @@
           <span class='errors'></span>
         </div>
         <div class="form-group">
-          <input class="form-control" type="text" id="firstName" placeholder="First Name" value="" />
+          <input class="form-control" type="text" id="firstName" placeholder="First Name" value="{{firstName}}" />
           <span class='errors'></span>
         </div>
         <div class="form-group">
-          <input class="form-control" type="text" id="lastName" placeholder="Last Name" value="" />
+          <input class="form-control" type="text" id="lastName" placeholder="Last Name" value="{{lastName}}" />
           <span class='errors'></span>
         </div>
-        <hr />
-        <div class="form-group">
-          <input class="form-control" type="text" id="organization" placeholder="Organization (optional)" value="" />
-        </div>
-        <div class="form-group">
-          <input class="form-control" type="text" id="location" placeholder="Location (optional)" value="" />
-        </div>
-        <div class="form-group">
-          <textarea class="form-control" type="text" id="bio" placeholder="Bio (optional)"></textarea>
-        </div>
-        <div class="form-group">
-          <input class="form-control" type="text" id="url" placeholder="URL (optional)" value="" />
-        </div>
-        <div class="form-group">
-          <input class="form-control" type="text" id="googlePlusUrl" placeholder="Google Plus URL (optional)" value="" />
-        </div>
-        <div class="form-group">
-          <input class="form-control" type="text" id="twitterHandle" placeholder="Twitter Handle (optional)" value="" />
-        </div>
+          <div class="form-group">
+              <input class="form-control" type="text" id="roles" placeholder="Last Name" value="{{roles}}" />
+              <span class='errors'></span>
+          </div>
         <a class='btn btn-primary done'><i class='icon-ok'></i> done</a>
       </div>
-      
+      </div>
     </div>
 </template>

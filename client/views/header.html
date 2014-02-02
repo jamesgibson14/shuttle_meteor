@@ -1,6 +1,6 @@
 <template name="header">
   <div class="header">
-    <img src="shuttle_logo.png" />  
+     
   <nav class="navbar navbar-inverse" role="navigation">
   <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -10,16 +10,21 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">Shuttle</a>
+      <img src="iron_county_taxi_logo_113x70.png" /> 
     </div><!-- /.navbar-header -->
     <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <ul class="nav navbar-nav">
-      <li class=""><a href="/RunHistory">Run Histoy</a></li>
-      <li class=""><a href="/Reports">Reports</a></li>
+    <ul class="nav navbar-nav">     
       <li class=""><a href="/TaxiBooking">Taxi Booking</a></li>
       <li class=""><a href="/DriverView">Driver View</a></li>
+       {{#if isInRole "admin,manage-users"}}
+      <li class=""><a href="/Reports">Reports</a></li>
        <li class=""><a href="/admin">Admin</a></li>
+      {{/if}}
+      {{#if isInRole "developer,beta"}}
+      <li> <a class="navbar-brand" href="/">Shuttle</a></li>
+      <li class=""><a href="/RunHistory">Run Histoy</a></li>
+      {{/if}}
     </ul>
   </div><!-- /.navbar-collapse -->
    
