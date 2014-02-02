@@ -1,7 +1,3 @@
-Accounts.onCreateUser(function(options, user){
-  console.log(user)
-})
-
 Meteor.startup(function(){
   var route = {
     origination: 'Las Vegas',

@@ -15,11 +15,11 @@ Template.driverView.rendered = function(){
     $('.datepicker').datepicker({
       onSelect: function(){
         var date = $('#runDateFilter').val();
-        console.log("Date Filter: " + date);
         Session.set('dateFilter', date);
       },
       // minDate: new Date()
     });
+    
   }
 }
 
@@ -29,7 +29,32 @@ Template.driverView.helpers({
   },
   driverFilter: function(){
     return Session.get('driverFilter');
+  },
+  getRunInfo: function(){    
+    var id = Session.get('currentBooking');
+    var obj = Bookings.findOne({_id: id});
+    console.log('getRunInfo', obj);
+    return obj;
+  },
+  paymentTypeCash: function () {
+    var bookingID = Session.get('currentBooking');
+    var paymentType = Bookings.findOne({_id: bookingID}, {paymentType: 1, id:0});
+    console.log('Booking: ' + bookingID);
+    console.log('Payment Type', paymentType);
+    var isCash = false;
+    if (paymentType === 'cash') {
+      isCash = true;
+    }
+    return isCash;
   }
+})
+
+Template.runInfoModal.rendered = function(){
+  console.log('data' ,this.data);
+}
+
+Template.runInfoModal.helpers({
+  
 })
 
 Template.driverSelect.helpers({
@@ -41,30 +66,31 @@ Template.driverSelect.helpers({
 Template.driverView.events({
   'change #driverFilter': function(e, temp) {
     Session.set('driverFilter', e.target.value);
-    console.log("Driver Filter: " + Session.get('driverFilter'));
   },
   'change #runDateFilter': function(e, temp) {
-    Session.set('dateFilter', e.target.value);
-    console.log("Date Filter: " + Session.get('dateFilter')); 
+    Session.set('dateFilter', e.target.value); 
+  },
+  'click #saveRunInfo': function(e, temp) {
+    var bookingID = Session.get('currentBooking');
+    var updateValues = {};
+    updateValues.delivery = $(temp.find('.isDelivery')).prop("checked");
+    updateValues.mileage = $(temp.find('.runMileage')).val();
+    updateValues.waitTime = $(temp.find('.runWaitTime')).val();
+    updateValues.price = $(temp.find('.runPrice')).val();
+    updateValues.paymentType = $(temp.find('input.runPaymentType:checked')).val();
+    Bookings.update({_id: bookingID},{$set: updateValues});
+    $('#runInfoModal').modal('hide');
   }
 })
 
 Template.taxiBookings.helpers({
   taxiBookings: function() {
     var driver = Session.get('driverFilter');
-    console.log("Driver value for function: " + driver);
     var date = Session.get('dateFilter');
-    console.log("Date value for function: " + date);
     var start = moment(date);
     var end = moment(start);
     end.add('days', 1);
-    console.log("Date for filter: " + date);
-    console.log('Date start',start);
-    console.log('Date end',end);
     var range = {$gte: start.toDate(), $lt: end.toDate()};
-    console.log(range);
-    console.log("Test driver logic" + (driver !== null));
-    console.log("Test date logic" + (date !== null));
     
     var filter = {
       type: "taxi",
@@ -73,7 +99,6 @@ Template.taxiBookings.helpers({
     if (driver !== "all") {
       filter.driver = driver;
     }
-    console.log(filter);
     return Bookings.find(filter, {sort: {pickupAt: 1}});
   }
 })
@@ -87,21 +112,17 @@ Template.taxiBooking.helpers({
 Template.taxiBooking.events({
   'change .chooseDriver': function(e, temp) {
     var bookingID = temp.data._id; 
-    console.log(temp);
-    console.log(bookingID);
-    
-    /* Uncomment the following when the seesion variable will be useful */
-    // Session.set('selectedDriver', e.target.value);
-    // console.log(Session.get('selectedDriver'));
     
     var driver = e.target.value;
-    console.log(driver);
     
     Bookings.update({_id: bookingID}, {$set: {driver: driver}});
-    console.log(Bookings.findOne({_id: bookingID}));
-    // var run = {};//checkout the html
-    // Yeah the Choose driver shows up again.
-    
+  },
+  'click .editRunInfo': function(e, temp) {
+    var bookingID = temp.data._id;
+    Session.set('currentBooking', bookingID);
+    var obj = Bookings.findOne({_id: bookingID});
+    console.log('editRunInfo', obj);
+    $('#runInfoModal .modal-content').html(Template.runInfoModal(obj));
+    $('#runInfoModal').modal('show');   
   }
-  
 })
