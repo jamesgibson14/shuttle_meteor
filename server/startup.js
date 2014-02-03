@@ -1,3 +1,7 @@
+Accounts.onCreateUser(function(options, user){
+  user.roles = ['driver']
+  return user;
+})
 Meteor.startup(function(){
   var route = {
     origination: 'Las Vegas',
