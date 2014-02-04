@@ -125,16 +125,17 @@ Template.taxiBookings.helpers({
       filter.driver = driver;
     }
     return Bookings.find(filter, {sort: {pickupAt: 1}});
-  },
-  getDriver: function(id, attr){
-    console.log('getDriver',id, attr)
-    return Meteor.users.findOne(id)[attr];
   }
 })
 
 Template.taxiBooking.helpers({
   fieldToObject: function(fieldName){
     return {_id: this._id};
+  },
+  getDriver: function(id, attr){
+    console.log('getDriver',id, attr)
+    var driver = Meteor.users.findOne(id).profile[attr];
+    return driver;
   }
 })
 
