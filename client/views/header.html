@@ -1,20 +1,12 @@
 <template name="header">
   <div class="header">
      
-  <nav class="navbar navbar-inverse" role="navigation">
-  <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <img src="iron_county_taxi_logo_113x70.png" /> 
-    </div><!-- /.navbar-header -->
+  <nav class="navbar navbar-inverse nav-pills" role="navigation">
+ 
     <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <ul class="nav navbar-nav">     
+     <a href="/" class="pull-left"> <img src="iron_county_taxi_logo_113x70.png" /></a>
+    <ul class="nav navbar-nav">
       <li class=""><a href="/TaxiBooking">Taxi Booking</a></li>
       <li class=""><a href="/DriverView">Driver View</a></li>
        {{#if isInRole "admin,manage-users"}}

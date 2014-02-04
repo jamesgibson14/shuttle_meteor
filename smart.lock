@@ -5,13 +5,12 @@
       "moment": {},
       "iron-router": {},
       "bootstrap-3": {},
-      "accounts-entry": {},
       "profile": {},
-      "jqueryui": {},
       "handlebar-helpers": {},
       "pickadate": {},
       "roles": {},
-      "font-awesome": {}
+      "font-awesome": {},
+      "accounts-entry": {}
     },
     "packages": {
       "moment": {
@@ -26,23 +25,13 @@
       },
       "bootstrap-3": {
         "git": "https://github.com/mangasocial/meteor-bootstrap-3.git",
-        "tag": "v0.3.7",
-        "commit": "5dd0d142c870647b910be80bc777b96f0dd45e5e"
-      },
-      "accounts-entry": {
-        "git": "https://github.com/BeDifferential/accounts-entry.git",
-        "tag": "v0.5.2",
-        "commit": "9a35285bd9d781349326817be25f1a55f9866baf"
+        "tag": "v3.1.0-1",
+        "commit": "329dccb08bfc18c635676dea600ac9953162cda9"
       },
       "profile": {
         "git": "https://github.com/BeDifferential/meteor-profile.git",
         "tag": "v0.0.7",
         "commit": "4960d0603342e9fac279260f6f1812a273952bf3"
-      },
-      "jqueryui": {
-        "git": "https://github.com/mizzao/meteor-jqueryui.git",
-        "tag": "v1.10.3r2",
-        "commit": "d54f75cfad37ff8ce6ef9ad49de55738ba921af7"
       },
       "handlebar-helpers": {
         "git": "https://github.com/raix/Meteor-handlebar-helpers.git",
@@ -64,20 +53,20 @@
         "tag": "v4.0.3",
         "commit": "61e9361384347547ae144f8228faa4deffda23db"
       },
+      "accounts-entry": {
+        "git": "https://github.com/BeDifferential/accounts-entry.git",
+        "tag": "v0.5.2",
+        "commit": "56cee1ff5afe2ce5be7b749cd74fc939fc9ce781"
+      },
       "headers": {
         "git": "https://github.com/gadicohen/meteor-headers.git",
-        "tag": "v0.0.13",
-        "commit": "1b259f3af3df7a297584b1e2e5e89de8ad1a963a"
+        "tag": "v0.0.14",
+        "commit": "0a8475da5915e0c70969284e5d92fe5fbffb66d5"
       },
       "just-i18n": {
         "git": "https://github.com/subhog/meteor-just-i18n.git",
         "tag": "v0.1.1",
         "commit": "ce88ac66c0dc107dc2da93ce152616115838101f"
-      },
-      "build-fetcher": {
-        "git": "https://github.com/mizzao/meteor-build-fetcher.git",
-        "tag": "v0.1.0",
-        "commit": "e3813b1fc7f5c576e8e1fa4c51ae6f4687780a35"
       }
     }
   }

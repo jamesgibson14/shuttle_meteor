@@ -3,12 +3,11 @@
     "moment": {},
     "iron-router": {},
     "bootstrap-3": {},
-    "accounts-entry": {},
     "profile": {},
-    "jqueryui": {},
     "handlebar-helpers": {},
     "pickadate": {},
     "roles": {},
-    "font-awesome": {}
+    "font-awesome": {},
+    "accounts-entry": {}
   }
 }

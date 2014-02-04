@@ -10,12 +10,12 @@ accounts-ui
 insecure
 iron-router
 bootstrap-3
-accounts-entry
 profile
 moment
 handlebar-helpers
-jqueryui
 pickadate
 roles
 font-awesome
 headers
+accounts-entry
+just-i18n

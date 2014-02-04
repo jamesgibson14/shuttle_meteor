@@ -80,7 +80,16 @@ Template.driverView.events({
     updateValues.paymentType = $(temp.find('input.runPaymentType:checked')).val();
     Bookings.update({_id: bookingID},{$set: updateValues});
     $('#runInfoModal').modal('hide');
-  }
+  },
+  'click #saveRunCustomer': function(e, temp) {
+    var bookingID = Session.get('currentBooking');
+    var updateValues = {};
+    updateValues.name = $(temp.find('.runCustomerName')).val();
+    updateValues.phone = $(temp.find('.runCustomerPhone')).val();
+    updateValues.email = $(temp.find('.runCustomerEmail')).val();
+    Bookings.update({_id: bookingID},{$set: updateValues});
+    $('#runCustomerModal').modal('hide');
+  },
 })
 
 Template.taxiBookings.helpers({
@@ -124,5 +133,34 @@ Template.taxiBooking.events({
     console.log('editRunInfo', obj);
     $('#runInfoModal .modal-content').html(Template.runInfoModal(obj));
     $('#runInfoModal').modal('show');   
+  },
+  'click .editRunCustomer': function(e, temp) {
+    var bookingID = temp.data._id;
+    Session.set('currentBooking', bookingID);
+    var obj = Bookings.findOne({_id: bookingID});
+    console.log('editRunCustomer', obj);
+    $('#runCustomerModal .modal-content').html(Template.runCustomerModal(obj));
+    $('#runCustomerModal').modal('show');   
+  },
+  'click .editRunDetails': function(e, temp) {
+    var bookingID = temp.data._id;
+    Session.set('currentBooking', bookingID);
+    var obj = Bookings.findOne({_id: bookingID});
+    console.log('editRunDetails', obj);
+    $('#runDetailsModal .modal-content').html(Template.runDetailsModal(obj));
+    $('#runDetailsModal').modal('show');
+    $('.datepicker').datepicker({
+      onSelect: function(date, object){
+        console.log(date,object);
+        var pickup = $('.runPickupDate').val();
+        console.log("Edited pickup date: " + pickup);
+        Session.set('editPickupDate', pickup);
+      }
+    });
+    $('.timepicker').timepicker({
+      minuteStep: 5,
+      showInputs: false,
+      disableFocus: true
+    });
   }
 })

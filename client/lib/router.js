@@ -23,7 +23,7 @@ authController = RouteController.extend({
 })
 
 Router.map(function(){
-  this.route('booking_form', { path: '/'});
+  this.route('taxiHome', { path: '/'});
   this.route('reports', {
     path: '/Reports',
     controller: authController
