@@ -6,7 +6,7 @@ Template.drivers.helpers({
 
 Template.driverView.created = function(){
   Session.setDefault('dateFilter', moment().format('MM/DD/YYYY'));
-  Session.setDefault('driverFilter', Meteor.user().profile.name);
+  Session.setDefault('driverFilter', 'all');
 }
 
 Template.driverView.rendered = function(){
@@ -65,7 +65,7 @@ Template.driverSelect.helpers({
 
 Template.driverView.events({
   'change #driverFilter': function(e, temp) {
-    Session.set('driverFilter', e.target.value);
+    Session.set('driverFilter', $(e.target).val());
   },
   'change #runDateFilter': function(e, temp) {
     Session.set('dateFilter', e.target.value); 
@@ -125,6 +125,10 @@ Template.taxiBookings.helpers({
       filter.driver = driver;
     }
     return Bookings.find(filter, {sort: {pickupAt: 1}});
+  },
+  getDriver: function(id, attr){
+    console.log('getDriver',id, attr)
+    return Meteor.users.findOne(id)[attr];
   }
 })
 
@@ -138,7 +142,7 @@ Template.taxiBooking.events({
   'change .chooseDriver': function(e, temp) {
     var bookingID = temp.data._id; 
     
-    var driver = e.target.value;
+    var driver = $(e.target).val();
     
     Bookings.update({_id: bookingID}, {$set: {driver: driver}});
   },

@@ -68,7 +68,7 @@ $          {{> driverSelect}}
           <option>Choose driver</option>
           {{> driverSelect}}
         </select>
-        <strong>Current driver: </strong>{{driver}}
+        <strong>Current driver: </strong>{{getDriver driver "firstName"}} {{getDriver driver "lastName"}} {{getDriver driver "name"}}
       </div>
     </td>
     <td>
@@ -110,7 +110,7 @@ $          {{> driverSelect}}
   
 <template name="driverSelect">
   {{#each drivers}}
-  <option class="driverName">{{profile.name}}</option>
+  <option class="driverName" value="{{_id}}">{{profile.firstName}} {{profile.lastName}}</option>
   {{/each}}
 </template>
 
