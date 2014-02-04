@@ -10,7 +10,10 @@
       "pickadate": {},
       "roles": {},
       "font-awesome": {},
-      "accounts-entry": {}
+      "accounts-entry": {
+        "git": "https://github.com/BeDifferential/accounts-entry.git",
+        "branch": "master"
+      }
     },
     "packages": {
       "moment": {
@@ -55,18 +58,8 @@
       },
       "accounts-entry": {
         "git": "https://github.com/BeDifferential/accounts-entry.git",
-        "tag": "v0.5.2",
+        "branch": "master",
         "commit": "56cee1ff5afe2ce5be7b749cd74fc939fc9ce781"
-      },
-      "headers": {
-        "git": "https://github.com/gadicohen/meteor-headers.git",
-        "tag": "v0.0.14",
-        "commit": "0a8475da5915e0c70969284e5d92fe5fbffb66d5"
-      },
-      "just-i18n": {
-        "git": "https://github.com/subhog/meteor-just-i18n.git",
-        "tag": "v0.1.1",
-        "commit": "ce88ac66c0dc107dc2da93ce152616115838101f"
       }
     }
   }
