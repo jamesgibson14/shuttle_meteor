@@ -40,7 +40,7 @@
             <option value="Hotel">Hotel</option>
             <option value="Business">Business</option>
             {{#each pickupLocations}}
-            <option value="{{name}}">{{name}}</option>
+              <option>{{name}}</option>
             {{/each}}
           </select>
           </div>  
@@ -71,13 +71,13 @@
         <label class="col-sm-5 control-label">Destination:</label>
           <div class="col-sm-7">
           <select id="destinationLocation" class=" form-control">
-            <option value="Apartment">Apartment</option>
-            <option value="Home">Home</option>
-            <option value="Cedar City Airport">Cedar City Airport</option>
-            <option value="Hotel">Hotel</option>
-            <option value="Business">Business</option>
+            <option value="">Apartment</option>
+            <option>Home</option>
+            <option>Cedar City Airport</option>
+            <option>Hotel</option>
+            <option>Business</option>
             {{#each destination}}
-            <option value="{{name}}">{{name}}</option>
+              <option>{{name}}</option>
             {{/each}}
           </select>
           </div>  
@@ -125,13 +125,13 @@
           <label class="col-sm-5 control-label">Pickup Location:</label>
           <div class="col-sm-7">
             <select id="returnPickupLocation" class=" form-control">
-              <option value="Apartment">Apartment</option>
-              <option value="Home">Home</option>
-              <option value="Cedar City Airport">Cedar City Airport</option>
-              <option value="Hotel">Hotel</option>
-              <option value="Business">Business</option>
+              <option value="">Apartment</option>
+              <option>Home</option>
+              <option>Cedar City Airport</option>
+              <option>Hotel</option>
+              <option>Business</option>
               {{#each pick-up}}
-              <option value="{{name}}">{{name}}</option>
+                <option>{{name}}</option>
               {{/each}}
             </select>
           </div>  

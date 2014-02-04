@@ -213,13 +213,13 @@ $          {{> driverSelect}}
       <div class="form-group">
           <label class="col-sm-4 control-label"># of Passengers:</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" id="passengerCount" value="{{passengerCount}}">
+            <input type="text" class="form-control passengerCount" id="runPassengerCount" value="{{passengerCount}}">
           </div>
         </div>
       <div class="form-group">
         <label class="col-sm-4 control-label">Pickup Location:</label>
           <div class="col-sm-8">
-          <select id="pickupLocation" class=" form-control">
+          <select id="runPickupLocation" class=" form-control">
             <option value="Apartment" {{isSelected pickupLocation "Apartment"}}>Apartment</option>
             <option value="Home" {{isSelected pickupLocation "Home"}}>Home</option>
             <option value="Cedar City Airport" {{isSelected pickupLocation "Cedar City Airport"}}>Cedar City Airport</option>
@@ -234,13 +234,13 @@ $          {{> driverSelect}}
         <div class="form-group">
           <label class="col-sm-4 control-label">Pickup Address:</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" id="pickupAddress" value="{{pickupAddress}}">
+            <input type="text" class="form-control" id="runPickupAddress" value="{{pickupAddress}}">
           </div>
         </div>
         <div class="form-group">
         <label class="col-sm-4 control-label">Destination:</label>
           <div class="col-sm-8">
-          <select id="destinationLocation" class=" form-control">
+          <select id="runDestinationLocation" class=" form-control">
             <option value="Apartment" {{isSelected destinationLocation "Apartment"}}>Apartment</option>
             <option value="Home" {{isSelected destinationLocation "Home"}}>Home</option>
             <option value="Cedar City Airport" {{isSelected destinationLocation "Cedar City Airport"}}>Cedar City Airport</option>
@@ -255,7 +255,7 @@ $          {{> driverSelect}}
         <div class="form-group">
           <label class="col-sm-4 control-label">Destination Address:</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" id="destinationAddress" value="{{destinationAddress}}">
+            <input type="text" class="form-control" id="runDestinationAddress" value="{{destinationAddress}}">
           </div>
         </div>
         <div class="form-group">
@@ -269,7 +269,7 @@ $          {{> driverSelect}}
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    <button type="button" class="btn btn-primary" id="saveRunInfo">Save</button>
+    <button type="button" class="btn btn-primary" id="saveRunDetails">Save</button>
   </div>
 </template>
 <!--

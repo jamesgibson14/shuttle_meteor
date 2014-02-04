@@ -90,6 +90,22 @@ Template.driverView.events({
     Bookings.update({_id: bookingID},{$set: updateValues});
     $('#runCustomerModal').modal('hide');
   },
+  'click #saveRunDetails': function(e, temp) {
+    var bookingID = Session.get('currentBooking');
+    var updateValues = {};
+    updateValues.pickupDate = $(temp.find('#runPickupDate')).val();
+    updateValues.pickuptime = $(temp.find('#runPickuptime')).val();
+    var dateTimeStr =  updateValues.pickupDate + " " + updateValues.pickupTime;
+    updateValues.pickupAt = moment(dateTimeStr, "MM/DD/YYYY h:mm a").toDate();
+    updateValues.passengerCount = $(temp.find('#runPassengerCount')).val();
+    updateValues.pickupLocation = $(temp.find('#runPickupLocation')).val();
+    updateValues.pickupAddress = $(temp.find('#runPickupAddress')).val();
+    updateValues.destinationLocation = $(temp.find('#runDestinationLocation')).val();
+    updateValues.destinationAddress = $(temp.find('#runDestinationAddress')).val();
+    updateValues.returnRide = $(temp.find('input.selectReturnRide:checked')).val();
+    Bookings.update({_id: bookingID},{$set: updateValues});
+    $('#runDetailsModal').modal('hide');
+  },
 })
 
 Template.taxiBookings.helpers({
@@ -149,14 +165,7 @@ Template.taxiBooking.events({
     console.log('editRunDetails', obj);
     $('#runDetailsModal .modal-content').html(Template.runDetailsModal(obj));
     $('#runDetailsModal').modal('show');
-    $('.datepicker').datepicker({
-      onSelect: function(date, object){
-        console.log(date,object);
-        var pickup = $('.runPickupDate').val();
-        console.log("Edited pickup date: " + pickup);
-        Session.set('editPickupDate', pickup);
-      }
-    });
+    $('.datepicker').datepicker({});
     $('.timepicker').timepicker({
       minuteStep: 5,
       showInputs: false,
