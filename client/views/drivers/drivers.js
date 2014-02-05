@@ -133,9 +133,9 @@ Template.taxiBooking.helpers({
     return {_id: this._id};
   },
   getDriver: function(id, attr){
-    console.log('getDriver',id, attr)
-    var driver = Meteor.users.findOne(id).profile[attr];
-    return driver;
+    var driver = Meteor.users.findOne(id) || {}
+    if(driver.profile)
+      return driver.profile[attr];
   }
 })
 
