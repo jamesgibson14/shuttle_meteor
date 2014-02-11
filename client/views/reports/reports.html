@@ -1,7 +1,26 @@
 <template name="reports">
   <h1>Reports Page</h1>
-  <label>Total Booking sales</label>
-  <br /><span>$&nbsp;{{totalSales}}</span><br />
-  <label>Total Passengers</label>
-  <br /><span>{{totalPassengers}}</span>
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-9">
+      <div><button class="btn btn-info changeMonth" data-direction="-1"><i class="fa fa-caret-left"></i></button>
+        <span> {{moment month format="MMMM YYYY"}} </span>
+        <button class="btn btn-info changeMonth" data-direction="1"><i class="fa fa-caret-right"></i></button>
+      </div>
+      <div>
+        <table class="table table-bordered">
+          <tr><th>Date</th><th>Daily Revenue</th><th>Daily Mileage</th><th>Taxi Runs</th>
+            <th>Delivery Runs</th><th>Dollars Per Mile</th><th>Dollars Per Trip</th></tr>
+          {{#each days}}
+          <tr><td>{{moment date format="MM/DD/YYYY"}}</td><td>{{price}}</td><td>{{mileage}}</td><td>{{count}}</td>
+            <td>{{a}}</td><td>{{a}}</td><td>{{a}}</td></tr>
+          {{/each}}
+          {{#with totals}}
+            <tr><td></td><td>{{price}}</td><td>{{mileage}}</td><td>{{count}}</td>
+            <td>{{a}}</td><td>{{a}}</td><td>{{a}}</td></tr>
+          {{/with}}
+        </table>
+      </div>
+    </div>
+  </div>
 </template>
