@@ -11,6 +11,7 @@
     "accounts-entry": {
       "git": "https://github.com/BeDifferential/accounts-entry.git",
       "commit": "56cee1ff5afe2ce5be7b749cd74fc939fc9ce781"
-    }
+    },
+    "npm": {}
   }
 }

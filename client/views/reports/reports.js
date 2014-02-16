@@ -26,20 +26,29 @@ Template.reports.helpers({
     var cursor =  Bookings.find(range);
     Days.remove({});
     cursor.forEach(function(doc){
+      var taxiRuns = doc.isDelivery ? 0 : 1;
+      var deliveryRuns =  doc.isDelivery ? 1 : 0;
       Days.upsert( {dateString: moment(doc.pickupAt).format('MM/DD/YYYY')},
                   {$set: {date: doc.pickupAt},
-                   $inc: {mileage: parseInt(doc.mileage || 0), price: parseFloat(doc.price || 0), count: 1}})
+                   $inc: {mileage: parseInt(doc.mileage || 0), price: parseFloat(doc.price || 0), count: 1, taxiRuns: taxiRuns, deliveryRuns: deliveryRuns}})
     });
     return Days.find();
   },
   totals: function(){
     var totals = {
       mileage: 0,
-      price: 0
+      price: 0,
+      taxiRuns: 0,
+      deliveryRuns: 0,
+      count: 0
     }
+    
     Days.find({}).forEach(function(doc){
       totals.mileage += doc.mileage;
       totals.price += doc.price;
+      totals.taxiRuns += doc.taxiRuns;
+      totals.deliveryRuns += doc.deliveryRuns;
+      totals.count += doc.count;
     })
     return totals;
   }

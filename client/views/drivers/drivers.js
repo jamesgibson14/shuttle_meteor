@@ -94,9 +94,9 @@ Template.driverView.events({
     var bookingID = Session.get('currentBooking');
     var updateValues = {};
     updateValues.pickupDate = $(temp.find('#runPickupDate')).val();
-    updateValues.pickuptime = $(temp.find('#runPickuptime')).val();
-    var dateTimeStr =  updateValues.pickupDate + " " + updateValues.pickupTime;
-    updateValues.pickupAt = moment(dateTimeStr, "MM/DD/YYYY h:mm a").toDate();
+    updateValues.pickupTime = $(temp.find('.runPickupTime')).val();
+    var updateDateTimeStr =  updateValues.pickupDate + " " + updateValues.pickupTime;
+    updateValues.pickupAt = moment(updateDateTimeStr, "MM/DD/YYYY h:mm a").toDate();
     updateValues.passengerCount = $(temp.find('#runPassengerCount')).val();
     updateValues.pickupLocation = $(temp.find('#runPickupLocation')).val();
     updateValues.pickupAddress = $(temp.find('#runPickupAddress')).val();

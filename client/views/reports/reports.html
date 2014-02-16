@@ -12,12 +12,13 @@
           <tr><th>Date</th><th>Daily Revenue</th><th>Daily Mileage</th><th>Taxi Runs</th>
             <th>Delivery Runs</th><th>Dollars Per Mile</th><th>Dollars Per Trip</th></tr>
           {{#each days}}
-          <tr><td>{{moment date format="MM/DD/YYYY"}}</td><td>{{price}}</td><td>{{mileage}}</td><td>{{count}}</td>
-            <td>{{a}}</td><td>{{a}}</td><td>{{a}}</td></tr>
+          <tr><td>{{moment date format="MM/DD/YYYY"}}</td><td>{{price}}</td>
+            <td>{{mileage}}</td><td>{{taxiRuns}}</td>
+            <td>{{deliveryRuns}}</td><td>{{a}}</td><td>{{a}}</td></tr>
           {{/each}}
           {{#with totals}}
-            <tr><td></td><td>{{price}}</td><td>{{mileage}}</td><td>{{count}}</td>
-            <td>{{a}}</td><td>{{a}}</td><td>{{a}}</td></tr>
+            <tr><td></td><td>{{price}}</td><td>{{mileage}}</td><td>{{taxiRuns}}</td>
+            <td>{{deliveryRuns}}</td><td>{{a}}</td><td>{{a}}</td></tr>
           {{/with}}
         </table>
       </div>

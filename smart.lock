@@ -13,7 +13,8 @@
       "accounts-entry": {
         "git": "https://github.com/BeDifferential/accounts-entry.git",
         "branch": "master"
-      }
+      },
+      "npm": {}
     },
     "packages": {
       "moment": {
@@ -33,8 +34,8 @@
       },
       "profile": {
         "git": "https://github.com/BeDifferential/meteor-profile.git",
-        "tag": "v0.0.7",
-        "commit": "4960d0603342e9fac279260f6f1812a273952bf3"
+        "tag": "v0.0.8",
+        "commit": "a79eed39b871d4c384b76d77b78e318eb2f300fd"
       },
       "handlebar-helpers": {
         "git": "https://github.com/raix/Meteor-handlebar-helpers.git",
@@ -60,6 +61,11 @@
         "git": "https://github.com/BeDifferential/accounts-entry.git",
         "branch": "master",
         "commit": "56cee1ff5afe2ce5be7b749cd74fc939fc9ce781"
+      },
+      "npm": {
+        "git": "https://github.com/arunoda/meteor-npm.git",
+        "tag": "v0.2.6",
+        "commit": "177ab6118de5bf8cffb19481343d5762ff7a2aaf"
       }
     }
   }

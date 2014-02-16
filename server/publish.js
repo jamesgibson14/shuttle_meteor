@@ -26,4 +26,6 @@ Meteor.users.allow({
 Meteor.publish('roles', function(){
   return Meteor.roles.find({});
 })
-
+Meteor.publish('oldBookings', function(){
+  return OldBookings.find();
+})

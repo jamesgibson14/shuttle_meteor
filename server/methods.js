@@ -1,3 +1,5 @@
 Meteor.methods({
-  updateUser:function(){}
+  testQuery: function(){
+    
+  }
 })

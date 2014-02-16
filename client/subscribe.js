@@ -8,3 +8,4 @@ Meteor.subscribe('runHistory');
 
 Meteor.subscribe('userData');
 Meteor.subscribe('roles');
+Meteor.subscribe('oldBookings');
