@@ -61,6 +61,7 @@ Template.taxiBookingForm.events({
     booking.email = temp.find('#emailAddress').value;
     booking.pickupLocation = temp.find('#pickupLocation').value;
     booking.pickupAddress = temp.find('#pickupAddress').value;
+    booking.pickupAddress2 = temp.find('#pickupAddress2').value;
     booking.passengerCount = temp.find('#passengerCount').value;
     booking.pickupDate = temp.find('#pickupDate').value;
     booking.pickupTime = temp.find('#pickupTime').value;
@@ -68,6 +69,7 @@ Template.taxiBookingForm.events({
     booking.pickupAt = moment(dateTimeStr, "MM/DD/YYYY h:mm a").toDate();
     booking.destinationLocation = temp.find('#destinationLocation').value;
     booking.destinationAddress = temp.find('#destinationAddress').value;
+    booking.destinationAddress2 = temp.find('#destinationAddress2').value;
     booking.returnRide = temp.find('.selectReturnRide:checked').value;
     
     if (Session.get('isReturnRide')) {
@@ -75,23 +77,27 @@ Template.taxiBookingForm.events({
       if(Session.get('isPickupAtDropoff')) {
         returnBooking.pickupLocation = temp.find('#destinationLocation').value;
         returnBooking.pickupAddress = temp.find('#destinationAddress').value;
+        returnBooking.pickupAddress2 = temp.find('#destinationAddress2').value;
         returnBooking.pickupDate = temp.find('#returnPickupDate').value;
         returnBooking.pickupTime = temp.find('#returnPickupTime').value;
         var returnDatTimeStr = returnBooking.pickupDate + " " + returnBooking.pickupTime;
         returnBooking.pickupAt = moment(returnDatTimeStr, "MM/DD/YYYY h:mm a").toDate();
         returnBooking.destinationLocation = temp.find('#pickupLocation').value;
         returnBooking.destinationAddress = temp.find('#pickupAddress').value;
+        returnBooking.destinationAddress2 = temp.find('#pickupAddress2').value;
       }
       
       if(temp.find('.selectDifferentPickup:checked').value === "differentPickup") {
         returnBooking.pickupLocation = temp.find('#returnPickupLocation').value;
-        returnBooking.pickuptAddress = temp.find('#returnPickupAddress').value;
+        returnBooking.pickupAddress = temp.find('#returnPickupAddress').value;
+        returnBooking.pickupAddress2 = temp.find('#returnPickupAddress2').value;
         returnBooking.pickupDate = temp.find('#returnPickupDate').value;
         returnBooking.pickupTime = temp.find('#returnPickupTime').value;
         var returnDatTimeStr = returnBooking.pickupDate + " " + returnBooking.pickupTime;
         returnBooking.pickupAt = moment(returnDatTimeStr, "MM/DD/YYYY h:mm a").toDate();
         returnBooking.destinationLocation = temp.find('#pickupLocation').value;
         returnBooking.destinationAddress = temp.find('#pickupAddress').value;
+        returnBooking.destinationAddress2 = temp.find('#pickupAddress2').value;
       }
     }
     

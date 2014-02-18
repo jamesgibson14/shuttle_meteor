@@ -26,13 +26,19 @@ Template.reports.helpers({
     var cursor =  Bookings.find(range);
     Days.remove({});
     cursor.forEach(function(doc){
-      var taxiRuns = doc.isDelivery ? 0 : 1;
-      var deliveryRuns =  doc.isDelivery ? 1 : 0;
+      var taxiRuns = doc.delivery ? 0 : 1;
+      var deliveryRuns =  doc.delivery ? 1 : 0;
       Days.upsert( {dateString: moment(doc.pickupAt).format('MM/DD/YYYY')},
                   {$set: {date: doc.pickupAt},
                    $inc: {mileage: parseInt(doc.mileage || 0), price: parseFloat(doc.price || 0), count: 1, taxiRuns: taxiRuns, deliveryRuns: deliveryRuns}})
     });
-    return Days.find();
+    cursor = Days.find();
+    days = cursor.map(function(doc){
+      doc.dollarsPerMile = (doc.price / doc.mileage);
+      doc.dollarsPerTrip= (doc.price / doc.count);
+      return doc;
+    })
+    return days;
   },
   totals: function(){
     var totals = {
@@ -40,7 +46,9 @@ Template.reports.helpers({
       price: 0,
       taxiRuns: 0,
       deliveryRuns: 0,
-      count: 0
+      count: 0,
+      dollarsPerMile: 0,
+      dollarsPerTrip: 0
     }
     
     Days.find({}).forEach(function(doc){
@@ -49,6 +57,8 @@ Template.reports.helpers({
       totals.taxiRuns += doc.taxiRuns;
       totals.deliveryRuns += doc.deliveryRuns;
       totals.count += doc.count;
+      totals.dollarsPerMile +=  (doc.price / doc.mileage);
+      totals.dollarsPerTrip += (doc.price / doc.count);
     })
     return totals;
   }

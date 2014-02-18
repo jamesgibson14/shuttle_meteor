@@ -100,8 +100,10 @@ Template.driverView.events({
     updateValues.passengerCount = $(temp.find('#runPassengerCount')).val();
     updateValues.pickupLocation = $(temp.find('#runPickupLocation')).val();
     updateValues.pickupAddress = $(temp.find('#runPickupAddress')).val();
+    updateValues.pickupAddress2 = $(temp.find('#runPickupAddress2')).val();
     updateValues.destinationLocation = $(temp.find('#runDestinationLocation')).val();
     updateValues.destinationAddress = $(temp.find('#runDestinationAddress')).val();
+    updateValues.destinationAddress2 = $(temp.find('#runDestinationAddress2')).val();
     updateValues.returnRide = $(temp.find('input.selectReturnRide:checked')).val();
     Bookings.update({_id: bookingID},{$set: updateValues});
     $('#runDetailsModal').modal('hide');
