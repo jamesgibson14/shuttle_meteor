@@ -57,7 +57,7 @@ Template.reports.helpers({
       totals.taxiRuns += doc.taxiRuns;
       totals.deliveryRuns += doc.deliveryRuns;
       totals.count += doc.count;
-      totals.dollarsPerMile +=  (doc.price / doc.mileage);
+      totals.dollarsPerMile += (doc.price / doc.mileage);
       totals.dollarsPerTrip += (doc.price / doc.count);
     })
     return totals;

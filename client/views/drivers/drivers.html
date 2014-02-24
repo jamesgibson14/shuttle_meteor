@@ -2,7 +2,7 @@
   <form class="form-horizontal">
     <div class="form-group">
       <label class="col-sm-2 control-label">Filter by date:</label>
-      <div class="input-append date col-sm-2">
+      <div class="input-append date col-sm-3">
         <input type="text" class="form-control datepicker" id="runDateFilter" value="{{today}}"><i class="fa fa-calender"></i>
       </div>
     </div>
@@ -77,6 +77,11 @@ $          {{> driverSelect}}
       <strong>Pickup:</strong> {{pickupLocation}}, {{pickupAddress}}, {{pickupAddress2}}<br>
       <strong>Destination:</strong> {{destinationLocation}}, {{destinationAddress}}, {{destinationAddress2}}<br>
       <strong>Return Ride?:</strong> {{returnRide}}<br>
+      {{#if notes}}
+      <button type="button" class="btn btn-warning notes" data-container="body" data-toggle="popover" data-placement="auto right" data-content="{{notes}}">
+        <i class="fa fa-warning"></i> Notes
+      </button>
+      {{/if}}
       
       <!-- Button for Run Details Modal -->  
       <button class="btn btn-primary editRunDetails">
@@ -94,7 +99,8 @@ $          {{> driverSelect}}
       </button>
     </td>
     <td>
-      <strong>Delivery Run?:</strong> {{#if delivery}}Yes{{else}}No{{/if}}<br>
+      <!-- <strong>Delivery Run?:</strong> {{#if delivery}}Yes{{else}}No{{/if}}<br> -->
+      <strong>Scenario:</strong> {{scenario}}<br>
       <strong>Mileage:</strong> {{mileage}}<br>
       <strong>Wait Time:</strong> {{waitTime}} minutes<br>
       <strong>Price:</strong> ${{price}}<br>
@@ -122,11 +128,21 @@ $          {{> driverSelect}}
   </div>
   <div class="modal-body">
     <form class="form">
-      <div class="checkbox">
+      <!-- <div class="checkbox">
         <label>
           <input type="checkbox" class="isDelivery" {{#if delivery}}checked="checked"{{/if}}>Delivery Run
         </label>
-      </div>
+      </div> -->
+      <div class="form-group">
+        <label class="col-sm-5 control-label">Booking Scenario:</label>
+          <div class="col-sm-7">
+          <select class="form-control scenario">
+            <option value="Phone-in">Phone-in</option>
+            <option value="Walk-on">Walk-on</option>
+            <option value="Delivery">Delivery</option>
+          </select>
+          </div>  
+        </div>
       <div class="form-group">
         <label class="control-label">Mileage:</label>
         <div class="input-group">
@@ -275,6 +291,12 @@ $          {{> driverSelect}}
           <div class="col-sm-8">
             <input type="radio" class="selectReturnRide" name="return-ride" value="round-trip" {{isChecked returnRide "round-trip"}}> Yes &nbsp;
             <input type="radio" class="selectReturnRide" name="return-ride" value="one-way" {{isChecked returnRide "one-way"}}> No
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-5 control-label">Notes:</label>
+          <div class="col-sm-7">
+            <textarea class="form-control" id="notes" rows="3" maxlength="128" value="{{notes}}">{{notes}}</textarea>
           </div>
         </div>
     </form>

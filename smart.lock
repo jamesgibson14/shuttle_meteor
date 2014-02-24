@@ -16,7 +16,8 @@
       },
       "npm": {},
       "headers": {},
-      "just-i18n": {}
+      "just-i18n": {},
+      "typeahead": {}
     },
     "packages": {
       "moment": {
@@ -78,6 +79,11 @@
         "git": "https://github.com/subhog/meteor-just-i18n.git",
         "tag": "v0.1.1",
         "commit": "ce88ac66c0dc107dc2da93ce152616115838101f"
+      },
+      "typeahead": {
+        "git": "https://github.com/sergeyt/meteor-typeahead.git",
+        "tag": "v0.0.6",
+        "commit": "79b17707e3244f87af08a1a59e1ac4088f3e8644"
       }
     }
   }

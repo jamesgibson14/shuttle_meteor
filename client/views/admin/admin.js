@@ -1,3 +1,4 @@
+Session.setDefault('selectedUser',Meteor.userId())
 Template.admin.events({
   "click #userList li": function(e,temp){
     Session.set('selectedUser', $(e.target).data('user_id'));
@@ -36,11 +37,23 @@ Template.admin.helpers({
   },
   getUser: function(){
     var user = Meteor.users.findOne(Session.get('selectedUser')) || {};
-    return user.profile || (user.profile = {});
+    user.profile || (user.profile = {});
+    user.profile.email || (user.profile.email = user.emails[0].address);
+    return user.profile;
   }
 });
 Template.user.rendered= function(){
   console.log(this.data);
+  var anExcitedSource = function(query, cb) {
+    var results = Meteor.roles.find({name: {$regex: query, $options:'i'}}).fetch();
+   
+    cb(results);
+  };
+   
+  $('#roles').typeahead({autoselect: true}, {
+    displayKey: 'name',
+    source: anExcitedSource
+  });
 }
 Template.user.events({
   'change input': function(e, temp){

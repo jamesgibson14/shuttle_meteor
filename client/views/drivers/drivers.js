@@ -19,8 +19,9 @@ Template.driverView.rendered = function(){
       },
       // minDate: new Date()
     });
-    
+    $('.notes').popover()
   }
+  
 }
 
 Template.driverView.helpers({
@@ -73,7 +74,7 @@ Template.driverView.events({
   'click #saveRunInfo': function(e, temp) {
     var bookingID = Session.get('currentBooking');
     var updateValues = {};
-    updateValues.delivery = $(temp.find('.isDelivery')).prop("checked");
+    updateValues.scenario = $(temp.find('.scenario')).val();
     updateValues.mileage = $(temp.find('.runMileage')).val();
     updateValues.waitTime = $(temp.find('.runWaitTime')).val();
     updateValues.price = $(temp.find('.runPrice')).val();
@@ -105,6 +106,7 @@ Template.driverView.events({
     updateValues.destinationAddress = $(temp.find('#runDestinationAddress')).val();
     updateValues.destinationAddress2 = $(temp.find('#runDestinationAddress2')).val();
     updateValues.returnRide = $(temp.find('input.selectReturnRide:checked')).val();
+    updateValues.notes = $(temp.find('#notes')).val();
     Bookings.update({_id: bookingID},{$set: updateValues});
     $('#runDetailsModal').modal('hide');
   },

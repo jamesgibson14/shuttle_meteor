@@ -1,7 +1,3 @@
-Accounts.onCreateUser(function(options, user){
-  user.roles = ['driver']
-  return user;
-})
 Meteor.startup(function(){
   var route = {
     origination: 'Las Vegas',
@@ -62,15 +58,15 @@ Meteor.startup(function(){
     console.log('Creating users: ');
 
     var users = [
-      {firstName:"Cheryl", lastName:"Sperling", email:"Cheryl@ironcountytaxi.com", roles:['employee, driver']},
-      {firstName:"Craig", lastName:"Ence",email:"craig@ironcountytaxi.com",roles:['employee, driver']},
-      {firstName:"Curtis", lastName:"Slack",email:"Curtis@ironcountytaxi.com",roles:['employee, driver']},
-      {firstName:"David", lastName:"Kirk",email:"David@ironcountytaxi.com ",roles:['employee, driver']},
-      {firstName:"Marty", lastName:"Olsen",email:"marty@ironcountytaxi.com",roles:['employee, driver']},
-      {firstName:"Philip", lastName:"Peterson",email:"philip@ironcountytaxi.com",roles:['employee, driver']},
-      {firstName:"Shane", lastName:"Cox",email:"shane@stgeorgetaxi.com",roles:['employee, driver']},
-      {firstName:"James", lastName:"Gibson",email:"sparhawk14@gmail.com",roles:['employee, driver', 'developer', 'admin','manage-users']},
-      {firstName:"Doug", lastName:"Griffin",email:"dgriffin123d@gmail.com",roles:['employee, driver', 'developer', 'admin','manage-users']}
+      {firstName:"Cheryl", lastName:"Sperling", email:"Cheryl@ironcountytaxi.com", roles:['employee', 'driver']},
+      {firstName:"Craig", lastName:"Ence",email:"craig@ironcountytaxi.com",roles:['employee', 'driver']},
+      {firstName:"Curtis", lastName:"Slack",email:"Curtis@ironcountytaxi.com",roles:['employee', 'driver']},
+      {firstName:"David", lastName:"Kirk",email:"David@ironcountytaxi.com ",roles:['employee', 'driver']},
+      {firstName:"Marty", lastName:"Olsen",email:"marty@ironcountytaxi.com",roles:['employee', 'driver']},
+      {firstName:"Philip", lastName:"Peterson",email:"philip@ironcountytaxi.com",roles:['employee', 'driver']},
+      {firstName:"Shane", lastName:"Cox",email:"shane@stgeorgetaxi.com",roles:['employee', 'driver']},
+      {firstName:"James", lastName:"Gibson",email:"sparhawk14@gmail.com",roles:['employee', 'driver', 'developer', 'admin','manage-users']},
+      {firstName:"Doug", lastName:"Griffin",email:"dgriffin123d@gmail.com",roles:['employee', 'driver', 'developer', 'admin','manage-users']}
     ];
 
     _.each(users, function (userData) {

@@ -14,8 +14,8 @@ Template.taxiBookingForm.rendered = function() {
     });
     $('#pickupTime').timepicker({
       minuteStep: 5,
-      showInputs: false,
-      disableFocus: true
+      showInputs: true,
+      disableFocus: false
     });
     $('#returnPickupTime').timepicker({
       minuteStep: 5,
@@ -56,6 +56,10 @@ Template.taxiBookingForm.events({
     var booking = {};
     booking.type = "taxi";
     booking.dateCreated = new Date();
+    booking.scenario = "Online-customer"
+    if ($(temp.find('#scenario')).val() != null) {
+      booking.scenario = $(temp.find('#scenario')).val();
+    }
     booking.name = temp.find('#fullName').value;
     booking.phone = temp.find('#phoneNumber').value;
     booking.email = temp.find('#emailAddress').value;
@@ -71,6 +75,7 @@ Template.taxiBookingForm.events({
     booking.destinationAddress = temp.find('#destinationAddress').value;
     booking.destinationAddress2 = temp.find('#destinationAddress2').value;
     booking.returnRide = temp.find('.selectReturnRide:checked').value;
+    booking.notes = $(temp.find('#notes')).val();
     
     if (Session.get('isReturnRide')) {
       var returnBooking = _.clone(booking);
@@ -85,6 +90,7 @@ Template.taxiBookingForm.events({
         returnBooking.destinationLocation = temp.find('#pickupLocation').value;
         returnBooking.destinationAddress = temp.find('#pickupAddress').value;
         returnBooking.destinationAddress2 = temp.find('#pickupAddress2').value;
+        returnBooking.notes = $(temp.find('#returnTripNotes')).val();
       }
       
       if(temp.find('.selectDifferentPickup:checked').value === "differentPickup") {
@@ -98,6 +104,7 @@ Template.taxiBookingForm.events({
         returnBooking.destinationLocation = temp.find('#pickupLocation').value;
         returnBooking.destinationAddress = temp.find('#pickupAddress').value;
         returnBooking.destinationAddress2 = temp.find('#pickupAddress2').value;
+        returnBooking.notes = $(temp.find('#returnTripNotes')).val();
       }
     }
     
@@ -109,6 +116,8 @@ Template.taxiBookingForm.events({
       _.each(temp.findAll('input'),function(el){
         el.value ='';
       })
+      Session.set('isReturnRide', false);
+      Session.set('isPickupAtDropoff', null);
     }
     var onReturnBookingInsert = function(err, id){
       if(!err){

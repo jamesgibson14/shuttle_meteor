@@ -14,6 +14,7 @@
     },
     "npm": {},
     "headers": {},
-    "just-i18n": {}
+    "just-i18n": {},
+    "typeahead": {}
   }
 }
