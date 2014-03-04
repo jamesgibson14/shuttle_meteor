@@ -76,6 +76,7 @@ Template.taxiBookingForm.events({
     booking.destinationAddress2 = temp.find('#destinationAddress2').value;
     booking.returnRide = temp.find('.selectReturnRide:checked').value;
     booking.notes = $(temp.find('#notes')).val();
+    booking.status = "reserved";
     
     if (Session.get('isReturnRide')) {
       var returnBooking = _.clone(booking);
@@ -144,17 +145,17 @@ Template.taxiBookingForm.events({
 
 Template.taxiBookingForm.helpers({
   isReturnRide: function(){
-    return Session.get('isReturnRide');
+    return Session.equals('isReturnRide', true);
   },
   isPickupAtDropoff: function(){
-    if (Session.get('isReturnRide') && (Session.get('isPickupAtDropoff') != null)) {
-      return Session.get('isPickupAtDropoff')
+    if (Session.equals('isReturnRide', true) && !Session.equals('isPickupAtDropoff', null)) {
+      return Session.equals('isPickupAtDropoff', true);
     }
     else return false;
   },
   isDifferentPickup: function(){
-    if (Session.get('isReturnRide') && (Session.get('isPickupAtDropoff') != null)) {
-      return !Session.get('isPickupAtDropoff')
+    if (Session.equals('isReturnRide', true) && !Session.equals('isPickupAtDropoff', null)) {
+      return !Session.equals('isPickupAtDropoff', true);
     }
     else return false;
   },

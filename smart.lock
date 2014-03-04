@@ -17,7 +17,8 @@
       "npm": {},
       "headers": {},
       "just-i18n": {},
-      "typeahead": {}
+      "typeahead": {},
+      "numeral": {}
     },
     "packages": {
       "moment": {
@@ -27,8 +28,8 @@
       },
       "iron-router": {
         "git": "https://github.com/EventedMind/iron-router.git",
-        "tag": "v0.6.2",
-        "commit": "ce56e58b45624dce992490f3a1c10f10d3948bae"
+        "tag": "v0.6.4",
+        "commit": "927bbaed1b87894fb6fb70807f74ff3a5bd89f29"
       },
       "bootstrap-3": {
         "git": "https://github.com/mangasocial/meteor-bootstrap-3.git",
@@ -84,6 +85,11 @@
         "git": "https://github.com/sergeyt/meteor-typeahead.git",
         "tag": "v0.0.6",
         "commit": "79b17707e3244f87af08a1a59e1ac4088f3e8644"
+      },
+      "numeral": {
+        "git": "https://github.com/vsivsi/meteor-numeral.git",
+        "tag": "v0.0.1",
+        "commit": "5542b3e87e55f07ae854e8d1b847b3694d66b986"
       }
     }
   }

@@ -17,15 +17,33 @@ Meteor.publish('runHistory', function(){
 Meteor.publish('userData', function(){
   return Meteor.users.find({},{fields:{profile:true, roles:true,emails:true}});
 })
+
 Meteor.users.allow({
   update:function(userId, doc, fieldNames, modifier){
     console.log(userId, doc, fieldNames, modifier);
     return true;
   }
 })
+
+Bookings.allow({
+  insert: function(userId, doc){
+    console.log(userId, doc);
+    return true;
+  },
+  update: function(userId, doc, fieldNames, modifier){
+    console.log(userId, doc, fieldNames, modifier);
+    return (Roles.userIsInRole(userId, ['employee','driver','developer','admin']));
+  },
+  remove: function(userId, doc){
+    console.log(userId, doc);
+    return (Roles.userIsInRole(userId, ['developer','admin']));
+  }
+})
+
 Meteor.publish('roles', function(){
   return Meteor.roles.find({});
 })
+
 Meteor.publish('oldBookings', function(){
   return OldBookings.find();
 })

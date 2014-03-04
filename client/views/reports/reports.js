@@ -22,7 +22,6 @@ Template.reports.helpers({
         $lte: moment(date).endOf('month').toDate(),
       }
     };
-    console.log(range);
     var cursor =  Bookings.find(range);
     Days.remove({});
     cursor.forEach(function(doc){

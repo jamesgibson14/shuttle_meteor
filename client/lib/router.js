@@ -32,6 +32,10 @@ Router.map(function(){
     path: '/admin',
     controller: authController
   });
+  this.route('userAccount', {
+    path: '/UserAccount',
+    controller: authController
+  });
   this.route('runHistory', {
     path: '/RunHistory',
     controller: authController

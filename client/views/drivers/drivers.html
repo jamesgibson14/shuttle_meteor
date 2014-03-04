@@ -18,15 +18,30 @@ $          {{> driverSelect}}
     </div>
   </form>
   {{> taxiBookings}}
-  <div class="modal fade bs-modal-sm" id="runInfoModal" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="runInfoLabel" aria-hidden="true">
-    <div class="modal-dialog">
+  
+  <div class="modal fade" id="runCancelModal" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="runCancelLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+      {{> runCancelModal}}
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="runReserveModal" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="runReserveLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+      {{> runReserveModal}}
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="runInfoModal" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="runInfoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
       <div class="modal-content">
       {{> runInfoModal}}
       </div>
     </div>
   </div>
-  <div class="modal fade bs-modal-sm" id="runCustomerModal" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="runCustomerLabel" aria-hidden="true">
-    <div class="modal-dialog">
+  <div class="modal fade" id="runCustomerModal" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="runCustomerLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
       <div class="modal-content">
       {{> runCustomerModal}}
       </div>
@@ -68,8 +83,24 @@ $          {{> driverSelect}}
           <option>Choose driver</option>
           {{> driverSelect}}
         </select>
-        <strong>Current driver: </strong>{{getDriver driver "firstName"}} {{getDriver driver "lastName"}}
+        <strong>Current driver: </strong>{{getDriver driver "firstName"}} {{getDriver driver "lastName"}}<br>
+        <strong>Status: </strong>{{status}}<br>
       </div>
+      {{#if $eq status "reserved"}}
+      <button class="btn btn-warning cancelRun">
+        <i class="fa fa-minus-square-o fa-lg"></i> Cancel Run
+      </button>
+      {{/if}}
+      {{#if $eq status "cancelled"}}
+      <button class="btn btn-primary reserveRun">
+        <i class="fa fa-check-square-o fa-lg"></i> Reserve Run
+      </button>
+      {{/if}}
+      <!-- {{#if isInRole "developer,admin"}}
+      <button class="btn btn-danger deleteRun">
+        <i class="fa fa-trash-o fa-lg"></i> Delete Run
+      </button>
+      {{/if}} -->
     </td>
     <td>
       <strong>Date &amp; Time:</strong> {{pickupDate}}, {{pickupTime}}<br>
@@ -78,14 +109,14 @@ $          {{> driverSelect}}
       <strong>Destination:</strong> {{destinationLocation}}, {{destinationAddress}}, {{destinationAddress2}}<br>
       <strong>Return Ride?:</strong> {{returnRide}}<br>
       {{#if notes}}
-      <button type="button" class="btn btn-warning notes" data-container="body" data-toggle="popover" data-placement="auto right" data-content="{{notes}}">
-        <i class="fa fa-warning"></i> Notes
+      <button type="button" class="btn btn-info notes" data-container="body" data-toggle="popover" data-placement="auto right" data-content="{{notes}}">
+        <i class="fa fa-eye fa-lg"></i> Notes
       </button>
       {{/if}}
       
       <!-- Button for Run Details Modal -->  
       <button class="btn btn-primary editRunDetails">
-        Edit Details
+        <i class="fa fa-pencil fa-lg"></i> Edit Details
       </button>
     </td>
     <td>
@@ -95,7 +126,7 @@ $          {{> driverSelect}}
       
       <!-- Button for Run Customer Modal -->  
       <button class="btn btn-primary editRunCustomer">
-        Edit Customer
+        <i class="fa fa-pencil fa-lg"></i> Edit Customer
       </button>
     </td>
     <td>
@@ -108,7 +139,7 @@ $          {{> driverSelect}}
       
       <!-- Button for Run Info Modal -->  
       <button class="btn btn-primary editRunInfo">
-        Edit Info
+        <i class="fa fa-pencil fa-lg"></i> Edit Info
       </button>
     </td>
   </tr>
@@ -134,8 +165,8 @@ $          {{> driverSelect}}
         </label>
       </div> -->
       <div class="form-group">
-        <label class="col-sm-5 control-label">Booking Scenario:</label>
-          <div class="col-sm-7">
+        <label class="control-label">Booking Scenario:</label>
+          <div class="">
           <select class="form-control scenario">
             <option value="Phone-in">Phone-in</option>
             <option value="Walk-on">Walk-on</option>
@@ -175,7 +206,7 @@ $          {{> driverSelect}}
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
     <button type="button" class="btn btn-primary" id="saveRunInfo">Save</button>
   </div>
 </template>
@@ -203,7 +234,7 @@ $          {{> driverSelect}}
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
     <button type="button" class="btn btn-primary" id="saveRunCustomer">Save</button>
   </div>
 </template>
@@ -294,16 +325,60 @@ $          {{> driverSelect}}
           </div>
         </div>
         <div class="form-group">
-          <label class="col-sm-5 control-label">Notes:</label>
-          <div class="col-sm-7">
+          <label class="col-sm-4 control-label">Notes:</label>
+          <div class="col-sm-8">
             <textarea class="form-control" id="notes" rows="3" maxlength="128" value="{{notes}}">{{notes}}</textarea>
           </div>
         </div>
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
     <button type="button" class="btn btn-primary" id="saveRunDetails">Save</button>
+  </div>
+</template>
+<template name="runCancelModal">
+  <!-- Run Cancel Modal -->
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="runCancelLabel">Cancel Run</h4>
+  </div>
+  <div class="modal-body">
+    <p class="bg-warning"><i class="fa fa-info-circle fa-lg"></i> Provide a brief reason for the run being cancelled.</p>
+    <form class="form">
+      <div class="form-group">
+        <label class="control-label">Reason for Cancellation:</label>
+        <div class="">
+          <select class="form-control runCancelReason">
+            <option value="Customer by phone">Customer by phone</option>
+            <option value="Customer at pickup">Customer at pickup</option>
+            <option value="Customer no-show">Customer no-show</option> 
+          </select>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Don't Cancel</button>
+    <button type="button" class="btn btn-primary" id="confirmCancelRun">Cancel Run</button>
+  </div>
+</template>
+<template name="runReserveModal">
+  <!-- Run Reserve Modal -->
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="runReserveLabel">Reserve Run</h4>
+  </div>
+  <div class="modal-body">
+    <form class="form">
+      <div class="form-group">
+        <p class="">This run booking originally included a return ride. Would you like to reserve the return ride as well?</p>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+    <button type="button" class="btn btn-success" id="confirmRestoreReturnBooking">Yes</button>
   </div>
 </template>
 <!--

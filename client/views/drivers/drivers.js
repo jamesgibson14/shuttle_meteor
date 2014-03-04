@@ -71,6 +71,28 @@ Template.driverView.events({
   'change #runDateFilter': function(e, temp) {
     Session.set('dateFilter', e.target.value); 
   },
+  'click #confirmCancelRun': function(e, temp) {
+    var bookingID = Session.get('currentBooking');
+    var booking = Bookings.findOne({_id: bookingID}, {nextBookingId:1, _id:0});
+    var nextBookingId = booking.nextBookingId;
+    var updateValues = {};
+    updateValues.status = "cancelled";
+    updateValues.reasonCancelled = $(temp.find('.runCancelReason')).val();
+    Bookings.update({_id: bookingID},{$set: updateValues});
+    console.log(Bookings.findOne({_id: bookingID}));
+    if (nextBookingId) {
+      Bookings.update({_id: nextBookingId},{$set: updateValues});
+      console.log(Bookings.findOne({_id: nextBookingId}));
+    }
+    $('#runCancelModal').modal('hide');
+  },
+  'click #confirmRestoreReturnBooking': function(e,temp){
+    var bookingID = Session.get('currentBooking');
+    var booking = Bookings.findOne({_id: bookingID}, {nextBookingId:1, _id:0});
+    var nextBookingId = booking.nextBookingId;
+    Bookings.update({_id: nextBookingId}, {$set: {status: "reserved"}});
+    $('#runReserveModal').modal('hide');
+  },
   'click #saveRunInfo': function(e, temp) {
     var bookingID = Session.get('currentBooking');
     var updateValues = {};
@@ -151,6 +173,29 @@ Template.taxiBooking.events({
     
     Bookings.update({_id: bookingID}, {$set: {driver: driver}});
   },
+  'click .cancelRun': function(e, temp) {
+    var bookingID = temp.data._id;
+    Session.set('currentBooking', bookingID);
+    var obj = Bookings.findOne({_id: bookingID});
+    console.log('cancelRun', obj);
+    $('#runCancelModal .modal-content').html(Template.runCancelModal(obj));
+    $('#runCancelModal').modal('show');
+  },
+  'click .reserveRun': function(e,temp) {
+    var bookingID = temp.data._id;
+    Session.set('currentBooking', bookingID);
+    var obj = Bookings.findOne({_id: bookingID});
+    var nextBookingID = obj.nextBookingId;
+    console.log('reserveRun', obj);
+    Bookings.update({_id: bookingID}, {$set: {status: "reserved"}});
+    if (nextBookingID) {
+    $('#runReservelModal .modal-content').html(Template.runReserveModal(obj));
+    $('#runReserveModal').modal('show');
+    }
+  },
+  /*'click .deleteRun': function(e, temp) {
+    
+  },*/
   'click .editRunInfo': function(e, temp) {
     var bookingID = temp.data._id;
     Session.set('currentBooking', bookingID);

@@ -33,3 +33,10 @@ Handlebars.registerHelper('moment',function(date, options){
     return "Not Defined";
   }
 });
+Handlebars.registerHelper('numeral',function(number, options){
+  if(number){
+    return numeral(number).format(options.hash.format);
+  }else{
+    return "Not Defined";
+  }
+});
