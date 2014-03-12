@@ -20,6 +20,6 @@ headers
 accounts-entry
 just-i18n
 npm
-typeahead
 facts
 numeral
+http

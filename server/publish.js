@@ -47,3 +47,4 @@ Meteor.publish('roles', function(){
 Meteor.publish('oldBookings', function(){
   return OldBookings.find();
 })
+Facts.setUserIdFilter(function () { return true; });

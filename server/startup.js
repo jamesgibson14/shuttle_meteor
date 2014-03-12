@@ -1,4 +1,26 @@
+var getOldData = function(){
+  var apiKey = 'uioke1234tldsarfdso9';
+  var url = 'https://www.stgshuttle.com/api.php?key=' + apiKey + '&limit=1000';
+  //console.log('runs:', this.runs, url)
+  HTTP.get(url,{},function(err,res){
+    if(!err){
+      var array = JSON.parse(res.content);
+      var len = array.length;
+      _.each(array, function(doc, i){
+
+        doc.BookedDate = new moment(doc.BookedDate).toDate();
+        doc.TravelDate = new moment(doc.TravelDate).toDate();
+        
+        if(i> len-2){
+          console.log(doc)
+        }
+        OldBookings.upsert({BookingID: doc.BookingID},doc)
+      })
+    }
+  });
+}
 Meteor.startup(function(){
+  //getOldData();
   var route = {
     origination: 'Las Vegas',
     destination: 'St. George',

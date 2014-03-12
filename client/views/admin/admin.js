@@ -43,17 +43,7 @@ Template.admin.helpers({
   }
 });
 Template.user.rendered= function(){
-  console.log(this.data);
-  var anExcitedSource = function(query, cb) {
-    var results = Meteor.roles.find({name: {$regex: query, $options:'i'}}).fetch();
-   
-    cb(results);
-  };
-   
-  $('#roles').typeahead({autoselect: true}, {
-    displayKey: 'name',
-    source: anExcitedSource
-  });
+  
 }
 Template.user.events({
   'change input': function(e, temp){

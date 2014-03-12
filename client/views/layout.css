@@ -8,7 +8,6 @@ body {
   */
   background-color: black;
 }
-.well {
-   background-color: white;
-   opacity:0.90;
+.bg-white {
+  background-color: white;
 }
