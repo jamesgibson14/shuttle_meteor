@@ -20,7 +20,8 @@ Meteor.methods({
       from: mailFields.from,
       subject: mailFields.subject,
       text: mailFields.text,
-      html: mailFields.html
+      html: mailFields.html,
+      headers: {'X-Mailgun-Campaign-Id':'shuttle_1'}
     });
     console.log("email sent!");
   }

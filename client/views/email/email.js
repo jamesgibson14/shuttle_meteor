@@ -10,6 +10,6 @@ Template.email.events({
     mail.html = temp.find('textarea[name="htmlbody"]').value;
     mail.text = temp.find('textarea[name="textbody"]').value;
     console.log(mail);
-    Meteor.call('sendEmail',mail, function(err, res){console.log(err,res);});
+    Meteor.call('sendEmail',mail, function(err, res){console.log(err,res); if(!err){alert('Email was sent successfully.');}});
   }
 })
