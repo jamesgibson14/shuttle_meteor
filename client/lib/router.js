@@ -45,6 +45,10 @@ Router.map(function(){
     path: '/DriverView',
     controller: authController
   });
+  this.route('email', {
+    path: '/email',
+    controller: authController
+  });
   this.route('dashboard', {path: '/Dashboard'});
   this.route('notFound', {path: '*'});
 })

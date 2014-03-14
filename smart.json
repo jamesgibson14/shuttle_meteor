@@ -16,6 +16,8 @@
     "headers": {},
     "just-i18n": {},
     "typeahead": {},
-    "numeral": {}
+    "numeral": {},
+    "bootstrap3-wysihtml5": {},
+    "mailgun": {}
   }
 }
