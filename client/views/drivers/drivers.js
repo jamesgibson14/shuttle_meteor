@@ -6,7 +6,7 @@ Template.drivers.helpers({
 
 Template.driverView.created = function(){
   Session.setDefault('dateFilter', moment().format('MM/DD/YYYY'));
-  Session.setDefault('driverFilter', Meteor.user().profile.name);
+  Session.setDefault('driverFilter', 'all');
 }
 
 Template.driverView.rendered = function(){
@@ -19,8 +19,9 @@ Template.driverView.rendered = function(){
       },
       // minDate: new Date()
     });
-    
+    $('.notes').popover()
   }
+  
 }
 
 Template.driverView.helpers({
@@ -65,22 +66,72 @@ Template.driverSelect.helpers({
 
 Template.driverView.events({
   'change #driverFilter': function(e, temp) {
-    Session.set('driverFilter', e.target.value);
+    Session.set('driverFilter', $(e.target).val());
   },
   'change #runDateFilter': function(e, temp) {
     Session.set('dateFilter', e.target.value); 
   },
+  'click #confirmCancelRun': function(e, temp) {
+    var bookingID = Session.get('currentBooking');
+    var booking = Bookings.findOne({_id: bookingID}, {nextBookingId:1, _id:0});
+    var nextBookingId = booking.nextBookingId;
+    var updateValues = {};
+    updateValues.status = "cancelled";
+    updateValues.reasonCancelled = $(temp.find('.runCancelReason')).val();
+    Bookings.update({_id: bookingID},{$set: updateValues});
+    console.log(Bookings.findOne({_id: bookingID}));
+    if (nextBookingId) {
+      Bookings.update({_id: nextBookingId},{$set: updateValues});
+      console.log(Bookings.findOne({_id: nextBookingId}));
+    }
+    $('#runCancelModal').modal('hide');
+  },
+  'click #confirmRestoreReturnBooking': function(e,temp){
+    var bookingID = Session.get('currentBooking');
+    var booking = Bookings.findOne({_id: bookingID}, {nextBookingId:1, _id:0});
+    var nextBookingId = booking.nextBookingId;
+    Bookings.update({_id: nextBookingId}, {$set: {status: "reserved"}});
+    $('#runReserveModal').modal('hide');
+  },
   'click #saveRunInfo': function(e, temp) {
     var bookingID = Session.get('currentBooking');
     var updateValues = {};
-    updateValues.delivery = $(temp.find('.isDelivery')).prop("checked");
+    updateValues.scenario = $(temp.find('.scenario')).val();
     updateValues.mileage = $(temp.find('.runMileage')).val();
     updateValues.waitTime = $(temp.find('.runWaitTime')).val();
     updateValues.price = $(temp.find('.runPrice')).val();
     updateValues.paymentType = $(temp.find('input.runPaymentType:checked')).val();
     Bookings.update({_id: bookingID},{$set: updateValues});
     $('#runInfoModal').modal('hide');
-  }
+  },
+  'click #saveRunCustomer': function(e, temp) {
+    var bookingID = Session.get('currentBooking');
+    var updateValues = {};
+    updateValues.name = $(temp.find('.runCustomerName')).val();
+    updateValues.phone = $(temp.find('.runCustomerPhone')).val();
+    updateValues.email = $(temp.find('.runCustomerEmail')).val();
+    Bookings.update({_id: bookingID},{$set: updateValues});
+    $('#runCustomerModal').modal('hide');
+  },
+  'click #saveRunDetails': function(e, temp) {
+    var bookingID = Session.get('currentBooking');
+    var updateValues = {};
+    updateValues.pickupDate = $(temp.find('#runPickupDate')).val();
+    updateValues.pickupTime = $(temp.find('.runPickupTime')).val();
+    var updateDateTimeStr =  updateValues.pickupDate + " " + updateValues.pickupTime;
+    updateValues.pickupAt = moment(updateDateTimeStr, "MM/DD/YYYY h:mm a").toDate();
+    updateValues.passengerCount = $(temp.find('#runPassengerCount')).val();
+    updateValues.pickupLocation = $(temp.find('#runPickupLocation')).val();
+    updateValues.pickupAddress = $(temp.find('#runPickupAddress')).val();
+    updateValues.pickupAddress2 = $(temp.find('#runPickupAddress2')).val();
+    updateValues.destinationLocation = $(temp.find('#runDestinationLocation')).val();
+    updateValues.destinationAddress = $(temp.find('#runDestinationAddress')).val();
+    updateValues.destinationAddress2 = $(temp.find('#runDestinationAddress2')).val();
+    updateValues.returnRide = $(temp.find('input.selectReturnRide:checked')).val();
+    updateValues.notes = $(temp.find('#notes')).val();
+    Bookings.update({_id: bookingID},{$set: updateValues});
+    $('#runDetailsModal').modal('hide');
+  },
 })
 
 Template.taxiBookings.helpers({
@@ -106,6 +157,11 @@ Template.taxiBookings.helpers({
 Template.taxiBooking.helpers({
   fieldToObject: function(fieldName){
     return {_id: this._id};
+  },
+  getDriver: function(id, attr){
+    var driver = Meteor.users.findOne(id) || {}
+    if(driver.profile)
+      return driver.profile[attr];
   }
 })
 
@@ -113,10 +169,33 @@ Template.taxiBooking.events({
   'change .chooseDriver': function(e, temp) {
     var bookingID = temp.data._id; 
     
-    var driver = e.target.value;
+    var driver = $(e.target).val();
     
     Bookings.update({_id: bookingID}, {$set: {driver: driver}});
   },
+  'click .cancelRun': function(e, temp) {
+    var bookingID = temp.data._id;
+    Session.set('currentBooking', bookingID);
+    var obj = Bookings.findOne({_id: bookingID});
+    console.log('cancelRun', obj);
+    $('#runCancelModal .modal-content').html(Template.runCancelModal(obj));
+    $('#runCancelModal').modal('show');
+  },
+  'click .reserveRun': function(e,temp) {
+    var bookingID = temp.data._id;
+    Session.set('currentBooking', bookingID);
+    var obj = Bookings.findOne({_id: bookingID});
+    var nextBookingID = obj.nextBookingId;
+    console.log('reserveRun', obj);
+    Bookings.update({_id: bookingID}, {$set: {status: "reserved"}});
+    if (nextBookingID) {
+    $('#runReservelModal .modal-content').html(Template.runReserveModal(obj));
+    $('#runReserveModal').modal('show');
+    }
+  },
+  /*'click .deleteRun': function(e, temp) {
+    
+  },*/
   'click .editRunInfo': function(e, temp) {
     var bookingID = temp.data._id;
     Session.set('currentBooking', bookingID);
@@ -124,5 +203,27 @@ Template.taxiBooking.events({
     console.log('editRunInfo', obj);
     $('#runInfoModal .modal-content').html(Template.runInfoModal(obj));
     $('#runInfoModal').modal('show');   
+  },
+  'click .editRunCustomer': function(e, temp) {
+    var bookingID = temp.data._id;
+    Session.set('currentBooking', bookingID);
+    var obj = Bookings.findOne({_id: bookingID});
+    console.log('editRunCustomer', obj);
+    $('#runCustomerModal .modal-content').html(Template.runCustomerModal(obj));
+    $('#runCustomerModal').modal('show');   
+  },
+  'click .editRunDetails': function(e, temp) {
+    var bookingID = temp.data._id;
+    Session.set('currentBooking', bookingID);
+    var obj = Bookings.findOne({_id: bookingID});
+    console.log('editRunDetails', obj);
+    $('#runDetailsModal .modal-content').html(Template.runDetailsModal(obj));
+    $('#runDetailsModal').modal('show');
+    $('.datepicker').datepicker({});
+    $('.timepicker').timepicker({
+      minuteStep: 5,
+      showInputs: false,
+      disableFocus: true
+    });
   }
 })

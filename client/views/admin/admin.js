@@ -1,3 +1,4 @@
+Session.setDefault('selectedUser',Meteor.userId())
 Template.admin.events({
   "click #userList li": function(e,temp){
     Session.set('selectedUser', $(e.target).data('user_id'));
@@ -36,15 +37,22 @@ Template.admin.helpers({
   },
   getUser: function(){
     var user = Meteor.users.findOne(Session.get('selectedUser')) || {};
-    return user.profile || (user.profile = {});
+    user.profile || (user.profile = {});
+    user.profile.email || (user.profile.email = user.emails[0].address);
+    return user.profile;
   }
 });
 Template.user.rendered= function(){
-  console.log(this.data);
+  
 }
 Template.user.events({
   'change input': function(e, temp){
-    console.log(e.target.value)
+    console.log(e.target.value);
+    var id = Session.get('selectedUser');
+    var fieldname = e.target.id;
+    var obj = {};
+    obj['profile.' + fieldname] = e.target.value;
+    Meteor.users.update({_id: id}, {$set: obj});
   }
 })
 Template.user.helpers({

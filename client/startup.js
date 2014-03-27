@@ -4,6 +4,7 @@ Meteor.startup(function(){
   }),
   
   AccountsEntry.config({
-    homeRoute: '/TaxiBooking'
+    homeRoute: '/TaxiBooking',
+    dashboardRoute: '/DriverView'
   })
 })

@@ -1,34 +1,49 @@
 <template name="header">
-  <div class="header">
+  
      
-  <nav class="navbar navbar-inverse" role="navigation">
-  <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <img src="iron_county_taxi_logo_113x70.png" /> 
-    </div><!-- /.navbar-header -->
-    <!-- Collect the nav links, forms, and other content for toggling -->
-  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <ul class="nav navbar-nav">     
-      <li class=""><a href="/TaxiBooking">Taxi Booking</a></li>
-      <li class=""><a href="/DriverView">Driver View</a></li>
-       {{#if isInRole "admin,manage-users"}}
-      <li class=""><a href="/Reports">Reports</a></li>
-       <li class=""><a href="/admin">Admin</a></li>
-      {{/if}}
-      {{#if isInRole "developer,beta"}}
-      <li> <a class="navbar-brand" href="/">Shuttle</a></li>
-      <li class=""><a href="/RunHistory">Run Histoy</a></li>
-      {{/if}}
-    </ul>
-  </div><!-- /.navbar-collapse -->
-   
+  <nav class="navbar navbar-inverse nav-pills" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="/" class="navbar-brand"> <img src="iron_county_taxi_logo_113x70.png" height="48" /></a>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class=""><a href="/TaxiBooking">Taxi Booking</a></li>
+          <li class=""><a href="/DriverView">Driver View</a></li>
+           {{#if isInRole "admin,manage-users"}}
+          <li class=""><a href="/Reports">Reports</a></li>
+           <li class=""><a href="/admin">Admin</a></li>
+          {{/if}}
+          {{#if isInRole "developer,beta"}}
+          <li> <a class="navbar-brand" href="/">Shuttle</a></li>
+          <li class=""><a href="/RunHistory">Run Histoy</a></li>
+          {{/if}}
+        </ul>
+        {{#if currentUser}}
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user fa-lg"></i> {{getUserName user "firstName"}} {{getUserName user "lastName"}}  </a>
+            <ul class="dropdown-menu">
+              <li><a href="/UserAccount">Account Settings</a></li>
+              <li class="divider"></li>
+              <li><a href="/sign-out">Sign Out</a></li>
+            </ul>
+          </li>
+        </ul>
+        {{else}}
+        <ul class="nav navbar-nav navbar-right">  
+          <li><a href="/sign-in">Sign In</a></li>
+          <!--  <li><a href="/sign-up">Sign Up</a></li>  -->
+        </ul>
+        {{/if}}
+      </div><!-- /.navbar-collapse -->
+    </div>
   </nav>
-   
-  </div><!-- /.page-header -->
 </template>

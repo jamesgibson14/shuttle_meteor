@@ -1,4 +1,26 @@
+var getOldData = function(){
+  var apiKey = 'uioke1234tldsarfdso9';
+  var url = 'https://www.stgshuttle.com/api.php?key=' + apiKey + '&limit=1000';
+  //console.log('runs:', this.runs, url)
+  HTTP.get(url,{},function(err,res){
+    if(!err){
+      var array = JSON.parse(res.content);
+      var len = array.length;
+      _.each(array, function(doc, i){
+
+        doc.BookedDate = new moment(doc.BookedDate).toDate();
+        doc.TravelDate = new moment(doc.TravelDate).toDate();
+        
+        if(i> len-2){
+          console.log(doc)
+        }
+        OldBookings.upsert({BookingID: doc.BookingID},doc)
+      })
+    }
+  });
+}
 Meteor.startup(function(){
+  //getOldData();
   var route = {
     origination: 'Las Vegas',
     destination: 'St. George',
@@ -58,17 +80,16 @@ Meteor.startup(function(){
     console.log('Creating users: ');
 
     var users = [
-        {name:"Joe",email:"joe@example.com",roles:['customer']},
-        {name:"James",email:"james@example.com",roles:['admin','manage-users']},
-        {name:"Doug",email:"doug@example.com",roles:['admin','manage-users']},
-        {name:"Shane",email:"shane@stgeorgetaxi.com",roles:['manage-users','admin','driver']},
-        {name:"Marty",email:"alice@example.com",roles:['manage-users','driver']},
-        {name:"Cheryl",email:"bob@example.com",roles:['driver']},
-        {name:"Dave",email:"bob@example.com",roles:['driver']},
-        {name:"Phil",email:"bob@example.com",roles:['driver']},
-        {name:"Craig",email:"bob@example.com",roles:['driver']},
-        {name:"Bob",email:"bob@example.com",roles:['driver']}
-      ];
+      {firstName:"Cheryl", lastName:"Sperling", email:"Cheryl@ironcountytaxi.com", roles:['employee', 'driver']},
+      {firstName:"Craig", lastName:"Ence",email:"craig@ironcountytaxi.com",roles:['employee', 'driver']},
+      {firstName:"Curtis", lastName:"Slack",email:"Curtis@ironcountytaxi.com",roles:['employee', 'driver']},
+      {firstName:"David", lastName:"Kirk",email:"David@ironcountytaxi.com ",roles:['employee', 'driver']},
+      {firstName:"Marty", lastName:"Olsen",email:"marty@ironcountytaxi.com",roles:['employee', 'driver']},
+      {firstName:"Philip", lastName:"Peterson",email:"philip@ironcountytaxi.com",roles:['employee', 'driver']},
+      {firstName:"Shane", lastName:"Cox",email:"shane@stgeorgetaxi.com",roles:['employee', 'driver']},
+      {firstName:"James", lastName:"Gibson",email:"sparhawk14@gmail.com",roles:['employee', 'driver', 'developer', 'admin','manage-users']},
+      {firstName:"Doug", lastName:"Griffin",email:"dgriffin123d@gmail.com",roles:['employee', 'driver', 'developer', 'admin','manage-users']}
+    ];
 
     _.each(users, function (userData) {
       var id,
@@ -79,7 +100,7 @@ Meteor.startup(function(){
       id = Accounts.createUser({
         email: userData.email,
         password: "apple1",
-        profile: { name: userData.name }
+        profile: { firstName: userData.firstName, lastName: userData.lastName, email: userData.email }
       });
 
       // email verification

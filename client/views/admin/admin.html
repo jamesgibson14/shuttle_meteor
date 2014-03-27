@@ -11,7 +11,7 @@
   <ul id="userList">
      new user (email) <input type="text" id="newUser" class="form-control" placeholder="user's email" />
   {{#each users}}
-    <li data-user_id="{{_id}}" class="{{#if isSelectedUser id=_id}}selected{{/if}}">{{profile.name}}: roles {{roles}}</li>
+    <li data-user_id="{{_id}}" class="{{#if isSelectedUser id=_id}}selected{{/if}}">{{profile.firstName}} {{profile.lastName}}: roles {{roles}}</li>
   {{/each}}
   </ul>
     </div>
@@ -39,7 +39,7 @@
           <span class='errors'></span>
         </div>
           <div class="form-group">
-              <input class="form-control" type="text" id="lastName" placeholder="Last Name" value="{{lastName}}" />
+              <input class="form-control" type="text" id="roles" placeholder="Roles" value="{{roles}}" />
               <span class='errors'></span>
           </div>
         <a class='btn btn-primary done'><i class='icon-ok'></i> done</a>

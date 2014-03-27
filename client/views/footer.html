@@ -1,3 +1,5 @@
 <template name="footer">
-  <h1>Footer</h1>
+  {{#if isInRole "developer"}}
+  {{> serverFacts}}
+  {{/if}}
 </template>
