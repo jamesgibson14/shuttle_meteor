@@ -6,7 +6,6 @@
       "iron-router": {},
       "bootstrap-3": {},
       "profile": {},
-      "handlebar-helpers": {},
       "pickadate": {},
       "roles": {},
       "font-awesome": {},
@@ -15,12 +14,11 @@
         "branch": "master"
       },
       "npm": {},
-      "headers": {},
       "just-i18n": {},
-      "typeahead": {},
       "numeral": {},
       "bootstrap3-wysihtml5": {},
-      "mailgun": {}
+      "mailgun": {},
+      "chatworks": {}
     },
     "packages": {
       "moment": {
@@ -42,11 +40,6 @@
         "git": "https://github.com/BeDifferential/meteor-profile.git",
         "tag": "v0.0.8",
         "commit": "a79eed39b871d4c384b76d77b78e318eb2f300fd"
-      },
-      "handlebar-helpers": {
-        "git": "https://github.com/raix/Meteor-handlebar-helpers.git",
-        "tag": "v0.0.9",
-        "commit": "71e94c99462b8801a34c5363510758b6ff5f5ac7"
       },
       "pickadate": {
         "git": "https://github.com/mervas/meteor-pickadate.git",
@@ -73,20 +66,10 @@
         "tag": "v0.2.6",
         "commit": "177ab6118de5bf8cffb19481343d5762ff7a2aaf"
       },
-      "headers": {
-        "git": "https://github.com/gadicohen/meteor-headers.git",
-        "tag": "v0.0.15",
-        "commit": "0852ea4df6b1314914c4355160d0b0fd61675aea"
-      },
       "just-i18n": {
         "git": "https://github.com/subhog/meteor-just-i18n.git",
         "tag": "v0.2.2",
         "commit": "90dfb52ab1c643d3fee76460a6a9083b1878d317"
-      },
-      "typeahead": {
-        "git": "https://github.com/sergeyt/meteor-typeahead.git",
-        "tag": "v0.0.6",
-        "commit": "79b17707e3244f87af08a1a59e1ac4088f3e8644"
       },
       "numeral": {
         "git": "https://github.com/vsivsi/meteor-numeral.git",
@@ -102,6 +85,21 @@
         "git": "https://github.com/cunneen/meteor-mailgun.git",
         "tag": "v0.9.1",
         "commit": "5ebfa17d4dadc4ae4b3784903d6bc252d09126e2"
+      },
+      "chatworks": {
+        "git": "https://github.com/Pent/chatworks.git",
+        "tag": "v1.6.0",
+        "commit": "fed449859aff1a8a18626c6c33436e6a88ca6560"
+      },
+      "headers": {
+        "git": "https://github.com/gadicohen/meteor-headers",
+        "branch": "master",
+        "commit": "8dc6d6445def7151e2723b6f7e74818e1fe4b5b4"
+      },
+      "inject-initial": {
+        "git": "https://github.com/gadicc/meteor-inject-initial.git",
+        "tag": "v0.0.3",
+        "commit": "7ebbbbdc3c4377bb9bbb1b683971451375d2233f"
       }
     }
   }

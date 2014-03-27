@@ -4,7 +4,6 @@
     "iron-router": {},
     "bootstrap-3": {},
     "profile": {},
-    "handlebar-helpers": {},
     "pickadate": {},
     "roles": {},
     "font-awesome": {},
@@ -13,11 +12,10 @@
       "commit": "56cee1ff5afe2ce5be7b749cd74fc939fc9ce781"
     },
     "npm": {},
-    "headers": {},
     "just-i18n": {},
-    "typeahead": {},
     "numeral": {},
     "bootstrap3-wysihtml5": {},
-    "mailgun": {}
+    "mailgun": {},
+    "chatworks": {}
   }
 }

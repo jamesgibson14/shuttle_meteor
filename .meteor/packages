@@ -12,11 +12,9 @@ iron-router
 bootstrap-3
 profile
 moment
-handlebar-helpers
 pickadate
 roles
 font-awesome
-headers
 accounts-entry
 just-i18n
 npm
