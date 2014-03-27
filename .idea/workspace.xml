@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7a460276-7897-454f-9d5a-e6f1f698235c" name="Default" comment="added gitignore&#10;">
+    <list default="true" id="7a460276-7897-454f-9d5a-e6f1f698235c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="shuttle_meteor.iws" />
@@ -258,7 +258,11 @@
       <created>1395958362298</created>
       <updated>1395958362298</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added gitignore&#10;">
+      <created>1395958401096</created>
+      <updated>1395958401096</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
