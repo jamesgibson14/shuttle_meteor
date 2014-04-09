@@ -26,9 +26,9 @@ Handlebars.registerHelper('ifState',function(val,options){
     return options.fn(this);
   }
 });
-Handlebars.registerHelper('moment',function(date, options){
+Handlebars.registerHelper('momentFormat',function(date, options){
   if(date){
-    return moment(date).format(options.hash.format);
+    return moment(date).format(options.hash.format ||'MMMM Do YYYY, h:mm:ss a');
   }else{
     return "Not Defined";
   }

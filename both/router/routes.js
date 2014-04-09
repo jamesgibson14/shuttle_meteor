@@ -1,5 +1,5 @@
 Router.configure({
-  layoutTemplate: 'layout',
+  layoutTemplate: 'master_layout',
   loadingTemplate: 'loading',
   notFoundTemplate: 'notFound',
   yieldTemplates: {
@@ -8,16 +8,19 @@ Router.configure({
     },
     footer: {
       to: 'footer'
+    },
+    sidebar: {
+      to: 'sidebar'
     }
   }
 });
 
 authController = RouteController.extend({
-  before: function(){
+  onBeforeAction: function(pause){
     var currentUser = Meteor.user();
     if(!currentUser) {
       this.render('entrySignIn');
-      this.stop();
+      pause();
     }
   }
 })
@@ -36,11 +39,18 @@ Router.map(function(){
     path: '/UserAccount',
     controller: authController
   });
+  this.route('shuttleBooking', {
+    path: '/ShuttleBooking',
+    controller: authController
+  });
   this.route('runHistory', {
     path: '/RunHistory',
     controller: authController
   });
-  this.route('taxiBookingForm', {path: '/TaxiBooking'});
+  this.route('taxiBookingForm', {
+    path: '/TaxiBooking',
+    controller: authController
+  });
   this.route('driverView', {
     path: '/DriverView',
     controller: authController
@@ -48,6 +58,24 @@ Router.map(function(){
   this.route('email', {
     path: '/email',
     controller: authController
+  });
+  this.route('clockinApp', {
+    path: '/clockin',
+    controller: authController,
+    yieldTemplates: {
+      'clockin': {
+        to: 'aside'
+      },
+      header: {
+        to: 'header'
+      },
+      footer: {
+        to: 'footer'
+      },
+      sidebar: {
+        to: 'sidebar'
+      }
+    }
   });
   this.route('dashboard', {path: '/Dashboard'});
   this.route('notFound', {path: '*'});

@@ -1,0 +1,19 @@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<template name="master_layout">
+  <header>
+    {{> yield region="header"}}
+  </header>
+  <div>
+  <aside class="col-sm-2">
+    {{> yield region="aside"}}
+  </aside>
+  <div class="col-sm-10">
+    {{> yield}}
+  </div>
+  </div>
+  <footer>
+    {{> yield region="footer"}}
+  </footer>
+</template>
