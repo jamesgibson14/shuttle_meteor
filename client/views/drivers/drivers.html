@@ -1,3 +1,416 @@
+<<<<<<< HEAD
+<template name="driverView">
+  <form class="form-horizontal">
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Filter by date:</label>
+      <div class="input-append date col-sm-3">
+        <input type="text" class="form-control datepicker" id="runDateFilter" value="{{today}}"><i class="fa fa-calender"></i>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Filter by driver:</label>
+      <div class="col-sm-3">
+        <select class="form-control" id="driverFilter">
+          <option value="">Choose driver</option>  
+          <option value="all">All</option>
+$          {{> driverSelect}}
+        </select>
+      </div>
+    </div>
+  </form>
+  {{> taxiBookings}}
+  
+  <div class="modal fade" id="runCancelModal" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="runCancelLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+      {{> runCancelModal}}
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="runReserveModal" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="runReserveLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+      {{> runReserveModal}}
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="runInfoModal" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="runInfoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+      {{> runInfoModal}}
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="runCustomerModal" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="runCustomerLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+      {{> runCustomerModal}}
+      </div>
+    </div>
+  </div>
+  <div class="modal fade bs-modal-sm" id="runDetailsModal" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="runDetailsLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      {{> runDetailsModal}}
+      </div>
+    </div>
+  </div>
+  
+</template>
+<template name="taxiBookings">
+  <div class="table-responsive">
+  <table class="table table-condensed bg-white" >
+    <thead>
+      <tr>
+        <th>Driver</th>
+        <th>Details</th>
+        <th>Customer</th>
+        <th>Run Info</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each taxiBookings}}
+        {{> taxiBooking}}
+      {{/each}}
+    </tbody>
+  </table>
+  </div>
+  
+</template>
+
+<template name="taxiBooking">
+  <tr id="{{_id}}"> 
+    <td>      
+      <div class="form-group">
+        <select class="form-control chooseDriver" style="max-width: 140px">
+          <option>Choose driver</option>
+          {{> driverSelect}}
+        </select>
+        <strong>Current driver: </strong>{{getDriver driver "firstName"}} {{getDriver driver "lastName"}}<br>
+        <strong>Status: </strong>{{status}}<br>
+      </div>
+      {{#if $eq status "reserved"}}
+      <button class="btn btn-warning cancelRun">
+        <i class="fa fa-minus-square-o fa-lg"></i> Cancel Run
+      </button>
+      {{/if}}
+      {{#if $eq status "cancelled"}}
+      <button class="btn btn-primary reserveRun">
+        <i class="fa fa-check-square-o fa-lg"></i> Reserve Run
+      </button>
+      {{/if}}
+      <!-- {{#if isInRole "developer,admin"}}
+      <button class="btn btn-danger deleteRun">
+        <i class="fa fa-trash-o fa-lg"></i> Delete Run
+      </button>
+      {{/if}} -->
+    </td>
+    <td>
+      <strong>Date &amp; Time:</strong> {{pickupDate}}, {{pickupTime}}<br>
+      <strong># Passengers:</strong> {{passengerCount}}<br>
+      <strong>Pickup:</strong> {{pickupLocation}}, {{pickupAddress}}, {{pickupAddress2}}<br>
+      <strong>Destination:</strong> {{destinationLocation}}, {{destinationAddress}}, {{destinationAddress2}}<br>
+      <strong>Return Ride?:</strong> {{returnRide}}<br>
+      {{#if notes}}
+      <button type="button" class="btn btn-info notes" data-container="body" data-toggle="popover" data-placement="auto right" data-content="{{notes}}">
+        <i class="fa fa-eye fa-lg"></i> Notes
+      </button>
+      {{/if}}
+      
+      <!-- Button for Run Details Modal -->  
+      <button class="btn btn-primary editRunDetails">
+        <i class="fa fa-pencil fa-lg"></i> Edit Details
+      </button>
+    </td>
+    <td>
+      <strong>Name:</strong> {{name}}<br>
+      <strong>Phone:</strong> {{phone}}<br>
+      <strong>Email:</strong> {{email}}<br><br><br>
+      
+      <!-- Button for Run Customer Modal -->  
+      <button class="btn btn-primary editRunCustomer">
+        <i class="fa fa-pencil fa-lg"></i> Edit Customer
+      </button>
+    </td>
+    <td>
+      <!-- <strong>Delivery Run?:</strong> {{#if delivery}}Yes{{else}}No{{/if}}<br> -->
+      <strong>Scenario:</strong> {{scenario}}<br>
+      <strong>Mileage:</strong> {{mileage}}<br>
+      <strong>Wait Time:</strong> {{waitTime}} minutes<br>
+      <strong>Price:</strong> ${{price}}<br>
+      <strong>Payment Type:</strong> {{paymentType}}<br>
+      
+      <!-- Button for Run Info Modal -->  
+      <button class="btn btn-primary editRunInfo">
+        <i class="fa fa-pencil fa-lg"></i> Edit Info
+      </button>
+    </td>
+  </tr>
+</template>
+  
+<template name="driverSelect">
+  {{#each drivers}}
+  <option class="driverName" value="{{_id}}">{{profile.firstName}} {{profile.lastName}}</option>
+  {{/each}}
+</template>
+
+<template name="runInfoModal">
+  <!-- Run Info Modal -->
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="runInfoLabel">Run Info</h4>
+  </div>
+  <div class="modal-body">
+    <form class="form">
+      <!-- <div class="checkbox">
+        <label>
+          <input type="checkbox" class="isDelivery" {{#if delivery}}checked="checked"{{/if}}>Delivery Run
+        </label>
+      </div> -->
+      <div class="form-group">
+        <label class="control-label">Booking Scenario:</label>
+          <div class="">
+          <select class="form-control scenario">
+            <option value="Phone-in">Phone-in</option>
+            <option value="Walk-on">Walk-on</option>
+            <option value="Delivery">Delivery</option>
+          </select>
+          </div>  
+        </div>
+      <div class="form-group">
+        <label class="control-label">Mileage:</label>
+        <div class="input-group">
+          <span class="input-group-addon">miles</span>
+          <input type="text" class="form-control runMileage" value="{{mileage}}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Wait Time:</label>
+        <div class="input-group">
+          <span class="input-group-addon">minutes</span>
+          <input type="text" class="form-control runWaitTime" value="{{waitTime}}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Price:</label>
+        <div class="input-group">
+          <span class="input-group-addon">$</span>
+          <input type="text" class="form-control runPrice" value="{{price}}">
+        </div>
+      </div>
+      <form class="form-inline" role="form">
+        <div class="form-group">
+          <label class="control-label">Payment Type:</label>
+          
+          <input type="radio" class="runPaymentType" name="runPaymentType" value="cash" checked={{isChecked  paymentType "cash"}}> Cash
+          <input type="radio" class="runPaymentType" name="runPaymentType" value="credit" checked={{isChecked  paymentType "credit"}}> Credit
+        </div>
+      </form>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+    <button type="button" class="btn btn-primary" id="saveRunInfo">Save</button>
+  </div>
+</template>
+
+<template name="runCustomerModal">
+  <!-- Run Customer Modal -->
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="runCustomerLabel">Run Customer</h4>
+  </div>
+  <div class="modal-body">
+    <form class="form">
+      <div class="form-group">
+        <label class="control-label">Name:</label>
+          <input type="text" class="form-control runCustomerName" value="{{name}}">
+      </div>
+      <div class="form-group">
+        <label class="control-label">Phone:</label>
+          <input type="text" class="form-control runCustomerPhone" value="{{phone}}">
+      </div>
+      <div class="form-group">
+        <label class="control-label">Email:</label>
+          <input type="text" class="form-control runCustomerEmail" value="{{email}}">
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+    <button type="button" class="btn btn-primary" id="saveRunCustomer">Save</button>
+  </div>
+</template>
+
+<template name="runDetailsModal">
+  <!-- Run Details Modal -->
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="runInfoLabel">Run Details</h4>
+  </div>
+  <div class="modal-body">
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label class="col-sm-4 control-label">Date:</label>
+        <div class="input-append date col-sm-3">
+          <input type="text" class="form-control datepicker " id="runPickupDate" value="{{pickupDate}}">
+        </div>
+        <label class="col-sm-2 control-label">Time:</label>
+        <div class="bootstrap-timepicker col-sm-3">
+          <input type="text" class="form-control timepicker runPickupTime" id="runPickupTime" value="{{pickupTime}}">
+        </div>
+      </div>
+      <div class="form-group">
+          <label class="col-sm-4 control-label"># of Passengers:</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control passengerCount" id="runPassengerCount" value="{{passengerCount}}">
+          </div>
+        </div>
+      <div class="form-group">
+        <label class="col-sm-4 control-label">Pickup Location:</label>
+          <div class="col-sm-8">
+          <select id="runPickupLocation" class=" form-control">
+            <option value="Apartment" {{isSelected pickupLocation "Apartment"}}>Apartment</option>
+            <option value="Home" {{isSelected pickupLocation "Home"}}>Home</option>
+            <option value="Cedar City Airport" {{isSelected pickupLocation "Cedar City Airport"}}>Cedar City Airport</option>
+            <option value="Hotel" {{isSelected pickupLocation "Hotel"}}>Hotel</option>
+            <option value="Business" {{isSelected pickupLocation "Business"}}>Business</option>
+            {{#each pickupLocations}}
+            <option value="{{name}}">{{name}}</option>
+            {{/each}}
+          </select>
+          </div>  
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Pickup Address:</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" id="runPickupAddress" value="{{pickupAddress}}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Addr. Line 2 / Unit #:</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" id="runPickupAddress2" value="{{pickupAddress2}}">
+          </div>
+        </div>
+        <div class="form-group">
+        <label class="col-sm-4 control-label">Destination:</label>
+          <div class="col-sm-8">
+          <select id="runDestinationLocation" class=" form-control">
+            <option value="Apartment" {{isSelected destinationLocation "Apartment"}}>Apartment</option>
+            <option value="Home" {{isSelected destinationLocation "Home"}}>Home</option>
+            <option value="Cedar City Airport" {{isSelected destinationLocation "Cedar City Airport"}}>Cedar City Airport</option>
+            <option value="Hotel" {{isSelected destinationLocation "Hotel"}}>Hotel</option>
+            <option value="Business" {{isSelected destinationLocation "Business"}}>Business</option>
+            {{#each destination}}
+            <option value="{{name}}">{{name}}</option>
+            {{/each}}
+          </select>
+          </div>  
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Destination Address:</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" id="runDestinationAddress" value="{{destinationAddress}}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Addr. Line 2 / Unit #:</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" id="runDestinationAddress2" value="{{destinationAddress2}}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Need a return ride?</label>
+          <div class="col-sm-8">
+            <input type="radio" class="selectReturnRide" name="return-ride" value="round-trip" {{isChecked returnRide "round-trip"}}> Yes &nbsp;
+            <input type="radio" class="selectReturnRide" name="return-ride" value="one-way" {{isChecked returnRide "one-way"}}> No
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Notes:</label>
+          <div class="col-sm-8">
+            <textarea class="form-control" id="notes" rows="3" maxlength="128" value="{{notes}}">{{notes}}</textarea>
+          </div>
+        </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+    <button type="button" class="btn btn-primary" id="saveRunDetails">Save</button>
+  </div>
+</template>
+<template name="runCancelModal">
+  <!-- Run Cancel Modal -->
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="runCancelLabel">Cancel Run</h4>
+  </div>
+  <div class="modal-body">
+    <p class="bg-warning"><i class="fa fa-info-circle fa-lg"></i> Provide a brief reason for the run being cancelled.</p>
+    <form class="form">
+      <div class="form-group">
+        <label class="control-label">Reason for Cancellation:</label>
+        <div class="">
+          <select class="form-control runCancelReason">
+            <option value="Customer by phone">Customer by phone</option>
+            <option value="Customer at pickup">Customer at pickup</option>
+            <option value="Customer no-show">Customer no-show</option> 
+          </select>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Don't Cancel</button>
+    <button type="button" class="btn btn-primary" id="confirmCancelRun">Cancel Run</button>
+  </div>
+</template>
+<template name="runReserveModal">
+  <!-- Run Reserve Modal -->
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="runReserveLabel">Reserve Run</h4>
+  </div>
+  <div class="modal-body">
+    <form class="form">
+      <div class="form-group">
+        <p class="">This run booking originally included a return ride. Would you like to reserve the return ride as well?</p>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+    <button type="button" class="btn btn-success" id="confirmRestoreReturnBooking">Yes</button>
+  </div>
+</template>
+<!--
+<template name="taxiBookingTest">
+  <div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="{{_id}}">
+          {{pickupDate}}, {{pickupTime}} - {{name}}, {{pickupLocation}}
+        </a>
+      </h4>
+    </div>
+    <div id="{{_id}}" class="panel-collapse collapse">
+      <div class="panel-body">
+        <strong>Name:</strong> {{name}}<br>
+        <strong>Phone:</strong> {{phone}}<br>
+        <strong>Email:</strong> {{name}}<br>
+        <strong>Pickup:</strong> {{name}}<br>
+        <strong>:</strong> {{name}}<br>
+        <strong>Pickup:</strong> {{name}}<br>
+      </div>
+    </div>
+  </div>
+  </div>
+</template>
+-->
+
+=======
 <template name="driverView">
   <form class="form-horizontal">
     <div class="form-group">
@@ -409,3 +822,4 @@ $          {{> driverSelect}}
 </template>
 -->
 
+>>>>>>> 62b04679e2a392b7e3b7a77dfc4507718629ef59

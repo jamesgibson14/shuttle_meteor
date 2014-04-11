@@ -5,17 +5,20 @@
       "moment": {},
       "iron-router": {},
       "bootstrap-3": {},
+      "profile": {},
       "pickadate": {},
       "roles": {},
       "font-awesome": {},
+      "accounts-entry": {
+        "git": "https://github.com/BeDifferential/accounts-entry.git",
+        "branch": "master"
+      },
       "npm": {},
       "just-i18n": {},
       "numeral": {},
       "bootstrap3-wysihtml5": {},
       "mailgun": {},
-      "accounts-entry": {},
-      "mysql": {},
-      "headers": {}
+      "chatworks": {}
     },
     "packages": {
       "moment": {
@@ -25,13 +28,18 @@
       },
       "iron-router": {
         "git": "https://github.com/EventedMind/iron-router.git",
-        "tag": "v0.7.0",
-        "commit": "05f34bc48c4cad9fdaa366c1ddcabe6980232ece"
+        "tag": "v0.6.4",
+        "commit": "927bbaed1b87894fb6fb70807f74ff3a5bd89f29"
       },
       "bootstrap-3": {
         "git": "https://github.com/mangasocial/meteor-bootstrap-3.git",
         "tag": "v3.1.1-1",
         "commit": "63dd38968828bb8963636df93e9a1c45e2dfe67e"
+      },
+      "profile": {
+        "git": "https://github.com/BeDifferential/meteor-profile.git",
+        "tag": "v0.0.8",
+        "commit": "a79eed39b871d4c384b76d77b78e318eb2f300fd"
       },
       "pickadate": {
         "git": "https://github.com/mervas/meteor-pickadate.git",
@@ -40,13 +48,18 @@
       },
       "roles": {
         "git": "https://github.com/alanning/meteor-roles.git",
-        "tag": "v1.2.8",
-        "commit": "68844ba216c348d332bdb840825850f497f515bb"
+        "tag": "v1.2.6",
+        "commit": "f2a9058281f8f2fe028767841d7445aadd6893cf"
       },
       "font-awesome": {
         "git": "https://github.com/nate-strauser/meteor-font-awesome.git",
         "tag": "v4.0.3",
         "commit": "61e9361384347547ae144f8228faa4deffda23db"
+      },
+      "accounts-entry": {
+        "git": "https://github.com/BeDifferential/accounts-entry.git",
+        "branch": "master",
+        "commit": "56cee1ff5afe2ce5be7b749cd74fc939fc9ce781"
       },
       "npm": {
         "git": "https://github.com/arunoda/meteor-npm.git",
@@ -55,8 +68,8 @@
       },
       "just-i18n": {
         "git": "https://github.com/subhog/meteor-just-i18n.git",
-        "tag": "v0.2.4",
-        "commit": "91decfcf5b3b5e67f202a67658350b862330bf3d"
+        "tag": "v0.2.2",
+        "commit": "90dfb52ab1c643d3fee76460a6a9083b1878d317"
       },
       "numeral": {
         "git": "https://github.com/vsivsi/meteor-numeral.git",
@@ -73,35 +86,20 @@
         "tag": "v0.9.1",
         "commit": "5ebfa17d4dadc4ae4b3784903d6bc252d09126e2"
       },
-      "accounts-entry": {
-        "git": "https://github.com/Differential/accounts-entry.git",
-        "tag": "v0.7.2",
-        "commit": "cda8617139b5edd79a52023986bfecb48e4b9dc4"
-      },
-      "mysql": {
-        "git": "https://github.com/patrickocoffeyo/meteor-mysql.git",
-        "tag": "v0.0.1",
-        "commit": "ba1ff6d386082a478f14ab2708d6d4b7fa6c6fac"
+      "chatworks": {
+        "git": "https://github.com/Pent/chatworks.git",
+        "tag": "v1.6.0",
+        "commit": "fed449859aff1a8a18626c6c33436e6a88ca6560"
       },
       "headers": {
-        "git": "https://github.com/gadicohen/meteor-headers.git",
-        "tag": "v0.0.21",
-        "commit": "569a50eb334cc1ab324d0721411f48f1cc75ec24"
-      },
-      "blaze-layout": {
-        "git": "https://github.com/EventedMind/blaze-layout.git",
-        "tag": "v0.2.2",
-        "commit": "8bc53798fe5965669ae67c72f91829fcfdceabfd"
-      },
-      "accounts-t9n": {
-        "git": "https://github.com/softwarerero/meteor-accounts-t9n.git",
-        "tag": "v0.0.3",
-        "commit": "d1710f979d6955459d9ce0374df81d22c3c6a6ab"
+        "git": "https://github.com/gadicohen/meteor-headers",
+        "branch": "master",
+        "commit": "8dc6d6445def7151e2723b6f7e74818e1fe4b5b4"
       },
       "inject-initial": {
         "git": "https://github.com/gadicc/meteor-inject-initial.git",
-        "tag": "v0.0.7",
-        "commit": "921a944815e06ece8ce4ded180e9d2e9e31f6000"
+        "tag": "v0.0.3",
+        "commit": "7ebbbbdc3c4377bb9bbb1b683971451375d2233f"
       }
     }
   }
