@@ -22,4 +22,7 @@ mailgun
 headers
 iron-router
 accounts-entry
+<<<<<<< HEAD
 mysql
+=======
+>>>>>>> 62b04679e2a392b7e3b7a77dfc4507718629ef59

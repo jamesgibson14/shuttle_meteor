@@ -1,3 +1,4 @@
+<<<<<<< HEAD:client/views/shared/layout.css
 body {
   /*
   position: absolute;
@@ -10,4 +11,18 @@ body {
 }
 .bg-white {
   background-color: white;
+=======
+body {
+  /*
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image:  url('/body-bg-3.png');
+  
+  */
+  background-color: white;
+}
+.bg-white {
+  background-color: white;
+>>>>>>> 62b04679e2a392b7e3b7a77dfc4507718629ef59:client/views/shared/layout.css
 }
