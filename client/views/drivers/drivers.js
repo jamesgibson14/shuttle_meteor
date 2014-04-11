@@ -197,27 +197,25 @@ Template.taxiBooking.events({
     
   },*/
   'click .editRunInfo': function(e, temp) {
-    var bookingID = temp.data._id;
+    var bookingID = this._id;
     Session.set('currentBooking', bookingID);
-    var obj = Bookings.findOne({_id: bookingID});
-    console.log('editRunInfo', obj);
-    $('#runInfoModal .modal-content').html(Template.runInfoModal(obj));
+    $('#runInfoModal .modal-content').html('');
+    UI.insert(UI.renderWithData(Template.runInfoModal, this), $('#runInfoModal .modal-content')[0]);
     $('#runInfoModal').modal('show');   
   },
   'click .editRunCustomer': function(e, temp) {
-    var bookingID = temp.data._id;
+    var bookingID = this._id;
     Session.set('currentBooking', bookingID);
-    var obj = Bookings.findOne({_id: bookingID});
-    console.log('editRunCustomer', obj);
-    $('#runCustomerModal .modal-content').html(Template.runCustomerModal(obj));
+    $('#runCustomerModal .modal-content').html('');
+    UI.insert(UI.renderWithData(Template.runCustomerModal, this), $('#runCustomerModal .modal-content')[0]);
     $('#runCustomerModal').modal('show');   
   },
   'click .editRunDetails': function(e, temp) {
-    var bookingID = temp.data._id;
+    var bookingID = this._id;
     Session.set('currentBooking', bookingID);
-    var obj = Bookings.findOne({_id: bookingID});
-    console.log('editRunDetails', obj);
-    $('#runDetailsModal .modal-content').html(Template.runDetailsModal(obj));
+    console.log('editRunDetails', this);
+    $('#runDetailsModal .modal-content').html('');
+    UI.insert(UI.renderWithData(Template.runDetailsModal, this), $('#runDetailsModal .modal-content')[0]);
     $('#runDetailsModal').modal('show');
     $('.datepicker').datepicker({});
     $('.timepicker').timepicker({

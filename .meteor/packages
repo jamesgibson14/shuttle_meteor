@@ -22,3 +22,4 @@ mailgun
 headers
 iron-router
 accounts-entry
+mysql

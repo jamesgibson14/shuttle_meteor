@@ -12,6 +12,7 @@
     "bootstrap3-wysihtml5": {},
     "mailgun": {},
     "accounts-entry": {},
-    "mysql": {}
+    "mysql": {},
+    "headers": {}
   }
 }
