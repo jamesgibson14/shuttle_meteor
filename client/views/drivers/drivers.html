@@ -201,8 +201,8 @@ $          {{> driverSelect}}
         <div class="form-group">
           <label class="control-label">Payment Type:</label>
           
-          <input type="radio" class="runPaymentType" name="runPaymentType" value="cash"{{isChecked  paymentType "cash"}}> Cash
-          <input type="radio" class="runPaymentType" name="runPaymentType" value="credit" {{isChecked  paymentType "credit"}}> Credit
+          <input type="radio" class="runPaymentType" name="runPaymentType" value="cash" checked={{isChecked  paymentType "cash"}}> Cash
+          <input type="radio" class="runPaymentType" name="runPaymentType" value="credit" checked={{isChecked  paymentType "credit"}}> Credit
         </div>
       </form>
     </form>

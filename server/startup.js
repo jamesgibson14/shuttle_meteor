@@ -20,6 +20,7 @@ var getOldData = function(){
   });
 }
 Meteor.startup(function(){
+  console.log('startup');
   //getOldData();
   var route = {
     origination: 'Las Vegas',
@@ -110,4 +111,20 @@ Meteor.startup(function(){
     
     });
   }
+  var connection = Mysql.createConnection(Meteor.settings.awsMysql);
+ /* var connection = Mysql.createConnection(Meteor.settings.oldMysql);*/
+  connection.connect();
+
+  connection.query('SELECT 1+1 AS solution', function(err, rows, fields) {
+    if (err) throw err;
+
+    console.log(rows);
+  });
+  connection.query('SELECT 1+3 AS solution', function(err, rows, fields) {
+    if (err) throw err;
+
+    console.log(rows);
+  });
+
+  connection.end();
 })

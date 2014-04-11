@@ -3,19 +3,15 @@
     "moment": {},
     "iron-router": {},
     "bootstrap-3": {},
-    "profile": {},
     "pickadate": {},
     "roles": {},
     "font-awesome": {},
-    "accounts-entry": {
-      "git": "https://github.com/BeDifferential/accounts-entry.git",
-      "commit": "56cee1ff5afe2ce5be7b749cd74fc939fc9ce781"
-    },
     "npm": {},
     "just-i18n": {},
     "numeral": {},
     "bootstrap3-wysihtml5": {},
     "mailgun": {},
-    "chatworks": {}
+    "accounts-entry": {},
+    "mysql": {}
   }
 }
