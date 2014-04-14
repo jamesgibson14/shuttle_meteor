@@ -111,8 +111,9 @@ Meteor.startup(function(){
     
     });
   }
+  /*
   var connection = Mysql.createConnection(Meteor.settings.awsMysql);
- /* var connection = Mysql.createConnection(Meteor.settings.oldMysql);*/
+  var connection = Mysql.createConnection(Meteor.settings.oldMysql);
   connection.connect();
 
   connection.query('SELECT 1+1 AS solution', function(err, rows, fields) {
@@ -127,4 +128,5 @@ Meteor.startup(function(){
   });
 
   connection.end();
+  */
 })
