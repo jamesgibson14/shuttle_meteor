@@ -13,6 +13,7 @@
     "mailgun": {},
     "accounts-entry": {},
     "mysql": {},
-    "headers": {}
+    "headers": {},
+    "handlebar-helpers": {}
   }
 }

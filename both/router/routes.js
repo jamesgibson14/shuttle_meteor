@@ -27,10 +27,6 @@ authController = RouteController.extend({
 
 Router.map(function(){
   this.route('taxiHome', { path: '/'});
-  this.route('reports', {
-    path: '/Reports',
-    controller: authController
-  });
   this.route('admin', {
     path: '/admin',
     controller: authController
@@ -64,6 +60,24 @@ Router.map(function(){
     controller: authController,
     yieldTemplates: {
       'clockin': {
+        to: 'aside'
+      },
+      header: {
+        to: 'header'
+      },
+      footer: {
+        to: 'footer'
+      },
+      sidebar: {
+        to: 'sidebar'
+      }
+    }
+  });
+  this.route('reports', {
+    path: '/Reports',
+    controller: authController,
+    yieldTemplates: {
+      'reportsList': {
         to: 'aside'
       },
       header: {
