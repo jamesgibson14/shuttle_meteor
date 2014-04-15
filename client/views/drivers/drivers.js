@@ -2,7 +2,10 @@ Template.drivers.helpers({
   drivers: function(){
     return [{name: "James"},{name: "Shane"},{name: "Doug"},{name: "Alice"},{name: "Bob"}];
   }
-})
+});
+Template.drivers.events({
+
+});
 
 Template.driverView.created = function(){
   Session.setDefault('dateFilter', moment().format('MM/DD/YYYY'));
@@ -64,6 +67,11 @@ Template.driverSelect.helpers({
 })
 
 Template.driverView.events({
+  'click .changeDate': function(e, temp){
+    var dir = $(e.currentTarget).data('direction');
+    var newMonth = moment(Session.get('dateFilter')).add('days',dir);
+    Session.set('dateFilter',newMonth.toDate());
+  },
   'change #driverFilter': function(e, temp) {
     Session.set('driverFilter', $(e.target).val());
   },

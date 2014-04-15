@@ -1,5 +1,9 @@
 <template name="driverView">
   <form class="form-horizontal">
+    <div><button type="button" class="btn btn-info changeDate" data-direction="-1"><i class="fa fa-caret-left"></i></button>
+      <span> {{momentFormat today format="DD MMMM YYYY"}} </span>
+      <button type="button" class="btn btn-info changeDate" data-direction="1"><i class="fa fa-caret-right"></i></button>
+    </div>
     <div class="form-group">
       <label class="col-sm-2 control-label">Filter by date:</label>
       <div class="input-append date col-sm-3">
