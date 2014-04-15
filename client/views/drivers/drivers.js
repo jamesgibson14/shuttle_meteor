@@ -16,8 +16,7 @@ Template.driverView.rendered = function(){
       onSelect: function(){
         var date = $('#runDateFilter').val();
         Session.set('dateFilter', date);
-      },
-      // minDate: new Date()
+      }
     });
     $('.notes').popover()
   }
@@ -131,7 +130,7 @@ Template.driverView.events({
     updateValues.notes = $(temp.find('#notes')).val();
     Bookings.update({_id: bookingID},{$set: updateValues});
     $('#runDetailsModal').modal('hide');
-  },
+  }
 })
 
 Template.taxiBookings.helpers({
@@ -174,7 +173,7 @@ Template.taxiBooking.events({
     Bookings.update({_id: bookingID}, {$set: {driver: driver}});
   },
   'click .cancelRun': function(e, temp) {
-    var bookingID = temp.data._id;
+    var bookingID = this._id;
     Session.set('currentBooking', bookingID);
     var obj = Bookings.findOne({_id: bookingID});
     console.log('cancelRun', obj);
@@ -193,31 +192,29 @@ Template.taxiBooking.events({
     $('#runReserveModal').modal('show');
     }
   },
-  /*'click .deleteRun': function(e, temp) {
+  'click .deleteRun': function(e, temp) {
     
-  },*/
+  },
   'click .editRunInfo': function(e, temp) {
-    var bookingID = temp.data._id;
+    var bookingID = this._id;
     Session.set('currentBooking', bookingID);
-    var obj = Bookings.findOne({_id: bookingID});
-    console.log('editRunInfo', obj);
-    $('#runInfoModal .modal-content').html(Template.runInfoModal(obj));
+    $('#runInfoModal .modal-content').html('');
+    UI.insert(UI.renderWithData(Template.runInfoModal, this), $('#runInfoModal .modal-content')[0]);
     $('#runInfoModal').modal('show');   
   },
   'click .editRunCustomer': function(e, temp) {
-    var bookingID = temp.data._id;
+    var bookingID = this._id;
     Session.set('currentBooking', bookingID);
-    var obj = Bookings.findOne({_id: bookingID});
-    console.log('editRunCustomer', obj);
-    $('#runCustomerModal .modal-content').html(Template.runCustomerModal(obj));
+    $('#runCustomerModal .modal-content').html('');
+    UI.insert(UI.renderWithData(Template.runCustomerModal, this), $('#runCustomerModal .modal-content')[0]);
     $('#runCustomerModal').modal('show');   
   },
   'click .editRunDetails': function(e, temp) {
-    var bookingID = temp.data._id;
+    var bookingID = this._id;
     Session.set('currentBooking', bookingID);
-    var obj = Bookings.findOne({_id: bookingID});
-    console.log('editRunDetails', obj);
-    $('#runDetailsModal .modal-content').html(Template.runDetailsModal(obj));
+    console.log('editRunDetails', this);
+    $('#runDetailsModal .modal-content').html('');
+    UI.insert(UI.renderWithData(Template.runDetailsModal, this), $('#runDetailsModal .modal-content')[0]);
     $('#runDetailsModal').modal('show');
     $('.datepicker').datepicker({});
     $('.timepicker').timepicker({
@@ -226,4 +223,4 @@ Template.taxiBooking.events({
       disableFocus: true
     });
   }
-})
+});

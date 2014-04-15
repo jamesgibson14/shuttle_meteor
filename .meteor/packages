@@ -22,3 +22,5 @@ mailgun
 headers
 iron-router
 accounts-entry
+mysql
+handlebar-helpers

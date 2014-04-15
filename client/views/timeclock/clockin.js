@@ -6,6 +6,15 @@ Template.clockin.events({
     var doc = {};
     doc.time = Session.get('time');
     doc.user = prompt('Enter your pin?');
+    doc.inOut = 'in';
+
+    Records.insert(doc);
+  },
+  'click .clock-out': function(){
+    var doc = {};
+    doc.time = Session.get('time');
+    doc.user = prompt('Enter your pin?');
+    doc.inOut = 'out';
 
     Records.insert(doc);
   }
@@ -42,4 +51,4 @@ Template.clockinApp.helpers({
   getHistory: function(){
     return Records.find({}, {sort: {time: -1}});
   }
-})
+});

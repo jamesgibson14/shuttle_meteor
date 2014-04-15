@@ -51,3 +51,4 @@ Facts.setUserIdFilter(function () { return true; });
 Meteor.publish('records', function(){
   return Records.find();
 });
+
