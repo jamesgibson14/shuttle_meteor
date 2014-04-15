@@ -23,7 +23,7 @@ authController = RouteController.extend({
       pause();
     }
   }
-})
+});
 
 Router.map(function(){
   this.route('taxiHome', { path: '/'});
@@ -33,6 +33,10 @@ Router.map(function(){
   });
   this.route('admin', {
     path: '/admin',
+    controller: authController
+  });
+  this.route('ideas', {
+    path: '/ideas',
     controller: authController
   });
   this.route('userAccount', {

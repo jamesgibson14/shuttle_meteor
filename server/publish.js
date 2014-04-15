@@ -32,7 +32,7 @@ Bookings.allow({
   },
   update: function(userId, doc, fieldNames, modifier){
     console.log(userId, doc, fieldNames, modifier);
-    return (Roles.userIsInRole(userId, ['employee','driver','developer','admin']));
+    return (Roles.userIsInRole(userId, ['employee','driver','dispatch','developer','admin']));
   },
   remove: function(userId, doc){
     console.log(userId, doc);

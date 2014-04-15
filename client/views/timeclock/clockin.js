@@ -9,7 +9,7 @@ Template.clockin.events({
 
     Records.insert(doc);
   }
-})
+});
 Template.clockin.helpers({
   hours: _.range(0, 12),
   degrees: function () {

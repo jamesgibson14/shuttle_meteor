@@ -1,0 +1,15 @@
+<template name="ideas">
+  <div>
+    <label>New Idea</label><br /> <input name="idea" class="idea" /><br />
+    <label>Description</label><br /><textarea class="description"></textarea>
+    <button class="create">create</button>
+  </div>
+  <div>
+    {{#each ideas}}
+      {{> idea}}
+    {{/each}}
+  </div>
+</template>
+<template name="idea">
+  <div>{{idea}} - {{description}}</div>
+</template>
