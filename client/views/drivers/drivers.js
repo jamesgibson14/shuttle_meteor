@@ -3,9 +3,6 @@ Template.drivers.helpers({
     return [{name: "James"},{name: "Shane"},{name: "Doug"},{name: "Alice"},{name: "Bob"}];
   }
 });
-Template.drivers.events({
-
-});
 
 Template.driverView.created = function(){
   Session.setDefault('dateFilter', moment().format('MM/DD/YYYY'));

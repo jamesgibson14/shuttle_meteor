@@ -36,7 +36,7 @@
             <input type="text" class="form-control" id="phoneNumber" value="">
           </div>
         </div>
-        <div class="form-group">
+        <div class="form-group collapse">
           <label class="col-sm-5 control-label">Email Address:</label>
           <div class="col-sm-7">
             <input type="text" class="form-control" id="emailAddress" value="">
@@ -82,8 +82,9 @@
           </div>
           <label class="col-sm-2 control-label">Time:</label>
           <div class="col-sm-4 bootstrap-timepicker input-group margin-bottom-sm">
-           <input type="text" class="form-control timepicker" id="pickupTime" value="">
-            <span class="input-group-addon"><i class="fa fa-clock-o fa-fw"></i></span>
+            <span class="input-group-addon"><i class="fa fa-plus"></i></span>
+            <input type="text" class="form-control timepicker" id="pickupTime" value="">
+            <span class="input-group-addon"><i class="fa fa-plus"></i></span>
           </div>
         </div>
          <div class="form-group">
@@ -211,8 +212,8 @@
     {{#if isInRole "developer,beta"}}
     {{> taxiCart}}
     {{> drivers}}
-    
-    <!--{{> taxiBookings}}-->
+    {{> calendar}}
+
     {{/if}}
   </div>
 </div>
