@@ -2,10 +2,29 @@
   <div><h2>Employee Time History</h2></div>
   <div>
     <ul>
+      {{#each employees}}
+      {{#with profile}}
+      <li class="employee">{{firstName}} {{lastName}} {{pin}}</li>
+      {{/with}}
+      {{/each}}
+    </ul>
+  </div>
+  <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        Hello World
+      </div>
+    </div>
+  </div>
+  <div>
+    <ul>
     {{#each getHistory}}
       <li>{{momentFormat time}} - {{user}} - {{inOut}}</li>
     {{/each}}
     </ul>
+  </div>
+  <div>
+    {{> timeReport}}
   </div>
 </template>
 <template name="clockin">
@@ -42,4 +61,7 @@
     <button class="clock-in btn btn-default">Clock In</button><br />
     <button class="clock-out btn btn-default">Clock Out</button>
   </div>
+</template>
+<template name="timeReport">
+
 </template>

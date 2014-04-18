@@ -8,7 +8,7 @@ Template.calendar.rendered = function(){
       right: 'month,agendaWeek,agendaDay'
     },
     defaultDate: '2014-01-12',
-    defaultView: 'ajendaDay',
+    defaultView: 'agendaDay',
     editable: true,
     events: [
       {

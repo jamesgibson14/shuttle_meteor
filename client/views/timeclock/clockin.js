@@ -4,7 +4,7 @@ Meteor.setInterval(function () {
 Template.clockin.events({
   'click .clock-in': function(){
     var doc = {};
-    doc.time = Session.get('time');
+    doc.start = Session.get('time');
     doc.user = prompt('Enter your pin?');
     doc.inOut = 'in';
 
@@ -47,8 +47,17 @@ Template.clockin.helpers({
     return  Session.get('time') || new Date;
   }
 });
+Template.clockinApp.events({
+  'click .employee': function(){
+    $('.bs-example-modal-sm').modal('show');
+    console.log(this);
+  }
+})
 Template.clockinApp.helpers({
   getHistory: function(){
     return Records.find({}, {sort: {time: -1}});
+  },
+  employees: function(){
+    return Meteor.users.find();
   }
 });
