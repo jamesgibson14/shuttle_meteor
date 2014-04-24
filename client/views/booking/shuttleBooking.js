@@ -1,9 +1,7 @@
 Session.setDefault('isReturnTrip',true)
 Session.setDefault('selectedDepartDate', null);
-Template.booking_form.created = function(){
-  
-}
-Template.booking_form.rendered = function() {
+
+Template.shuttleBooking.rendered = function() {
   if(!this.hasRendered){
     this.rendered = true;
     $('.datepicker').datepicker({
@@ -16,7 +14,7 @@ Template.booking_form.rendered = function() {
     });
   }
 }
-Template.booking_form.events({
+Template.shuttleBooking.events({
   'change .selectReturn': function(e, temp){
     if(e.target.value === "round-trip"){
       Session.set('isReturnTrip',true)
@@ -49,7 +47,7 @@ Template.booking_form.events({
   }
   
 })
-Template.booking_form.helpers({
+Template.shuttleBooking.helpers({
   isReturnTrip: function(){
     return Session.get('isReturnTrip');
   },

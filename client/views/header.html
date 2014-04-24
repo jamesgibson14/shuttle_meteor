@@ -19,11 +19,13 @@
           <li class=""><a href="/DriverView">Driver View</a></li>
            {{#if isInRole "admin,manage-users"}}
           <li class=""><a href="/Reports">Reports</a></li>
-           <li class=""><a href="/admin">Admin</a></li>
+          <li class=""><a href="/admin">Admin</a></li>
           {{/if}}
           {{#if isInRole "developer,beta"}}
-          <li> <a class="navbar-brand" href="/">Shuttle</a></li>
+          <li> <a href="/ShuttleBooking">Shuttle</a></li>
           <li class=""><a href="/RunHistory">Run Histoy</a></li>
+          <li> <a href="/clockin">Time Clock</a></li>
+          <li> <a href="/ideas">Ideas</a></li>
           {{/if}}
         </ul>
         {{#if currentUser}}

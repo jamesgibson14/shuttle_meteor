@@ -2,22 +2,7 @@ Meteor.setInterval(function () {
   Session.set('time', new Date);
 }, 1000);
 Template.clockin.events({
-  'click .clock-in': function(){
-    var doc = {};
-    doc.start = Session.get('time');
-    doc.user = prompt('Enter your pin?');
-    doc.inOut = 'in';
 
-    Records.insert(doc);
-  },
-  'click .clock-out': function(){
-    var doc = {};
-    doc.time = Session.get('time');
-    doc.user = prompt('Enter your pin?');
-    doc.inOut = 'out';
-
-    Records.insert(doc);
-  }
 });
 Template.clockin.helpers({
   hours: _.range(0, 12),
@@ -48,16 +33,59 @@ Template.clockin.helpers({
   }
 });
 Template.clockinApp.events({
-  'click .employee': function(){
-    $('.bs-example-modal-sm').modal('show');
+  'click .punch': function(){
+   // $('.bs-example-modal-sm').modal('show');
     console.log(this);
+  },
+  'click .clock-in': function(){
+    var time = Session.get('time');
+    var pin = prompt('Enter your pin?');
+    if (pin !== this.pin){
+      alert('pin is incorrect');
+      return;
+    }
+    var doc = {};
+    doc.start = time;
+    doc.user = this._id;
+    doc.types = ['timePunch', 'event'];
+
+    Records.insert(doc);
+  },
+  'click .clock-out': function(){
+    var time = Session.get('time');
+    var pin = prompt('Enter your pin?');
+    if (pin !== this.pin){
+      alert('pin is incorrect');
+      return;
+    }
+    var mod = {};
+    mod.end = time;
+    Records.update(doc);
+  },
+  'change .employeeSearch':function(e, temp){
+    Session.set('employeeSearch', e.target.value);
   }
-})
+});
 Template.clockinApp.helpers({
   getHistory: function(){
     return Records.find({}, {sort: {time: -1}});
   },
   employees: function(){
-    return Meteor.users.find();
+    var search = {};
+    var text = Session.get('employeeSearch');
+    if(text){
+      search.$or = [
+        {'profile.firstName': { $regex: text, $options: 'i' }},
+        {'profile.lastName': { $regex: text, $options: 'i' }}
+      ]
+    }
+    return Meteor.users.find(search);
+  },
+  inOrOut: function(){
+    return false;
+  },
+  getTimePunch: function(){
+    var timePunch = Records.findOne({type: 'timepunch', user: this._id}) || {};
+    return timePunch.start || 'no Start';
   }
 });

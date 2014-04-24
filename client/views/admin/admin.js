@@ -1,4 +1,4 @@
-Session.setDefault('selectedUser',Meteor.userId())
+Session.setDefault('selectedUser',Meteor.userId());
 Template.admin.events({
   "click #userList li": function(e,temp){
     Session.set('selectedUser', $(e.target).data('user_id'));
