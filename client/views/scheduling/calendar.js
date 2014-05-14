@@ -10,15 +10,30 @@ Template.calendar.rendered = function(){
     defaultDate: '2014-01-12',
     defaultView: 'agendaDay',
     editable: true,
+    slotDuration: '00:05:00',
+    allDaySlot: false,
+    events: function(start, end, callback) {
+      var events = [];
+      var calendarEvents = Records.find();
+
+      calendarEvents.forEach(function (carpool_event) {
+        events.push({
+          title: carpool_event.owner,
+          start: carpool_event.eventDate
+        });
+        console.log("Event owner " + ": " + carpool_event.owner);
+      });
+      callback(events);
+    },
     events: [
       {
         title: 'All Day Event',
-        start: '2014-01-01'
+        start: '2014-01-12'
       },
       {
         title: 'Long Event',
         start: '2014-01-07',
-        end: '2014-01-10'
+        end: '2014-01-12'
       },
       {
         id: 999,
@@ -49,5 +64,9 @@ Template.calendar.rendered = function(){
         start: '2014-01-28'
       }
     ]
+  });
+  Meteor.autorun(function() {
+    var calendarEvents = Records.find();
+    $('#calendar').fullCalendar('refetchEvents');
   });
 }

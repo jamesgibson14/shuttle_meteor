@@ -3,12 +3,13 @@ Template.ideas.events({
     var doc = {};
     doc.idea = temp.find('input.idea').value;
     doc.description = temp.find('textarea.description').value;
-    doc.type = 'idea';
+    doc.tags = temp.find('[name="tags"]').value;
+    doc.types = 'idea';
     Records.insert(doc);
   }
 });
 Template.ideas.helpers({
   ideas: function(){
-    return Records.find({type: "idea"});
+    return Records.find({types: "idea"});
   }
 });

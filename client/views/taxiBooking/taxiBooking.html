@@ -1,11 +1,4 @@
-<head>
-	<title>Iron County Taxi | Schedule</title>
-</head>
-
-<body>
-</body>
-
-<template name="taxiBookingForm"> 
+<template name="taxiBookingForm">
   <h1>Schedule A Ride</h1>
   
   <form class="form-horizontal">
@@ -42,7 +35,7 @@
             <input type="text" class="form-control" id="emailAddress" value="">
           </div>
         </div>
-        <div class="form-group">
+        <div class="form-group collapse">
         <label class="col-sm-5 control-label">Pickup Location:</label>
           <div class="col-sm-7">
           <select id="pickupLocation" class="form-control">
@@ -63,7 +56,7 @@
             <input type="text" class="form-control" id="pickupAddress" value="">
           </div>
         </div>
-        <div class="form-group">
+        <div class="form-group collapse">
           <label class="col-sm-5 control-label">Addr. Line 2 / Unit #:</label>
           <div class="col-sm-7">
             <input type="text" class="form-control" id="pickupAddress2" value="">
@@ -82,12 +75,12 @@
           </div>
           <label class="col-sm-2 control-label">Time:</label>
           <div class="col-sm-4 bootstrap-timepicker input-group margin-bottom-sm">
-            <span class="input-group-addon"><i class="fa fa-plus"></i></span>
-            <input type="text" class="form-control timepicker" id="pickupTime" value="">
-            <span class="input-group-addon"><i class="fa fa-plus"></i></span>
+            <span class="input-group-btn"><button type="button" class="btn btn-default" title="Minus five minutes"><i class="fa fa-minus"></i></button></span>
+            <input type="text" class="form-control timepicker" id="pickupTime" value="" />
+            <span class="input-group-btn"><button  type="button" class="btn btn-default" title="Add five minutes"><i class="fa fa-plus"></i></button></span>
           </div>
         </div>
-         <div class="form-group">
+         <div class="form-group collapse">
         <label class="col-sm-5 control-label">Destination:</label>
           <div class="col-sm-7">
           <select id="destinationLocation" class="form-control">
@@ -108,7 +101,7 @@
             <input type="text" class="form-control" id="destinationAddress" value="">
           </div>
         </div>
-        <div class="form-group">
+        <div class="form-group collapse">
           <label class="col-sm-5 control-label">Addr. Line 2 / Unit #:</label>
           <div class="col-sm-7">
             <input type="text" class="form-control" id="destinationAddress2" value="">
@@ -210,7 +203,7 @@
   </div>
   <div class="col-sm-6">
     {{#if isInRole "developer,beta"}}
-    {{> taxiCart}}
+
     {{> calendar}}
 
     {{/if}}
@@ -233,33 +226,3 @@
   <div class="driver">{{name}}</div>
   {{/each}}
 </template>
-
-<!-- Use for reference
-<template name="suggestedRuns">
-  <div style="border: 1px solid black;">
-  <h3>Choose Your Ride</h3>
-  <table class="table table-condensed bg-white" >
-    <thead>
-      <tr>
-        <th>Time</th>
-        <th>Available Seats</th>
-        <th>Total Passengers</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each availableRuns}}
-        {{> aRun}}
-      {{/each}}
-    </tbody>
-  </table>
-  </div>
-</template>
-<template name="aRun">
-  <tr id='{{_id}}' class="run selected">
-    <td>{{time}} ({{ride}}) ({{route}}), {{moment date=date format="MM/DD/YYYY"}}</td>
-    <td>{{availableSeats}}</td>
-    <td>{{maxPassengers}}</td>
-  </tr>
-</template>
--->
-

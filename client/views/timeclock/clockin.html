@@ -4,14 +4,12 @@
     <label>Search</label><input type="text" class="employeeSearch form-control" />
     <ul>
       {{#each employees}}
-      {{#with profile}}
-      <li class="employee">{{firstName}} {{lastName}} {{getTimePunch}}
+      <li class="employee">{{profile.firstName}} {{profile.lastName}} {{getTimePunch}}
         <div>
-          <button class="clock-in btn btn-default punch"  disabled="{{inOrOut}}">Clock In</button>
-          <button class="clock-out btn btn-default punch" disabled="{{inOrOut}}">Clock Out</button>
+          <button class="clock-in btn btn-success punch"  disabled="{{inOrOut "in"}}">Clock In</button>
+          <button class="clock-out btn btn-danger punch" disabled="{{inOrOut "out"}}">Clock Out</button>
         </div>
       </li>
-      {{/with}}
       {{/each}}
     </ul>
   </div>
@@ -25,12 +23,9 @@
   <div>
     <ul>
     {{#each getHistory}}
-      <li>{{momentFormat time}} - {{user}} - {{inOut}}</li>
+      <li>In: {{momentFormat start}}, Out: {{momentFormat end}} - {{getUser}} - {{calcTime}} <button class="editPunch" >Edit</button></li>
     {{/each}}
     </ul>
-  </div>
-  <div>
-    {{> timeReport}}
   </div>
 </template>
 <template name="clockin">
@@ -63,11 +58,4 @@
     {{/each}}
   </svg>
   <div>{{momentFormat getDate }}</div>
-  <div>
-    <button class="clock-in btn btn-default">Clock In</button><br />
-    <button class="clock-out btn btn-default">Clock Out</button>
-  </div>
-</template>
-<template name="timeReport">
-
 </template>

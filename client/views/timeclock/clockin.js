@@ -29,18 +29,14 @@ Template.clockin.helpers({
     };
   },
   getDate: function(){
-    return  Session.get('time') || new Date;
+    return  Session.get('time') || new Date();
   }
 });
 Template.clockinApp.events({
-  'click .punch': function(){
-   // $('.bs-example-modal-sm').modal('show');
-    console.log(this);
-  },
   'click .clock-in': function(){
     var time = Session.get('time');
     var pin = prompt('Enter your pin?');
-    if (pin !== this.pin){
+    if (pin !== this.profile.pin){
       alert('pin is incorrect');
       return;
     }
@@ -54,21 +50,33 @@ Template.clockinApp.events({
   'click .clock-out': function(){
     var time = Session.get('time');
     var pin = prompt('Enter your pin?');
-    if (pin !== this.pin){
+    if (pin !== this.profile.pin){
       alert('pin is incorrect');
       return;
     }
-    var mod = {};
-    mod.end = time;
-    Records.update(doc);
+    var modifier = {$set: {end: time}};
+    Records.update({_id: this.currentPunch._id},modifier,function(err, res){console.log(err,res);});
   },
-  'change .employeeSearch':function(e, temp){
+  'click .editPunch': function(){
+    console.log(this)
+  },
+  'change .employeeSearch':function(e, temfirstNamep){
     Session.set('employeeSearch', e.target.value);
   }
 });
 Template.clockinApp.helpers({
   getHistory: function(){
-    return Records.find({}, {sort: {time: -1}});
+    return Records.find({types:"timePunch"}, {sort: {start: -1}});
+  },
+  getUser: function(){
+    var user = Meteor.users.findOne(this.user);
+    console.log(user);
+    return user.profile.firstName + " " + user.profile.lastName;
+  },
+  calcTime: function(){
+    var hours = moment(this.end).diff(this.start, 'hours', true);
+    hours = Math.round(hours*100)/100;
+    return hours;
   },
   employees: function(){
     var search = {};
@@ -81,11 +89,30 @@ Template.clockinApp.helpers({
     }
     return Meteor.users.find(search);
   },
-  inOrOut: function(){
-    return false;
+  inOrOut: function(type){
+    Session.get('checkButtons');
+    if(type === "in"){
+      if(this.currentPunch.start){
+        return true;
+      }
+    }
+    else if (type === "out"){
+      if(!this.currentPunch.end && this.currentPunch.start){
+        return false;
+      }
+      else
+        return true;
+    }
   },
   getTimePunch: function(){
-    var timePunch = Records.findOne({type: 'timepunch', user: this._id}) || {};
-    return timePunch.start || 'no Start';
+    var timePunch = Records.findOne({types: 'timePunch', user: this._id},{sort: {start:-1}}) || {};
+    if (timePunch.start && timePunch.end) timePunch = {}
+    this.currentPunch = timePunch;
+    Session.set('checkButtons', new Date());
+    return timePunch.start || 'Clocked Out';
+  },
+  timeReport: function(){
+    //Template.__define__('test', eval(Compiler.compile('<p>Hello {{name}}</p>')));
+    return Template.test
   }
 });

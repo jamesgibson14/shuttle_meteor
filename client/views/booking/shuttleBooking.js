@@ -2,17 +2,14 @@ Session.setDefault('isReturnTrip',true)
 Session.setDefault('selectedDepartDate', null);
 
 Template.shuttleBooking.rendered = function() {
-  if(!this.hasRendered){
-    this.rendered = true;
-    $('.datepicker').datepicker({
-      onSelect: function(){
-        var depart = $('#departDate').val();
-        console.log(depart);
-        Session.set('selectedDepartDate', depart);
-      },
-      minDate: new Date()
-    });
-  }
+  $('.datepicker').datepicker({
+    onSelect: function(){
+      var depart = $('#departDate').val();
+      console.log(depart);
+      Session.set('selectedDepartDate', depart);
+    },
+    minDate: new Date()
+  });
 }
 Template.shuttleBooking.events({
   'change .selectReturn': function(e, temp){
@@ -63,9 +60,10 @@ Template.shuttleBooking.helpers({
     return Locations.find();
   }
 })
-Template.suggestedRuns.events({})
-Template.suggestedRuns.helpers({
-  availableRuns: function() {
+Template.shuttleRuns.events({})
+Template.shuttleRuns.helpers({
+  availableRuns: function(direction) {
+    console.log(direction)
     var val = Session.get('selectedDepartDate');
     if(!val){
       return false;
@@ -75,29 +73,17 @@ Template.suggestedRuns.helpers({
     var origination = '';
     var destination = '';
     end.add('days', 1);
-    console.log('val',val);
-    console.log('start',start);
-    console.log('end',end);
     var range = {$gte: start.toDate(), $lt: end.toDate()}
-    console.log(range);
-    var result = RunHistory.find({date: range},{$sort:{time: 1}});
+    var result = Records.find({type: "ShuttleRun", date: range},{$sort:{time: 1}});
     var count = result.count();
-    console.log(count);
+    console.log(range);
     if (count === 0) {
       console.log("Inserting new run options...");
-      RunHistory.insert({date: start.toDate(), time: '04:00 AM', from: 'St. George', to: 'Las Vegas', ride: "Std Van", passengers: 3, maxPassengers: 8},function(err,res){console.log(err,res)});
-      RunHistory.insert({date: start.toDate(), time: '06:00 AM', from: 'St. George', to: 'Las Vegas', ride: "Std Van", passengers: 3, maxPassengers: 8},function(err,res){console.log(err,res)});
-      RunHistory.insert({date: start.toDate(), time: '08:00 AM', from: 'St. George', to: 'Las Vegas', ride: "Std Van", passengers: 3, maxPassengers: 8},function(err,res){console.log(err,res)});
-      RunHistory.insert({date: start.toDate(), time: '10:00 AM', from: 'St. George', to: 'Las Vegas', ride: "Std Van", passengers: 3, maxPassengers: 8},function(err,res){console.log(err,res)});
-      RunHistory.insert({date: start.toDate(), time: '12:00 PM', from: 'St. George', to: 'Las Vegas', ride: "Std Van", passengers: 3, maxPassengers: 8},function(err,res){console.log(err,res)});
-      RunHistory.insert({date: start.toDate(), time: '07:00 PM', from: 'St. George', to: 'Las Vegas', ride: "Exc Van", passengers: 3, maxPassengers: 8},function(err,res){console.log(err,res)});
-      RunHistory.insert({date: start.toDate(), time: '6:00', route: 'stgToVegas', ride: "Exc Van", passengers: 3, maxPassengers: 8},function(err,res){console.log(err,res)});
-      RunHistory.insert({date: start.toDate(), time: '8:00', route: 'stgToVegas', ride: "Exc Van", passengers: 3, maxPassengers: 8},function(err,res){console.log(err,res)});
-      RunHistory.insert({date: start.toDate(), time: '10:00', route: 'stgToVegas', ride: "Exc Van", passengers: 3, maxPassengers: 8},function(err,res){console.log(err,res)});
-      RunHistory.insert({date: start.toDate(), time: '12:00', route: 'stgToVegas', ride: "Exc Van", passengers: 3, maxPassengers: 8},function(err,res){console.log(err,res)});
-      RunHistory.insert({date: start.toDate(), time: '7:00 AM', route: 'stgToSLC', ride: "Stnd Van", passengers: 3, maxPassengers: 8},function(err,res){console.log(err,res)});
-      RunHistory.insert({date: start.toDate(), time: '1:00 PM', route: 'stgToSLC', ride: "Stnd Van", passengers: 3, maxPassengers: 8},function(err,res){console.log(err,res)});
-      RunHistory.insert({date: start.toDate(), time: '4:00 PM', route: 'stgToSLC', ride: "Stnd Van", passengers: 3, maxPassengers: 8},function(err,res){console.log(err,res)});
+      Records.insert({type: 'ShuttleRun', date: start.toDate(), time: '04:00 AM', from: 'Cedar City',
+        to: 'Las Vegas', ride: "Std Van", passengers: 3, maxPassengers: 8},function(err,res){console.log(err,res)});
+      Records.insert({type: 'ShuttleRun', date: start.toDate(), time: '06:00 AM', from: 'Las Vegas',
+        to: 'Cedar CIty', ride: "Std Van", passengers: 3, maxPassengers: 8},function(err,res){console.log(err,res)});
+
     }
     else {
       return result;

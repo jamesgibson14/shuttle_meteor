@@ -16,18 +16,19 @@
       "accounts-entry": {},
       "mysql": {},
       "headers": {},
-      "handlebar-helpers": {}
+      "handlebar-helpers": {},
+      "apm": {}
     },
     "packages": {
       "moment": {
         "git": "https://github.com/acreeger/meteor-moment.git",
-        "tag": "v2.5.1",
-        "commit": "8c9bc5d3fc96705057737cb9743d555417f6e551"
+        "tag": "v2.6.0",
+        "commit": "26156df681750fd6e6ed77043eef32b6653ebbdf"
       },
       "iron-router": {
         "git": "https://github.com/EventedMind/iron-router.git",
-        "tag": "v0.7.0",
-        "commit": "05f34bc48c4cad9fdaa366c1ddcabe6980232ece"
+        "tag": "v0.7.1",
+        "commit": "d1ffb3f06ea4c112132b030f2eb1a70b81675ecb"
       },
       "bootstrap-3": {
         "git": "https://github.com/mangasocial/meteor-bootstrap-3.git",
@@ -61,8 +62,8 @@
       },
       "numeral": {
         "git": "https://github.com/vsivsi/meteor-numeral.git",
-        "tag": "v0.0.1",
-        "commit": "5542b3e87e55f07ae854e8d1b847b3694d66b986"
+        "tag": "v1.5.3",
+        "commit": "bdc97fc69bee7dadae1fc0f97fa6d9d76a03e73d"
       },
       "bootstrap3-wysihtml5": {
         "git": "https://github.com/andreioprisan/meteor-bootstrap3-wysihtml5.git",
@@ -76,33 +77,38 @@
       },
       "accounts-entry": {
         "git": "https://github.com/Differential/accounts-entry.git",
-        "tag": "v0.7.2",
-        "commit": "cda8617139b5edd79a52023986bfecb48e4b9dc4"
+        "tag": "v0.7.3",
+        "commit": "7facaa045d3720eeeba3420c28e48d5709188fe3"
       },
       "mysql": {
         "git": "https://github.com/patrickocoffeyo/meteor-mysql.git",
-        "tag": "v0.0.1",
-        "commit": "ba1ff6d386082a478f14ab2708d6d4b7fa6c6fac"
+        "tag": "v1.0.1",
+        "commit": "997a00e484b523d3a77363db17c2da33c927ca1f"
       },
       "headers": {
         "git": "https://github.com/gadicohen/meteor-headers.git",
-        "tag": "v0.0.21",
-        "commit": "569a50eb334cc1ab324d0721411f48f1cc75ec24"
+        "tag": "v0.0.23",
+        "commit": "f7c9a01c12b08f4bf4cd9965f60cf72cf9a62d87"
       },
       "handlebar-helpers": {
         "git": "https://github.com/raix/Meteor-handlebar-helpers.git",
         "tag": "v0.1.1",
         "commit": "0b407ab65e7c1ebd53d71aef0de2e2c1d21a597c"
       },
+      "apm": {
+        "git": "https://github.com/arunoda/meteor-apm-client.git",
+        "tag": "v1.2.7",
+        "commit": "97834d13daf2a3e2a6ce27a311fdf09a3796423b"
+      },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",
-        "tag": "v0.2.2",
-        "commit": "8bc53798fe5965669ae67c72f91829fcfdceabfd"
+        "tag": "v0.2.4",
+        "commit": "b40e9b0612329288d75cf52ad14a7da64bb8618f"
       },
       "accounts-t9n": {
         "git": "https://github.com/softwarerero/meteor-accounts-t9n.git",
-        "tag": "v0.0.3",
-        "commit": "d1710f979d6955459d9ce0374df81d22c3c6a6ab"
+        "tag": "v0.0.5",
+        "commit": "ad9539a8818049d5d9fa050d8b2a1f62706483b1"
       },
       "inject-initial": {
         "git": "https://github.com/gadicc/meteor-inject-initial.git",

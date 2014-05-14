@@ -106,11 +106,10 @@ Meteor.startup(function(){
 
       // email verification
       Meteor.users.update({_id: id}, {$set:{'emails.0.verified': true}});
-
       Roles.addUsersToRoles(id, userData.roles);
-    
     });
   }
+  Apm.connect('rxspDMMScu6XFrcQ9', 'b8500091-f707-4d3f-9112-41138114f6ea');
   /*
   var connection = Mysql.createConnection(Meteor.settings.awsMysql);
   var connection = Mysql.createConnection(Meteor.settings.oldMysql);

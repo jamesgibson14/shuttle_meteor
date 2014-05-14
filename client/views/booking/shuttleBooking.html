@@ -5,72 +5,87 @@
   <fieldset>
   <div class="row">
   <div class="col-sm-6"> 
-        <input type="radio" class="selectReturn" name="round-trip" value="round-trip" checked="checked"> Round-Trip &nbsp;
-        <input type="radio" class="selectReturn" name="round-trip" value="one-way"> One-Way
-        <p>&nbsp;</p>
-        <div class="form-group">
-          
-          <label class="col-sm-3 control-label">Leave Date:</label>
-          <div class="input-append date col-sm-7">
-            <input type="text" class="form-control datepicker" id="departDate" value="{{defaultDepartDate}}"><span class="add-on"><i class="icon-th"></i></span>
-          </div>
-        </div>
-        {{#if isReturnTrip}}
-        <div class="form-group">
-          <label class="col-sm-3 control-label">Return Date:</label>
-          <div class="input-append date col-sm-7">
-            <input type="text" class="form-control datepicker" id="returnDate" value="{{defaultReturnDate}}"><span class="add-on"><i class="icon-th"></i></span>
-          </div>
-        </div>
-        {{/if}}
-        <div class="form-group">
-        <label class="col-sm-3 control-label">Pick Up Location:</label>
-          <div class="col-sm-7">
-          <select id="pickUp" class=" form-control">
-            <option value="">Select a location</option>
-            <option>Las Vegas</option>
-            <option>St. George</option>
-            <option>Salt Lake City</option>
-            {{#each pickup}}
-              <option>{{name}}</option>
-            {{/each}}
-          </select>
-          </div>  
-        </div>
-          
-        <div class="form-group">
-        <label class="col-sm-3 control-label">Drop Off Location:</label>
-          <div class="col-sm-7">
-          <select id="dropOff" class="form-control">
-            <option value="">Select a location</option>
-            <option>Las Vegas</option>
-            <option>St. George</option>
-            <option>Salt Lake City</option>
-            {{#each dropoff}}
-            <option>{{name}}</option>
-            {{/each}}
-          </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3 control-label">Passengers</label>
-          <div class="col-sm-2">
-            <input type="number" class="form-control" id="departurePassengers" value="1" />
-          </div>
-        </div>
-        {{#if isReturnTrip}}
-        <div class="form-group">
-          <label class="col-sm-3 control-label">Return Passengers</label>
-          <div class="col-sm-2">
-            <input type="number" class="form-control" id="departurePassengers" value="1" />
-          </div>
-        </div>
-        {{/if}}
-    
+    <input type="radio" class="selectReturn" name="round-trip" value="round-trip" checked="checked"> Round-Trip &nbsp;
+    <input type="radio" class="selectReturn" name="round-trip" value="one-way"> One-Way
+    <p>&nbsp;</p>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Leave Date</label>
+      <div class="input-append date col-sm-7">
+        <input type="text" class="form-control datepicker" id="departDate" value="{{defaultDepartDate}}"><span class="add-on"><i class="icon-th"></i></span>
+      </div>
+    </div>
+    {{#if isReturnTrip}}
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Return Date</label>
+      <div class="input-append date col-sm-7">
+        <input type="text" class="form-control datepicker" id="returnDate" value="{{defaultReturnDate}}"><span class="add-on"><i class="icon-th"></i></span>
+      </div>
+    </div>
+    {{/if}}
+    <div class="form-group">
+    <label class="col-sm-3 control-label">Pick Up Location:</label>
+      <div class="col-sm-7">
+      <select id="pickUp" class=" form-control">
+        <option value="">Select a location</option>
+        <option>Cedar City</option>
+        <option>Las Vegas</option>
+        {{#each pickup}}
+          <option>{{name}}</option>
+        {{/each}}
+      </select>
+      </div>
+    </div>
+    <div class="form-group">
+    <label class="col-sm-3 control-label">Drop Off Location:</label>
+      <div class="col-sm-7">
+      <select id="dropOff" class="form-control">
+        <option value="">Select a location</option>
+        <option>Cedar City</option>
+        <option>Las Vegas</option>
+        {{#each dropoff}}
+        <option>{{name}}</option>
+        {{/each}}
+      </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Passengers</label>
+      <div class="col-sm-2">
+        <input type="number" class="form-control" id="departurePassengers" value="1" />
+      </div>
+    </div>
+    {{#if isReturnTrip}}
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Return Passengers</label>
+      <div class="col-sm-2">
+        <input type="number" class="form-control" id="departurePassengers" value="1" />
+      </div>route
+    </div>
+    {{/if}}
+    <div class="form-group passengers">
+      Passengers<br />
+      <label class="col-sm-3 control-label">Name</label>
+      <div class="col-sm-7">
+        <input type="text" class="form-control" id="" name="passengers" />
+        <label>
+          Under 18 <input type="checkbox">
+        </label>
+        <label>
+          Return Trip <input type="checkbox">
+        </label>
+      </div>
+      <label class="col-sm-3 control-label">Name</label>
+      <div class="col-sm-7">
+        <input type="text" class="form-control" id="" name="passengers" />
+        <label>
+          Under 18 <input type="checkbox">
+        </label>
+      </div>
+    </div>
   </div>
   <div class="col-sm-6">
     {{> shoppingCart}}
-    {{> suggestedRuns}}
+    {{> shuttleRuns}}
   </div>
 </div>
 </fieldset>
@@ -81,28 +96,42 @@
   <h3>Cart</h3>
   </div>
 </template>
-<template name="suggestedRuns">
+<template name="shuttleRuns">
   <div style="border: 1px solid black;">
-  <h3>Choose Your Ride</h3>
-  <table class="table table-condensed bg-white" >
-    <thead>
+    <h3>Choose Your Ride</h3>
+    <table class="table table-condensed bg-white" >
+      <thead>route
+        <tr>
+          <th>Time</th>
+          <th>Available Seats</th>
+          <th>Total Passengers</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each availableRuns "leave"}}
+          {{> aRun}}
+        {{/each}}
+      </tbody>
+    </table>
+    <table class="table table-condensed bg-white" >
+      <thead>route
       <tr>
         <th>Time</th>
         <th>Available Seats</th>
         <th>Total Passengers</th>
       </tr>
-    </thead>
-    <tbody>
-      {{#each availableRuns}}
+      </thead>
+      <tbody>
+      {{#each availableRuns "return"}}
         {{> aRun}}
       {{/each}}
-    </tbody>
-  </table>
+      </tbody>
+    </table>
   </div>
 </template>
 <template name="aRun">
   <tr id='{{_id}}' class="run selected">
-    <td>{{time}} ({{ride}}) ({{route}}), {{moment date=date format="MM/DD/YYYY"}}</td>
+    <td>{{time}} ({{ride}}) ({{from}} to {{to}}), {{moment date=date format="MM/DD/YYYY"}}</td>
     <td>{{availableSeats}}</td>
     <td>{{maxPassengers}}</td>
   </tr>

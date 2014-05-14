@@ -2,27 +2,24 @@ Session.setDefault('isReturnRide', false);
 Session.setDefault('isPickupAtDropoff', null);
 
 Template.taxiBookingForm.rendered = function() {
-  if(!this.hasRendered){
-    this.rendered = true;
-    $('.datepicker').datepicker({
-      onSelect: function(){
-        var pickup = $('#pickupDate').val();
-        console.log(pickup);
-        Session.set('selectedPickupDate', pickup);
-      },
-      minDate: new Date()
-    });
-    $('#pickupTime').timepicker({
-      minuteStep: 5,
-      showInputs: true,
-      disableFocus: false
-    });
-    $('#returnPickupTime').timepicker({
-      minuteStep: 5,
-      showInputs: false,
-      disableFocus: true
-    });
-  }
+  $('.datepicker').datepicker({
+    onSelect: function(){
+      var pickup = $('#pickupDate').val();
+      console.log(pickup);
+      Session.set('selectedPickupDate', pickup);
+    },
+    minDate: new Date()
+  });
+  $('#pickupTime').timepicker({
+    minuteStep: 5,
+    showInputs: true,
+    disableFocus: false
+  });
+  $('#returnPickupTime').timepicker({
+    minuteStep: 5,
+    showInputs: false,
+    disableFocus: true
+  });
 };
 
 Template.taxiBookingForm.events({
@@ -54,7 +51,7 @@ Template.taxiBookingForm.events({
   
   'click #taxiBooking-submit': function(e, temp){
     var booking = {};
-    booking.type = "taxi";
+    booking.types = ["taxi"];
     booking.dateCreated = new Date();
     booking.scenario = "Online-customer"
     if ($(temp.find('#scenario')).val() != null) {
@@ -122,16 +119,16 @@ Template.taxiBookingForm.events({
     }
     var onReturnBookingInsert = function(err, id){
       if(!err){
-        Bookings.update({_id: departId},{$set: {nextBookingId: id}})
+        Records.update({_id: departId},{$set: {nextBookingId: id}})
         reset();
       }
       
     }
-    Bookings.insert(booking, function(err, id){
+    Records.insert(booking, function(err, id){
       if(!err){
         if(returnBooking){
           departId = id;
-          Bookings.insert(returnBooking, onReturnBookingInsert); 
+          Records.insert(returnBooking, onReturnBookingInsert);
         }
         reset();
       }

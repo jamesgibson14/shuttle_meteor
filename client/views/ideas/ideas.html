@@ -1,8 +1,16 @@
 <template name="ideas">
   <div>
-    <label>New Idea</label><br /> <input name="idea" class="idea" /><br />
-    <label>Description</label><br /><textarea class="description"></textarea>
-    <button class="create">create</button>
+
+      <label>New Idea</label><br /> <input name="idea" class="idea form-control" /><br />
+      <label>Description</label><br /><textarea class="description form-control" name=""></textarea><br />
+      <label>Type</label><br />
+      <select name="tags" class="form-control">
+        <option value="enhancement">Idea/Enhancement</option>
+        <option value="bug" >Problem/Bug</option>
+      </select>
+      <br />
+      <button class="create btn btn-default">Create Idea</button>
+
   </div>
   <div>
     {{#each ideas}}
@@ -11,5 +19,5 @@
   </div>
 </template>
 <template name="idea">
-  <div>{{idea}} - {{description}}</div>
+  <div>{{idea}} - {{description}} - tags: <span class="label label-default">{{tags}}</span></div>
 </template>

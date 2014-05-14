@@ -32,13 +32,13 @@ Template.driverView.helpers({
   },
   getRunInfo: function(){    
     var id = Session.get('currentBooking');
-    var obj = Bookings.findOne({_id: id});
+    var obj = Records.findOne({_id: id});
     console.log('getRunInfo', obj);
     return obj;
   },
   paymentTypeCash: function () {
     var bookingID = Session.get('currentBooking');
-    var paymentType = Bookings.findOne({_id: bookingID}, {paymentType: 1, id:0});
+    var paymentType = Records.findOne({_id: bookingID}, {paymentType: 1, id:0});
     console.log('Booking: ' + bookingID);
     console.log('Payment Type', paymentType);
     var isCash = false;
@@ -77,24 +77,24 @@ Template.driverView.events({
   },
   'click #confirmCancelRun': function(e, temp) {
     var bookingID = Session.get('currentBooking');
-    var booking = Bookings.findOne({_id: bookingID}, {nextBookingId:1, _id:0});
+    var booking = Records.findOne({_id: bookingID}, {nextBookingId:1, _id:0});
     var nextBookingId = booking.nextBookingId;
     var updateValues = {};
     updateValues.status = "cancelled";
     updateValues.reasonCancelled = $(temp.find('.runCancelReason')).val();
-    Bookings.update({_id: bookingID},{$set: updateValues});
-    console.log(Bookings.findOne({_id: bookingID}));
+    Records.update({_id: bookingID},{$set: updateValues});
+    console.log(Records.findOne({_id: bookingID}));
     if (nextBookingId) {
-      Bookings.update({_id: nextBookingId},{$set: updateValues});
-      console.log(Bookings.findOne({_id: nextBookingId}));
+      Records.update({_id: nextBookingId},{$set: updateValues});
+      console.log(Records.findOne({_id: nextBookingId}));
     }
     $('#runCancelModal').modal('hide');
   },
   'click #confirmRestoreReturnBooking': function(e,temp){
     var bookingID = Session.get('currentBooking');
-    var booking = Bookings.findOne({_id: bookingID}, {nextBookingId:1, _id:0});
+    var booking = Records.findOne({_id: bookingID}, {nextBookingId:1, _id:0});
     var nextBookingId = booking.nextBookingId;
-    Bookings.update({_id: nextBookingId}, {$set: {status: "reserved"}});
+    Records.update({_id: nextBookingId}, {$set: {status: "reserved"}});
     $('#runReserveModal').modal('hide');
   },
   'click #saveRunInfo': function(e, temp) {
@@ -105,7 +105,7 @@ Template.driverView.events({
     updateValues.waitTime = $(temp.find('.runWaitTime')).val();
     updateValues.price = $(temp.find('.runPrice')).val();
     updateValues.paymentType = $(temp.find('input.runPaymentType:checked')).val();
-    Bookings.update({_id: bookingID},{$set: updateValues});
+    Records.update({_id: bookingID},{$set: updateValues});
     $('#runInfoModal').modal('hide');
   },
   'click #saveRunCustomer': function(e, temp) {
@@ -114,7 +114,7 @@ Template.driverView.events({
     updateValues.name = $(temp.find('.runCustomerName')).val();
     updateValues.phone = $(temp.find('.runCustomerPhone')).val();
     updateValues.email = $(temp.find('.runCustomerEmail')).val();
-    Bookings.update({_id: bookingID},{$set: updateValues});
+    Records.update({_id: bookingID},{$set: updateValues});
     $('#runCustomerModal').modal('hide');
   },
   'click #saveRunDetails': function(e, temp) {
@@ -133,7 +133,7 @@ Template.driverView.events({
     updateValues.destinationAddress2 = $(temp.find('#runDestinationAddress2')).val();
     updateValues.returnRide = $(temp.find('input.selectReturnRide:checked')).val();
     updateValues.notes = $(temp.find('#notes')).val();
-    Bookings.update({_id: bookingID},{$set: updateValues});
+    Records.update({_id: bookingID},{$set: updateValues});
     $('#runDetailsModal').modal('hide');
   }
 })
@@ -148,13 +148,13 @@ Template.taxiBookings.helpers({
     var range = {$gte: start.toDate(), $lt: end.toDate()};
     
     var filter = {
-      type: "taxi",
+      types: "taxi",
       pickupAt: range
     }
     if (driver !== "all") {
       filter.driver = driver;
     }
-    return Bookings.find(filter, {sort: {pickupAt: 1}});
+    return Records.find(filter, {sort: {pickupAt: 1}});
   }
 })
 
@@ -175,12 +175,12 @@ Template.taxiBooking.events({
     
     var driver = $(e.target).val();
     
-    Bookings.update({_id: bookingID}, {$set: {driver: driver}});
+    Records.update({_id: bookingID}, {$set: {driver: driver}});
   },
   'click .cancelRun': function(e, temp) {
     var bookingID = this._id;
     Session.set('currentBooking', bookingID);
-    var obj = Bookings.findOne({_id: bookingID});
+    var obj = Records.findOne({_id: bookingID});
     console.log('cancelRun', obj);
     $('#runCancelModal .modal-content').html(Template.runCancelModal(obj));
     $('#runCancelModal').modal('show');
@@ -188,10 +188,10 @@ Template.taxiBooking.events({
   'click .reserveRun': function(e,temp) {
     var bookingID = temp.data._id;
     Session.set('currentBooking', bookingID);
-    var obj = Bookings.findOne({_id: bookingID});
+    var obj = Records.findOne({_id: bookingID});
     var nextBookingID = obj.nextBookingId;
     console.log('reserveRun', obj);
-    Bookings.update({_id: bookingID}, {$set: {status: "reserved"}});
+    Records.update({_id: bookingID}, {$set: {status: "reserved"}});
     if (nextBookingID) {
     $('#runReservelModal .modal-content').html(Template.runReserveModal(obj));
     $('#runReserveModal').modal('show');

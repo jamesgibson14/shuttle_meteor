@@ -12,10 +12,15 @@ Template.admin.events({
       password: "shuttle1",
       profile: { email: e.target.value }
     });
+    Meteor.call('newUser',email, function(err, res){
+      if(!err){
+        Session.set('selectedUser', id);
+      }
+    })
     // email verification
     Meteor.users.update({_id: id}, {$set:{'emails.0.verified': true}});
     Roles.setUserRoles(id, ['employee']);
-    Session.set('selectedUser', id);
+
   },
   'change #newRole': function(e,temp){
     console.log(e.target.value);

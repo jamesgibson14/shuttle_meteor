@@ -1,6 +1,4 @@
 <template name="header">
-  
-     
   <nav class="navbar navbar-inverse nav-pills" role="navigation">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -15,17 +13,21 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li class=""><a href="/TaxiBooking">Taxi Booking</a></li>
-          <li class=""><a href="/DriverView">Driver View</a></li>
-           {{#if isInRole "admin,manage-users"}}
-          <li class=""><a href="/Reports">Reports</a></li>
-          <li class=""><a href="/admin">Admin</a></li>
+          {{#if isInRole "dispatch,admin,developer"}}
+            <li class=""><a href="/TaxiBooking">Taxi Booking</a></li>
+            <li class=""><a href="/DriverView">Driver View</a></li>
+            <li> <a href="/clockin">Time Clock</a></li>
+          {{/if}}
+          {{#if isInRole "admin,manage-users"}}
+            <li class=""><a href="/Reports">Reports</a></li>
+            <li class=""><a href="/admin">Admin</a></li>
           {{/if}}
           {{#if isInRole "developer,beta"}}
-          <li> <a href="/ShuttleBooking">Shuttle</a></li>
-          <li class=""><a href="/RunHistory">Run Histoy</a></li>
-          <li> <a href="/clockin">Time Clock</a></li>
-          <li> <a href="/ideas">Ideas</a></li>
+            <li> <a href="/ShuttleBooking">Shuttle</a></li>
+            <li class=""><a href="/RunHistory">Run Histoy</a></li>
+          {{/if}}
+          {{#if isInRole "dispatch,admin,developer"}}
+            <li> <a href="/ideas">Ideas</a></li>
           {{/if}}
         </ul>
         {{#if currentUser}}

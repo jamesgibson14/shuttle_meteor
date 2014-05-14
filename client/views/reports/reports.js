@@ -16,20 +16,31 @@ Template.reports.helpers({
   days: function(){
     var days = []
     var date = Session.get('selectedMonth');
-    var range= {
+    if(!date) return;
+    var selector= {
+      types: "taxi",
       pickupAt: {
         $gte: moment(date).startOf('month').toDate(),
-        $lte: moment(date).endOf('month').toDate(),
+        $lte: moment(date).endOf('month').toDate()
       }
     };
-    var cursor =  Bookings.find(range);
+    var cursor =  Records.find(selector);
     Days.remove({});
+
     cursor.forEach(function(doc){
+      var date = moment(doc.pickupAt);
       var taxiRuns = doc.delivery ? 0 : 1;
       var deliveryRuns =  doc.delivery ? 1 : 0;
-      Days.upsert( {dateString: moment(doc.pickupAt).format('MM/DD/YYYY')},
+      Days.upsert( {dateString: date.format('MM/DD/YYYY')},
                   {$set: {date: doc.pickupAt},
-                   $inc: {mileage: parseInt(doc.mileage || 0), price: parseFloat(doc.price || 0), count: 1, taxiRuns: taxiRuns, deliveryRuns: deliveryRuns}})
+                   $inc: {mileage: parseInt(doc.mileage || 0), price: parseFloat(doc.price || 0), count: 1, taxiRuns: taxiRuns, deliveryRuns: deliveryRuns}});
+    });
+    var allUnitsInRange = _.range(1,moment(date).daysInMonth()+1);
+    _.each(allUnitsInRange, function(val, i){
+      var day = moment(date).date(val);
+      if(! Days.findOne({dateString: day.format('MM/DD/YYYY')})){
+        Days.insert( {dateString: day.format('MM/DD/YYYY'),date: day.toDate(), mileage: 0, price: 0, count: 0, taxiRuns: 0, deliveryRuns: 0});
+      }
     });
     cursor = Days.find();
     days = cursor.map(function(doc){

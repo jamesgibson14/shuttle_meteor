@@ -1,0 +1,3 @@
+Compiler = {
+  compile: Spacebars.compile
+};
